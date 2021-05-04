@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <nav class="navbar">
+    <h1 class="navbar__logo">
+      <a class="navbar__link navbar__link--header" routerLink="/">
+        <img class="navbar__logo-img" src="../../../assets/images/icons/logo.svg" alt="logo image">
+      </a>
+    </h1>
+
+    <ul class="navbar__items">
+      <li class="navbar__item">
+        <a class="navbar__link" routerLink="/">Home</a>
+      </li>
+      <li class="navbar__item">
+        <a class="navbar__link" routerLink="/login">Login</a>
+      </li>
+      <li class="navbar__item">
+        <a class="navbar__link" routerLink="/signup">Sign Up</a>
+      </li>
+      <li class="navbar__button">
+        <button class="navbar__link navbar__link--btn" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
