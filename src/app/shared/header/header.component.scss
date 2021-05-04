@@ -1,6 +1,39 @@
+.wrapper {
+  padding: 12px 20px;
+  background: #FFFFFF;
+  box-shadow: 0 0 3px 0 #cccccc;
+}
+
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
   &__logo-img {
-    max-width: 40px;
+    width: 60px;
+    height: 60px;
+  }
+  &__items {
+    list-style-type: none;
+    display: flex;
+  }
+  &__link {
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #2D2C2C;
+    font-size: 14px;
+    margin-right: 30px;
+    &--btn {
+      background: none;
+      border: none;
+      padding: 2px;
+    }
+    &:hover {
+      opacity: 0.8;
+      border-bottom: 1px solid #2D2C2C;
+    }
   }
 }
 
