@@ -1,0 +1,102 @@
+.container {
+  font-family: 'Poppins', sans-serif;
+  //max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  color: #1C1B1B;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+.form {
+  &__item {
+    width: 400px;
+    margin-bottom: 16px;
+  }
+  &__input {
+    width: 100%;
+    height: 44px;
+    outline: none;
+    border: 1px solid #9C9C9C;
+    padding: 8px 13px;
+    color: #292929;
+    font-size: 15px;
+    transition: 0.3s ease-in-out;
+    &::placeholder {
+      color: #8A8484;
+    }
+    &.ng-invalid.ng-touched {
+      border: 1px solid #F20606
+    }
+    &.ng-valid.ng-touched {
+      border: 1px solid #027700
+    }
+  }
+  &__messages{
+    padding-left: 5px;
+  }
+  &__err-message {
+    font-size: 10px;
+    color: #EB001B;
+    &:before {
+      content: ">>>";
+      color: #EB001B;
+      padding-right: 5px;
+    }
+  }
+  &__success-message {
+    font-size: 10px;
+    color: #027700;
+    &:before {
+      content: ">>>";
+      color: #027700;
+      padding-right: 5px;
+    }
+  }
+  &__btn-container {
+    text-align: center;
+    margin: 20px 0 60px;
+  }
+  &__sign-title {
+    font-size: 14px;
+    color: #1C1B1B;
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  &__button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  &__btn-img {
+    width: 30px;
+  }
+  &__submit {
+    cursor: pointer;
+    width: 100%;
+    color: #1C1B1B;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid #000000;
+    background: transparent;
+    padding: 12px 0;
+  }
+}
+
+
