@@ -15,10 +15,10 @@
            *ngIf="form.get('email').invalid && form.get('email').touched">
         <small class="form__err-message"
                *ngIf="form.get('email').errors.required"
-        >Поле не может быть пустым</small>
+        >The field cannot be empty</small>
         <small class="form__err-message"
                *ngIf="form.get('email').errors.email"
-        >Неверный формат email</small>
+        >Invalid email format</small>
       </div>
       <div class="form__messages"
            *ngIf="form.get('email').valid && form.get('email').touched">
@@ -39,11 +39,11 @@
              *ngIf="form.get('password').invalid && form.get('password').touched">
           <small class="form__err-message"
                  *ngIf="form.get('password').errors.required">
-            Поле не может быть пустым</small>
+            The field cannot be empty</small>
           <small class="form__err-message"
             *ngIf="form.get('password').errors.minlength">
-            Минимум {{form.get('password').errors.minlength.requiredLength}} символов.
-            Сейчас {{form.get('password').errors.minlength.actualLength}}.
+            Minimum {{form.get('password').errors.minlength.requiredLength}} characters.
+            Now there are {{form.get('password').errors.minlength.actualLength}}.
           </small>
         </div>
         <div class="form__messages"
