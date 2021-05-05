@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {User} from "../../shared/interfaces";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +13,7 @@ export class SignupComponent implements OnInit {
 
   form : FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -25,6 +27,19 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
+    if (this.form.invalid) return;
+    const user: User = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+    };
+    this.authService.signUp(user)
+  }
 
+  googleAuth() {
+    this.authService.googleAuth()
+  }
+
+  facebookAuth() {
+    this.authService.facebookAuth()
   }
 }

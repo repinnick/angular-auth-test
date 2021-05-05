@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
+import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
 
 
 
 const routes: Routes = [
-  {path: "", component: HomeComponent},
+  {path: "", component: HomeComponent, canActivate: [AngularFireAuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: '**', redirectTo: '/login'}

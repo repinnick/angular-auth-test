@@ -11,8 +11,11 @@ import {User} from "../../shared/interfaces";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup
+  userInfo: User
+  isAuthenticated: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) {
+
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,18 +25,20 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // submit() {
-  //   if (this.form.invalid) return
-  //   const user: User = {
-  //     email: this.form.value.email,
-  //     password: this.form.value.password,
-  //   };
-  //
-  //   this.auth.login(user).subscribe(() => {
-  //     this.form.reset()
-  //     this.router.navigate(['/'])
-  //   })
-  //
-  //   console.log(user)
-  // }
+  submit() {
+    if (this.form.invalid) return;
+    const user: User = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+    };
+    this.authService.signIn(user)
+  }
+
+  googleAuth() {
+    this.authService.googleAuth()
+  }
+
+  facebookAuth() {
+    this.authService.facebookAuth()
+  }
 }

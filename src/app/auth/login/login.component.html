@@ -1,11 +1,12 @@
 <div class="container">
   <h2 class="title">Sign In</h2>
-  <form class="form">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form__item">
         <input
           class="form__input"
           type="email"
           placeholder="example@gmail.com"
+          formControlName="email"
         >
     </div>
 
@@ -16,6 +17,7 @@
           type="password"
           id="password"
           placeholder="Password"
+          formControlName="password"
         >
       </div>
     </div>
@@ -23,20 +25,20 @@
     <div class="form__btn-container">
       <p class="form__sign-title">or Sign in with:</p>
         <div class="form__btns">
-        <button class="form__button" type="button">
+        <button class="form__button" type="button" (click)="googleAuth()">
           <img class="form__btn-img" src="../../../assets/images/icons/google.svg" alt="google">
         </button>
         <button class="form__button" type="button">
           <img class="form__btn-img" src="../../../assets/images/icons/github.svg" alt="github">
         </button>
-        <button class="form__button" type="button">
+        <button class="form__button" type="button" (click)="facebookAuth()">
           <img class="form__btn-img" src="../../../assets/images/icons/facebook.svg" alt="facebook">
         </button>
       </div>
     </div>
 
     <div class="form__btn-wrap">
-      <button class="form__submit" type="submit">Sign in</button>
+      <button class="form__submit" type="submit" [disabled]="form.invalid">Sign in</button>
     </div>
 
   </form>

@@ -9,6 +9,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './shared/header/header.component';
 import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import {LoginComponent} from "./auth/login/login.component";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

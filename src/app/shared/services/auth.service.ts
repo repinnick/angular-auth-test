@@ -1,30 +1,75 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import firebase from "firebase/app";
 import {User} from "../interfaces";
-import {environment} from "../../../environments/environment";
-import {tap} from "rxjs/operators";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
 
-@Injectable({
-  providedIn: "root"
-})
+
+// import {HttpClient} from "@angular/common/http";
+// import {environment} from "../../../environments/environment";
+// import {tap} from "rxjs/operators";
+
+@Injectable(
+  {providedIn: 'root'}
+)
 export class AuthService {
-  constructor() {
+
+  user: User;
+
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
   }
 
-  get token(): string {
-    return "";
+  signIn(user: User){
+    return this.handlerResponseReject(
+      this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password),
+    )
   }
 
-
-  logout(){
-
+  signUp(user: User) {
+      return this.handlerResponseReject(
+        this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password),
+      )
   }
 
-  isAuthenticated(): boolean {
-    return !!this.token
+  googleAuth() {
+    const provider = new firebase.auth.GoogleAuthProvider()
+    return this.handlerResponseReject(
+      this.angularFireAuth.signInWithPopup(provider)
+    )
   }
 
-  setToken(res) {
-    console.log(res);
+  facebookAuth() {
+    const provider = new firebase.auth.FacebookAuthProvider()
+    return this.handlerResponseReject(
+      this.angularFireAuth.signInWithPopup(provider)
+    )
+  }
+
+  logout() {
+    this.angularFireAuth.signOut();
+    // localStorage.clear();
+  }
+
+  handlerResponseReject(promise: Promise<any>): Promise<any>{
+    return promise
+      .then(result => {
+        this.user = {
+          email: result.user.email,
+          uid: result.user.uid,
+        }
+        console.log(this.user)
+        this.router.navigate(['/'])
+        // localStorage.setItem('isAuth', 'true');
+      })
+      .catch(err => {
+        this.alertErrorMessage(err);
+      });
+  }
+
+  alertErrorMessage(err): void {
+    const code: string = err.code;
+    let message: any = code.split('/')
+    message = message[1].split('-').join(" ")
+    window.alert(message)
   }
 }
