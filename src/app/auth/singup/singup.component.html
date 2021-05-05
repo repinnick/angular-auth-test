@@ -1,15 +1,24 @@
 <div class="container">
   <h2 class="title">Sign Up</h2>
-  <form class="form">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form__item">
       <input
         class="form__input"
         type="email"
         placeholder="example@gmail.com"
+        formControlName="email"
       >
-      <div class="form__messages">
-        <!--          <small class="form__err-message">Поле не может быть пустым</small>-->
-        <!--          <small class="form__err-message">Неверный формат email</small>-->
+      <div class="form__messages"
+           *ngIf="form.get('email').invalid && form.get('email').touched">
+        <small class="form__err-message"
+               *ngIf="form.get('email').errors.required"
+        >Поле не может быть пустым</small>
+        <small class="form__err-message"
+               *ngIf="form.get('email').errors.email"
+        >Неверный формат email</small>
+      </div>
+      <div class="form__messages"
+           *ngIf="form.get('email').valid && form.get('email').touched">
         <small class="form__success-message">Успешно</small>
       </div>
     </div>
@@ -21,17 +30,23 @@
           type="password"
           id="password"
           placeholder="Password"
+          formControlName="password"
         >
-        <!--        <div class="form__errors">-->
-        <!--          <small class="form__err-message">-->
-        <!--            Поле не может быть пустым-->
-        <!--          </small>-->
-        <!--          <small>-->
-        <!--            Минимум 6 символов.-->
-        <!--            Сейчас 2.-->
-        <!--          </small>-->
-        <!--        <small class="form__success-message">Успешно</small>-->
-        <!--        </div>-->
+        <div class="form__errors"
+             *ngIf="form.get('password').invalid && form.get('password').touched">
+          <small class="form__err-message"
+                 *ngIf="form.get('password').errors.required">
+            Поле не может быть пустым</small>
+          <small class="form__err-message"
+            *ngIf="form.get('password').errors.minlength">
+            Минимум {{form.get('password').errors.minlength.requiredLength}} символов.
+            Сейчас {{form.get('password').errors.minlength.actualLength}}.
+          </small>
+        </div>
+        <div class="form__messages"
+             *ngIf="form.get('password').valid && form.get('password').touched">
+          <small class="form__success-message">Успешно</small>
+        </div>
       </div>
     </div>
 
