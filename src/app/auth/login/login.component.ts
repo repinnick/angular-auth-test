@@ -39,4 +39,8 @@ export class LoginComponent implements OnInit {
   facebookAuth() {
     this.authService.facebookAuth()
   }
+
+  githubAuth() {
+    this.authService.githubAuth()
+  }
 }
