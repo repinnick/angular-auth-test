@@ -12,8 +12,6 @@ import {User} from "../../shared/interfaces";
 export class LoginComponent implements OnInit {
   form: FormGroup
   userInfo: User
-  isAuthenticated: boolean = false;
-
 
   constructor(private authService: AuthService, private router: Router) {
   }

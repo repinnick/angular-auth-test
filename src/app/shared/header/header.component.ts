@@ -12,8 +12,11 @@ export class HeaderComponent implements OnInit {
   isVisible: boolean
 
   constructor(private authService: AuthService, private router: Router) {
-    this.authService.angularFireAuth.authState.subscribe(res => {
+    this.authService.getData().subscribe(res => {
       this.isVisible = !!(res && res.uid);
+      if (!this.isVisible) {
+        this.router.navigate(['/login'])
+      }
   })
   }
 

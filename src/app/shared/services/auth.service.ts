@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import {User} from "../interfaces";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 
 // import {HttpClient} from "@angular/common/http";
@@ -16,7 +17,7 @@ export class AuthService {
 
   user: User;
 
-  constructor(public readonly angularFireAuth: AngularFireAuth, private router: Router) {
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
   }
 
   signIn(user: User){
@@ -54,7 +55,7 @@ export class AuthService {
 
   logout() {
     this.angularFireAuth.signOut();
-    // localStorage.clear();
+    localStorage.clear()
   }
 
   handlerResponseReject(promise: Promise<any>): Promise<any>{
@@ -64,9 +65,8 @@ export class AuthService {
           email: result.user.email,
           uid: result.user.uid,
         }
-        console.log(this.user)
+        localStorage.setItem('user', JSON.stringify(this.user))
         this.router.navigate(['/'])
-        // localStorage.setItem('isAuth', 'true')
       })
       .catch(err => {
         console.log("Message: ", err.message)
@@ -79,5 +79,9 @@ export class AuthService {
     let message: any = code.split('/')
     message = message[1].split('-').join(" ")
     window.alert(message)
+  }
+
+  getData(): Observable<firebase.User> {
+    return this.angularFireAuth.authState
   }
 }
