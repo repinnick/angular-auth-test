@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './shared/header/header.component';
-import {SingupComponent} from "./auth/singup/singup.component";
+import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
 
 
@@ -17,7 +17,7 @@ import {LoginComponent} from "./auth/login/login.component";
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SingupComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,

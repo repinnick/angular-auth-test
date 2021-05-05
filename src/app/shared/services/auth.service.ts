@@ -8,7 +8,7 @@ import {tap} from "rxjs/operators";
   providedIn: "root"
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   get token(): string {
@@ -16,8 +16,8 @@ export class AuthService {
   }
 
 
-
   logout(){
+
   }
 
   isAuthenticated(): boolean {
