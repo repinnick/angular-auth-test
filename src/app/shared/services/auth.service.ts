@@ -71,17 +71,15 @@ export class AuthService {
       })
       .catch(err => {
         this.error = err.message
-        // this.alertErrorMessage(err);
+        this.removeError()
       });
   }
 
-  // alertErrorMessage(err): void {
-  //   const code: string = err.code;
-  //   console.log(err)
-  //   let message: any = code.split('/')
-  //   message = message[1].split('-').join(" ")
-  //   window.alert(message)
-  // }
+  removeError() {
+    setTimeout(() => {
+      this.error = ""
+    },2500)
+  }
 
   getData(): Observable<firebase.User> {
     return this.angularFireAuth.authState
