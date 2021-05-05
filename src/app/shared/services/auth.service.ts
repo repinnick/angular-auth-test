@@ -16,7 +16,7 @@ export class AuthService {
 
   user: User;
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
+  constructor(public readonly angularFireAuth: AngularFireAuth, private router: Router) {
   }
 
   signIn(user: User){
@@ -45,6 +45,13 @@ export class AuthService {
     )
   }
 
+  githubAuth() {
+    const provider = new firebase.auth.GithubAuthProvider()
+    return this.handlerResponseReject(
+      this.angularFireAuth.signInWithPopup(provider)
+    )
+  }
+
   logout() {
     this.angularFireAuth.signOut();
     // localStorage.clear();
@@ -59,9 +66,10 @@ export class AuthService {
         }
         console.log(this.user)
         this.router.navigate(['/'])
-        // localStorage.setItem('isAuth', 'true');
+        // localStorage.setItem('isAuth', 'true')
       })
       .catch(err => {
+        console.log("Message: ", err.message)
         this.alertErrorMessage(err);
       });
   }

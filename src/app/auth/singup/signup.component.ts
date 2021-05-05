@@ -42,4 +42,8 @@ export class SignupComponent implements OnInit {
   facebookAuth() {
     this.authService.facebookAuth()
   }
+
+  githubAuth() {
+    this.authService.githubAuth()
+  }
 }
