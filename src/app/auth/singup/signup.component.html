@@ -1,6 +1,9 @@
 <div class="container">
   <h2 class="title">Sign Up</h2>
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form__error" *ngIf="authService.error">
+      {{authService.error}}
+    </div>
     <div class="form__item">
       <input
         class="form__input"

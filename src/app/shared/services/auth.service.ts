@@ -16,6 +16,7 @@ import {Observable} from "rxjs";
 export class AuthService {
 
   user: User;
+  error: string;
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
   }
@@ -69,17 +70,18 @@ export class AuthService {
         this.router.navigate(['/'])
       })
       .catch(err => {
-        console.log("Message: ", err.message)
-        this.alertErrorMessage(err);
+        this.error = err.message
+        // this.alertErrorMessage(err);
       });
   }
 
-  alertErrorMessage(err): void {
-    const code: string = err.code;
-    let message: any = code.split('/')
-    message = message[1].split('-').join(" ")
-    window.alert(message)
-  }
+  // alertErrorMessage(err): void {
+  //   const code: string = err.code;
+  //   console.log(err)
+  //   let message: any = code.split('/')
+  //   message = message[1].split('-').join(" ")
+  //   window.alert(message)
+  // }
 
   getData(): Observable<firebase.User> {
     return this.angularFireAuth.authState
