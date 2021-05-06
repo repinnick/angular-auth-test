@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, pipe} from "rxjs";
 import {AuthService} from "./auth.service";
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class AuthGuard implements CanActivate{
@@ -11,13 +12,23 @@ export class AuthGuard implements CanActivate{
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isAuth) {
-      return true;
+    return this.authService.getCurrentUser().pipe(map((res) => {
+      if (res && res.email) return true
+      else {
+        this.authService.logout()
+        this.router.navigate(['/login'])
+      }
+    }))
+
+      // return this.authService.getData().subscribe()
+      //pipe должен возвращать что-то true/false
+
     }
-    else {
-      this.authService.logout()
-      this.router.navigate(['/login'])
-      return false
-    }
-  }
+
+      // this.authService.logout()
+      // this.router.navigate(['/login'])
+
 }
+
+// в самом сервисе можно повесить pipe, который будет вешать в юзер данные
+

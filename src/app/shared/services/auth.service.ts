@@ -4,6 +4,7 @@ import {User} from "../interfaces";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 
 // import {HttpClient} from "@angular/common/http";
@@ -16,21 +17,20 @@ import {Observable} from "rxjs";
 export class AuthService {
 
   user: User;
-  isAuth: boolean = false;
 
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
-  signIn(user: User){
+  signIn(user: User) {
     return this.handlerResponse(
       this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password),
     )
   }
 
   signUp(user: User) {
-      return this.handlerResponse(
-        this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password),
-      )
+    return this.handlerResponse(
+      this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password),
+    )
   }
 
   googleAuth() {
@@ -56,21 +56,29 @@ export class AuthService {
 
   logout() {
     this.angularFireAuth.signOut();
-    this.isAuth = false;
   }
 
-  handlerResponse(promise: Promise<any>): Promise<any>{
+  handlerResponse(promise: Promise<any>): Promise<any> {
     return promise
       .then(result => {
         this.user = {
           email: result.user.email,
           uid: result.user.uid,
         }
-        this.isAuth = true;
       })
   }
 
-  getData(): Observable<firebase.User> {
+  getCurrentUser(): Observable<User> {
     return this.angularFireAuth.authState
+      .pipe(map(result => {
+        if (result) {
+          this.user = {
+            email: result.email,
+            uid: result.uid
+          }
+          return this.user
+        }
+      }
+    ))
   }
 }

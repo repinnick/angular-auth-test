@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
-import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
+// import {AngularFireAuthGuard} from "@angular/fire/auth-guard";
 import {AuthGuard} from "./shared/services/auth.guard";
 
 
