@@ -7,16 +7,16 @@
     </h1>
 
     <ul class="navbar__items">
-      <li class="navbar__item">
-        <a class="navbar__link" routerLink="/">Home</a>
+      <li class="navbar__item" *ngIf="isAuth">
+        <a class="navbar__link" routerLink="/" >Home</a>
       </li>
-      <li class="navbar__item">
-        <a class="navbar__link" routerLinkActive="disabled" routerLink="/login">Sign In</a>
+      <li class="navbar__item" *ngIf="!isAuth">
+        <a class="navbar__link" routerLinkActive="disabled" routerLink="/login" >Sign In</a>
       </li>
-      <li class="navbar__item">
+      <li class="navbar__item" *ngIf="!isAuth">
         <a class="navbar__link" routerLinkActive="disabled" routerLink="/signup">Sign Up</a>
       </li>
-      <li class="navbar__button">
+      <li class="navbar__button" *ngIf="isAuth">
         <button class="navbar__link navbar__link--btn" (click)="logout()">Logout</button>
       </li>
     </ul>

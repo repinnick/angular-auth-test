@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {map} from "rxjs/operators";
+import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -9,18 +11,24 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  isAuth: boolean = false;
+  isAuth: boolean;
 
-  constructor(public authService: AuthService, private router: Router, private route: ActivatedRoute) {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    // this.route.params.subscribe(param => console.log(param))
+    this.authService.getCurrentUser().subscribe(res => {
+      if (res) {
+        this.isAuth = !!res.uid;
+      }
+      else {
+        this.isAuth = false;
+      }
+    })
   }
 
   logout() {
     this.authService.logout()
-    this.router.navigate(['/login'])
   }
 
 }

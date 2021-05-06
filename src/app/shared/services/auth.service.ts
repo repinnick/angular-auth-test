@@ -71,14 +71,14 @@ export class AuthService {
   getCurrentUser(): Observable<User> {
     return this.angularFireAuth.authState
       .pipe(map(result => {
-        if (result) {
-          this.user = {
-            email: result.email,
-            uid: result.uid
+          if (result) {
+            this.user = {
+              email: result.email,
+              uid: result.uid
+            }
+            return this.user
           }
-          return this.user
         }
-      }
-    ))
+      ))
   }
 }

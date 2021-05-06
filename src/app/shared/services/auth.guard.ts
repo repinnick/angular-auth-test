@@ -5,7 +5,7 @@ import {AuthService} from "./auth.service";
 import {map} from "rxjs/operators";
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -19,16 +19,6 @@ export class AuthGuard implements CanActivate{
         this.router.navigate(['/login'])
       }
     }))
-
-      // return this.authService.getData().subscribe()
-      //pipe должен возвращать что-то true/false
-
-    }
-
-      // this.authService.logout()
-      // this.router.navigate(['/login'])
-
+  }
 }
-
-// в самом сервисе можно повесить pipe, который будет вешать в юзер данные
 
