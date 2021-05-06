@@ -7,16 +7,16 @@
     </h1>
 
     <ul class="navbar__items">
-      <li class="navbar__item" *ngIf="isVisible">
+      <li class="navbar__item" *ngIf="authService.isAuth">
         <a class="navbar__link" routerLink="/">Home</a>
       </li>
-      <li class="navbar__item" *ngIf="!isVisible">
-        <a class="navbar__link" routerLink="/login">Sign In</a>
+      <li class="navbar__item">
+        <a class="navbar__link" routerLink="/login" *ngIf="!authService.isAuth">Sign In</a>
       </li>
-      <li class="navbar__item" *ngIf="!isVisible">
-        <a class="navbar__link" routerLink="/signup">Sign Up</a>
+      <li class="navbar__item">
+        <a class="navbar__link" routerLink="/signup" *ngIf="!authService.isAuth">Sign Up</a>
       </li>
-      <li class="navbar__button" *ngIf="isVisible">
+      <li class="navbar__button"  *ngIf="authService.isAuth">
         <button class="navbar__link navbar__link--btn" (click)="logout()">Logout</button>
       </li>
     </ul>

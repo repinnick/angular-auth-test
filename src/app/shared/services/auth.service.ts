@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
 export class AuthService {
 
   user: User;
-  error: string;
+  isAuth: boolean = false;
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
   }
@@ -56,6 +56,7 @@ export class AuthService {
 
   logout() {
     this.angularFireAuth.signOut();
+    this.isAuth = false;
   }
 
   handlerResponse(promise: Promise<any>): Promise<any>{
@@ -65,6 +66,7 @@ export class AuthService {
           email: result.user.email,
           uid: result.user.uid,
         }
+        this.isAuth = true;
       })
   }
 

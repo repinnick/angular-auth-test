@@ -9,19 +9,11 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  isVisible: boolean
-
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.authService.getData().subscribe(res => {
-      this.isVisible = !!(res && res.uid);
-      if (!this.isVisible) {
-        this.router.navigate(['/login'])
-      }
-    })
   }
 
   logout() {
