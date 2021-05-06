@@ -22,63 +22,50 @@ export class AuthService {
   }
 
   signIn(user: User){
-    return this.handlerResponseReject(
+    return this.handlerResponse(
       this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password),
     )
   }
 
   signUp(user: User) {
-      return this.handlerResponseReject(
+      return this.handlerResponse(
         this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password),
       )
   }
 
   googleAuth() {
     const provider = new firebase.auth.GoogleAuthProvider()
-    return this.handlerResponseReject(
+    return this.handlerResponse(
       this.angularFireAuth.signInWithPopup(provider)
     )
   }
 
   facebookAuth() {
     const provider = new firebase.auth.FacebookAuthProvider()
-    return this.handlerResponseReject(
+    return this.handlerResponse(
       this.angularFireAuth.signInWithPopup(provider)
     )
   }
 
   githubAuth() {
     const provider = new firebase.auth.GithubAuthProvider()
-    return this.handlerResponseReject(
+    return this.handlerResponse(
       this.angularFireAuth.signInWithPopup(provider)
     )
   }
 
   logout() {
     this.angularFireAuth.signOut();
-    localStorage.clear()
   }
 
-  handlerResponseReject(promise: Promise<any>): Promise<any>{
+  handlerResponse(promise: Promise<any>): Promise<any>{
     return promise
       .then(result => {
         this.user = {
           email: result.user.email,
           uid: result.user.uid,
         }
-        localStorage.setItem('user', JSON.stringify(this.user))
-        this.router.navigate(['/'])
       })
-      .catch(err => {
-        this.error = err.message
-        this.removeError()
-      });
-  }
-
-  removeError() {
-    setTimeout(() => {
-      this.error = ""
-    },2500)
   }
 
   getData(): Observable<firebase.User> {

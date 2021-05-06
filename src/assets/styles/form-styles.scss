@@ -40,12 +40,10 @@
     }
   }
   &__error {
-    width: 400px;
     border: 1px solid #dc3545;
     background: #dc3545;
-    color: #cccccc;
+    color: #ECEFF1;
     padding: 5px 10px;
-    margin-bottom: 10px;
   }
   &__messages{
     padding-left: 5px;

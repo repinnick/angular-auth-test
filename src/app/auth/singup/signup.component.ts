@@ -12,6 +12,7 @@ import {AuthService} from "../../shared/services/auth.service";
 export class SignupComponent implements OnInit {
 
   form : FormGroup;
+  error: string;
 
   constructor(private router: Router, public authService: AuthService) { }
 
@@ -33,17 +34,41 @@ export class SignupComponent implements OnInit {
       password: this.form.value.password,
     };
     this.authService.signUp(user)
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   googleAuth() {
     this.authService.googleAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   facebookAuth() {
     this.authService.facebookAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   githubAuth() {
     this.authService.githubAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 }

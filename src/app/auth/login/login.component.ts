@@ -11,7 +11,7 @@ import {User} from "../../shared/interfaces";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup
-  userInfo: User
+  error: string
 
   constructor(public authService: AuthService, private router: Router) {
   }
@@ -30,17 +30,41 @@ export class LoginComponent implements OnInit {
       password: this.form.value.password,
     };
     this.authService.signIn(user)
+      .then(() => {
+        this.router.navigate(['/'])
+    })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   googleAuth() {
     this.authService.googleAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   facebookAuth() {
     this.authService.facebookAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 
   githubAuth() {
     this.authService.githubAuth()
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(err => {
+        this.error = err.message
+      });
   }
 }
