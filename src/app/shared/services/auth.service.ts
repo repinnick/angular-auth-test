@@ -18,7 +18,7 @@ export class AuthService {
   user: User;
   isAuth: boolean = false;
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
+  constructor(private angularFireAuth: AngularFireAuth) {
   }
 
   signIn(user: User){
