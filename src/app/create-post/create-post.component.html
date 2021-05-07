@@ -1,0 +1,48 @@
+<div class="question">
+  <div class="question__container">
+    <h2 class="question__title">New Question</h2>
+    <div class="question__line"></div>
+
+    <form class="question__form">
+      <div class="question__item">
+        <label for="title" class="question__form-title">Title</label>
+        <div class="question__group">
+          <input type="text" id="title" class="question__input" placeholder="Title">
+          <div class="question__error-message"></div>
+        </div>
+      </div>
+      <div class="question__item">
+        <label for="text" class="question__form-title">Text</label>
+        <div class="question__group">
+          <textarea id="text" class="question__textarea" placeholder="Type something..."></textarea>
+          <div class="question__error-message"></div>
+        </div>
+      </div>
+
+      <div class="question__item question__checkbox-items">
+        <p class="question__form-title">Tags</p>
+        <ul class="question__group question__tags">
+          <li class="question__tags-item">
+            <input type="checkbox" class="question__checkbox-tag" value="JavaScript">
+            <label class="question__checkbox-title">JavaScript</label>
+          </li>
+          <li class="question__tags-item">
+            <input type="checkbox" class="question__checkbox-tag" value="Java">
+            <label class="question__checkbox-title">Java</label>
+          </li>
+          <li class="question__tags-item">
+            <input type="checkbox" class="question__checkbox-tag" value=".Net">
+            <label class="question__checkbox-title">.Net</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question__buttons">
+        <button class="question__accept-btn" type="submit">Ok</button>
+        <button class="question__cancel-btn" type="button">Cancel</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

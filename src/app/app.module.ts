@@ -11,6 +11,7 @@ import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {environment} from "../environments/environment";
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
