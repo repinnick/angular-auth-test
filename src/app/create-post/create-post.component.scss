@@ -60,6 +60,12 @@
     letter-spacing: 0.03em;
     color: #292929;
     padding: 8px 15px;
+    &.ng-invalid.ng-touched {
+      border: 1px solid #F20606
+    }
+    &.ng-valid.ng-touched {
+      border: 1px solid #027700
+    }
     &::placeholder {
       color: #8A8484;
       transition: 0.3s ease;
@@ -136,12 +142,23 @@
     text-transform: uppercase;
     color: #1C1B1B;
     transition: 0.3s ease-in-out;
+
     &--accept {
       color: #FFFFFF;
       background: #000000;
+      &:hover {
+        box-shadow: 7px -7px 4px 0 #333333;
+      }
+      &:disabled {
+        box-shadow: none;
+        background: transparent;
+        color: #9C9C9C;
+        border: 1px solid #9C9C9C;
+        cursor: not-allowed;
+      }
     }
-    &:hover {
-      box-shadow: 7px -7px 4px 0 #333333;
+    &--cancel:hover {
+        box-shadow: 7px -7px 4px 0 #cccccc;
     }
   }
 
