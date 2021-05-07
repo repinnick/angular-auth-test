@@ -1,6 +1,6 @@
 .container {
   font-family: 'Poppins', sans-serif;
-  //max-width: 400px;
+  padding: 100px 20px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -118,3 +118,47 @@
 }
 
 
+@media screen and (max-width: 450px) {
+  .title {
+    margin-bottom: 20px;
+  }
+  .form {
+    &__item {
+      width: 300px;
+      margin-bottom: 10px;
+    }
+    &__btn-container {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
+  .container {
+    padding: 50px 20px;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+  .form {
+    &__item {
+      width: 300px;
+      margin-bottom: 10px;
+    }
+    &__btn-container {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .container {
+    padding: 50px 10px;
+  }
+  .form {
+    &__item {
+      width: 260px;
+      margin-bottom: 10px;
+    }
+  }
+}
