@@ -5,7 +5,6 @@ import {SignupComponent} from "./auth/singup/signup.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {AuthGuard} from "./shared/services/auth.guard";
 import {LoginSignupGuard} from "./shared/services/login-signup.guard";
-import {redirectLoggedInTo, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
 
 
 const routes: Routes = [
