@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   logout() {
-    this.angularFireAuth.signOut();
+    return this.angularFireAuth.signOut();
   }
 
   handlerResponse(promise: Promise<any>): Promise<any> {

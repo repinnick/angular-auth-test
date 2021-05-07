@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   isAuth: boolean;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout()
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login'])
+    })
   }
 }

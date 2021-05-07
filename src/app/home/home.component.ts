@@ -13,17 +13,10 @@ export class HomeComponent implements OnInit {
   email: string = ""
   user: User;
 
-  constructor(private authService: AuthService, private router: Router) {
-
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(res => {
-      if (res && res.email) {
-        this.email = res.email;
-      } else {
-        this.router.navigate(['/login'])
-      }
-    }, error => console.log(error.message))
+    this.email = this.authService.user.email
   }
 }
