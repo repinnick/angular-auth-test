@@ -76,17 +76,45 @@
     resize: none;
   }
   &__tags-item {
-    display: flex;
-    align-items: center;
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   &__checkbox-title {
     font-weight: normal;
-    margin-left: 10px;
     font-size: 14px;
     letter-spacing: 0.03em;
     color: #8A8484;
+    display: flex;
+    align-items: center;
   }
-  &__checkbox-tag:checked + &__checkbox-title {
+
+  &__checkbox + &__checkbox-title::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #BDBDBD;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+  }
+
+  &__checkbox:checked + &__checkbox-title::before {
+    background: black ;
+  }
+
+  &__checkbox {
+    z-index: 0;
+    opacity: 0;
+    position: absolute;
+  }
+
+  &__checkbox:checked + &__checkbox-title {
     color: #000000;
   }
 }
