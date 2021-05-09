@@ -11,7 +11,7 @@ export interface Post {
   date: Date
   tags: Array<string>
   author: string
-  onModerate: boolean
+  onModeration: boolean
 }
 
 export interface getResponseId {

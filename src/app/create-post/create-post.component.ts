@@ -52,7 +52,7 @@ export class CreatePostComponent implements OnInit {
       date: new Date(),
       tags: this.form.value.tags,
       author: this.authService.user.email,
-      onModerate: false
+      onModeration: true
     }
     this.postService.createPost(post).subscribe(
       response => {

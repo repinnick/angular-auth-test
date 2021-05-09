@@ -1,8 +1,13 @@
 <div class="home">
-  <app-post
-  *ngFor="let post of posts"
-  [post] = post>
-  </app-post>
+  <div class="home__have-data" *ngIf="posts, else nodata">
+    <app-post
+      *ngFor="let post of posts"
+      [post] = post>
+      ></app-post>
+  </div>
+  <ng-template #nodata>
+    <p class="home__text">Нет данных</p>
+  </ng-template>
 
 <!--  <p class="home__text">Hello, user!</p>-->
 <!--  <p class="home__text">Email: {{email}}</p>-->

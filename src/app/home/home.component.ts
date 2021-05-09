@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // this.email = this.authService.user.email
     this.subscription = this.postService.getAllPosts().subscribe(res => {
       this.posts = res
-    })
+    }, error => {console.log(error.message)})
   }
 
   ngOnDestroy() {
