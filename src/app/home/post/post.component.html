@@ -6,16 +6,13 @@
 <!--    <div class="post__date">{{post.date | date:'dd MMM, YYYY (hh:mm)'}}</div>-->
 <!--  </div>-->
 <!--</div>-->
-
-<div class="post">
-  <div class="post__title">Something about JAva Script and angular</div>
+<!--*ngIf="!post.onModeration"-->
+<div class="post" *ngIf="post">
+  <div class="post__title">{{post.title}}</div>
   <div class="post__info">
-    <div class="post__date">01.01.2012</div>
+    <div class="post__date">{{post.date | date: 'dd.MM.YYY'}}</div>
     <ul class="post__tags">
-      <li class="post__tag">Java</li>
-      <li class="post__tag">JavaScript</li>
-      <li class="post__tag">JavaScript</li>
-      <li class="post__tag">JavaScript</li>
+      <li class="post__tag" *ngFor="let tag of post.tags">{{tag}}</li>
     </ul>
   </div>
   <div class="post__buttons">
@@ -23,3 +20,18 @@
     <button class="post__btn post__btn--delete">Delete</button>
   </div>
 </div>
+
+<!--<div class="post" >-->
+<!--  <div class="post__title">Something about JAva Script and angular</div>-->
+<!--  <div class="post__info">-->
+<!--    <div class="post__date">01.01.2012</div>-->
+<!--    <ul class="post__tags">-->
+<!--      <li class="post__tag">Java</li>-->
+<!--      <li class="post__tag">JavaScript</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--  <div class="post__buttons">-->
+<!--    <button class="post__btn post__btn&#45;&#45;approve">Approve</button>-->
+<!--    <button class="post__btn post__btn&#45;&#45;delete">Delete</button>-->
+<!--  </div>-->
+<!--</div>-->

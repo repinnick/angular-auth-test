@@ -25,6 +25,7 @@
     color: #2D2C2C;
     font-size: 14px;
     margin-right: 30px;
+    transition: 0.3s ease-in-out;
     &--btn {
       background: none;
       border: none;
@@ -33,6 +34,15 @@
     &:hover {
       opacity: 0.8;
       border-bottom: 1px solid #2D2C2C;
+    }
+    &--create-btn {
+      border: 1px solid #000000;
+      text-transform: none;
+      padding: 7px 15px;
+      letter-spacing: 0.03em;
+      &:hover {
+        box-shadow: 0 0 3px 0 #2D2C2C;
+      }
     }
   }
 }
