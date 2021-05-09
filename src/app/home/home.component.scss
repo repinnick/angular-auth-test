@@ -2,12 +2,22 @@
   padding: 50px 20px 20px;
 }
 
+app-post {
+  margin: 0 15px 30px;
+}
+
 .home {
   &__posts {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    //display: flex;
+    //flex-wrap: wrap;
+    //justify-content: center;
+    //align-content: flex-start;
+    //align-items: stretch;
   }
+  // plus btn
   &__btn {
     position: fixed;
     bottom: 1%;
