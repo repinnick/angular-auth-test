@@ -13,3 +13,7 @@ export interface Post {
   author: string
   onModerate: boolean
 }
+
+export interface getResponseId {
+  name: string,
+}

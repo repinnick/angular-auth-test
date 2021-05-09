@@ -31,15 +31,15 @@
         <p class="question__form-title">Tags</p>
         <ul class="question__group question__tags">
           <li class="question__tags-item">
-            <input id="JavaScript" type="checkbox" class="question__checkbox" value="JavaScript">
+            <input id="JavaScript" type="checkbox" class="question__checkbox" value="JavaScript" (click)="addTagToForm($event)">
             <label for="JavaScript" class="question__checkbox-title">JavaScript</label>
           </li>
           <li class="question__tags-item">
-            <input id="Java" type="checkbox" class="question__checkbox" value="Java">
+            <input id="Java" type="checkbox" class="question__checkbox" value="Java" (click)="addTagToForm($event)">
             <label class="question__checkbox-title" for="Java">Java</label>
           </li>
           <li class="question__tags-item">
-            <input id="Net" type="checkbox" class="question__checkbox" value=".Net">
+            <input id="Net" type="checkbox" class="question__checkbox" value="Net" (click)="addTagToForm($event)">
             <label class="question__checkbox-title" for="Net">Net</label>
           </li>
         </ul>

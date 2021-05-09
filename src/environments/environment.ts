@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "angular-auth-11940.appspot.com",
     messagingSenderId: "835080375651",
     appId: "1:835080375651:web:38c469572af6b38a441756"
-  }
+  },
+  databaseUrl: 'https://angular-auth-11940-default-rtdb.firebaseio.com',
 };
 
 /*
