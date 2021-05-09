@@ -1,9 +1,9 @@
 <div class="home">
-  <div class="home__have-data" *ngIf="posts, else nodata">
+  <div class="home__has-data" *ngIf="validPost, else nodata">
     <app-post
       *ngFor="let post of posts"
       [post] = post>
-      ></app-post>
+    ></app-post>
   </div>
   <ng-template #nodata>
     <p class="home__text">Нет данных</p>

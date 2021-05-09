@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   user: User
   posts: Post[]
   subscription: Subscription
+  validPost: boolean;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -24,6 +25,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     // this.email = this.authService.user.email
     this.subscription = this.postService.getAllPosts().subscribe(res => {
       this.posts = res
+      this.posts.map((post) => {
+        if (!post.onModeration) {
+          this.validPost = true;
+          return
+        }
+      })
     }, error => {console.log(error.message)})
   }
 
