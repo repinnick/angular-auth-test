@@ -39,7 +39,9 @@ export class PostService {
       )
   }
 
-  deletePost(){}
+  deletePost(id: string): Observable<void>{
+    return this.httpClient.delete<void>(`${environment.databaseUrl}/posts/${id}.json`)
+  }
 
 
 }
