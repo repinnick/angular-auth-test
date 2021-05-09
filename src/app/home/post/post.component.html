@@ -1,8 +1,23 @@
-<div class="post" style="width: 150px" *ngIf="!post.onModeration">
-  <div class="post__id">
-    <div class="post__title">{{post.title}}</div>
-    <div class="post__author">{{post.author}}</div>
-    <div class="post__text">{{post.text}}</div>
-    <div class="post__date">{{post.date | date:'dd MMM, YYYY (hh:mm)'}}</div>
+<!--<div class="post" style="width: 150px" *ngIf="!post.onModeration">-->
+<!--  <div class="post__id">-->
+<!--    <div class="post__title">{{post.title}}</div>-->
+<!--    <div class="post__author">{{post.author}}</div>-->
+<!--    <div class="post__text">{{post.text}}</div>-->
+<!--    <div class="post__date">{{post.date | date:'dd MMM, YYYY (hh:mm)'}}</div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="post">
+  <div class="post__title">Something about JAva Script and angular</div>
+  <div class="post__info">
+    <div class="post__date">01.01.2012</div>
+    <ul class="post__tags">
+      <li class="post__tag">Java</li>
+      <li class="post__tag">JavaScript</li>
+    </ul>
+  </div>
+  <div class="post__buttons">
+    <button class="post__btn post__btn--approve">Approve</button>
+    <button class="post__btn post__btn--delete">Delete</button>
   </div>
 </div>

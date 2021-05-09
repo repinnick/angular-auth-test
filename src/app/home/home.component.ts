@@ -15,15 +15,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   email: string = ""
   user: User
   posts: Post[]
-  subscription: Subscription
+  postSubscription: Subscription
   validPost: boolean;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
 
   ngOnInit(): void {
-    // this.email = this.authService.user.email
-    this.subscription = this.postService.getAllPosts().subscribe(res => {
+    this.postSubscription = this.postService.getAllPosts().subscribe(res => {
       this.posts = res
       this.posts.map((post) => {
         if (!post.onModeration) {
@@ -35,6 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe()
+    if (this.postSubscription) {
+      this.postSubscription.unsubscribe()
+    }
   }
 }

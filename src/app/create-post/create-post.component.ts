@@ -56,7 +56,6 @@ export class CreatePostComponent implements OnInit {
     }
     this.postService.createPost(post).subscribe(
       response => {
-        console.log(response)
         this.onLoad = true;
         this.form.reset()
         this.router.navigate(['/'])

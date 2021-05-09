@@ -1,14 +1,28 @@
-<div class="home">
-  <div class="home__has-data" *ngIf="validPost, else nodata">
-    <app-post
-      *ngFor="let post of posts"
-      [post] = post>
-    ></app-post>
-  </div>
-  <ng-template #nodata>
-    <p class="home__text">Нет данных</p>
-  </ng-template>
+<!--<div class="home">-->
+<!--  <div class="home__posts" *ngIf="validPost, else nodata">-->
+<!--    <app-post-->
+<!--      *ngFor="let post of posts"-->
+<!--      [post] = post>-->
+<!--    ></app-post>-->
+<!--  </div>-->
+<!--  <ng-template #nodata>-->
+<!--    <p class="home__text">Нет данных</p>-->
+<!--  </ng-template>-->
 
-<!--  <p class="home__text">Hello, user!</p>-->
-<!--  <p class="home__text">Email: {{email}}</p>-->
+<!--&lt;!&ndash;  <p class="home__text">Hello, user!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;  <p class="home__text">Email: {{email}}</p>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="wrapper">
+  <div class="home">
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+    <app-post></app-post>
+  </div>
 </div>
