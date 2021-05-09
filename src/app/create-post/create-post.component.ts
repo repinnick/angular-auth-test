@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 export class CreatePostComponent implements OnInit {
 
   form: FormGroup
+  onLoad: boolean;
 
   constructor(private postService: PostService,
               private authService: AuthService,
@@ -26,6 +27,7 @@ export class CreatePostComponent implements OnInit {
       text: new FormControl("", Validators.required),
       tags: new FormArray([], Validators.required),
     })
+    this.onLoad = false;
   }
 
   addTagToForm($event): void {
@@ -43,7 +45,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   submit() {
-    if(this.form.invalid) return
+    if (this.form.invalid) return
     const post: Post = {
       title: this.form.value.title,
       text: this.form.value.text,
@@ -52,10 +54,13 @@ export class CreatePostComponent implements OnInit {
       author: this.authService.user.email,
       onModerate: false
     }
-    this.postService.createPost(post).subscribe((response) => {
-      console.log(response)
-      this.form.reset()
-      this.router.navigate(['/'])
-    })
+    this.postService.createPost(post).subscribe(
+      response => {
+        console.log(response)
+        this.onLoad = true;
+        this.form.reset()
+        this.router.navigate(['/'])
+      },
+      error => console.log(error.message))
   }
 }

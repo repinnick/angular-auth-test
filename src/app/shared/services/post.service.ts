@@ -14,8 +14,9 @@ export class PostService {
   }
 
   createPost(post: Post): Observable<Post>{
-    return this.httpClient.post('https://angular-auth-11940-default-rtdb.firebaseio.com/posts.json', post)
-      .pipe(map((response: getResponseId) => {
+    return this.httpClient.post(`${environment.databaseUrl}/posts.json`, post)
+      .pipe(
+        map((response: getResponseId) => {
         return {
           ...post,
           id: response.name,
@@ -23,7 +24,20 @@ export class PostService {
       }))
   }
 
-  getAllPosts(){}
+  getAllPosts(): Observable<Post[]>{
+    return this.httpClient.get(`${environment.databaseUrl}/posts.json`)
+      .pipe(
+        map((response) => {
+          return Object.keys(response)
+            .map((key) => {
+              return {
+                ...response[key],
+                id: key,
+              }
+            })
+        })
+      )
+  }
 
   deletePost(){}
 

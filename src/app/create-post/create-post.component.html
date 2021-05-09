@@ -46,7 +46,7 @@
       </div>
 
       <div class="question__footer-buttons">
-        <button class="question__btn question__btn--accept" type="submit" [disabled]="form.invalid">Ok</button>
+        <button class="question__btn question__btn--accept" type="submit" [disabled]="form.invalid || onLoad">Ok</button>
         <button class="question__btn question__btn--cancel" type="button">Cancel</button>
       </div>
 

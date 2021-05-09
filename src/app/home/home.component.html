@@ -1,4 +1,9 @@
 <div class="home">
-  <p class="home__text">Hello, user!</p>
-  <p class="home__text">Email: {{email}}</p>
+  <app-post
+  *ngFor="let post of posts"
+  [post] = post>
+  </app-post>
+
+<!--  <p class="home__text">Hello, user!</p>-->
+<!--  <p class="home__text">Email: {{email}}</p>-->
 </div>
