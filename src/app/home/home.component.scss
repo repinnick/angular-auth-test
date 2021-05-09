@@ -1,18 +1,11 @@
-//.home {
-//  text-align: center;
-//  &__text {
-//    font-size: 20px;
-//    margin-bottom: 10px;
-//  }
-//}
 .wrapper {
   padding: 50px 20px 20px;
+  margin: 0 auto;
 }
 
 .home {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 40px;
-  row-gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
