@@ -1,30 +1,30 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {getResponseId, Post} from "../interfaces";
-import {environment} from "../../../environments/environment";
-import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {getResponseId, Post} from '../interfaces';
+import {environment} from '../../../environments/environment';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PostService {
 
   constructor(private httpClient: HttpClient) {
   }
 
-  createPost(post: Post): Observable<Post>{
+  createPost(post: Post): Observable<Post> {
     return this.httpClient.post(`${environment.databaseUrl}/posts.json`, post)
       .pipe(
         map((response: getResponseId) => {
-        return {
-          ...post,
-          id: response.name,
-        }
-      }))
+          return {
+            ...post,
+            id: response.name,
+          };
+        }));
   }
 
-  getAllPosts(): Observable<Post[]>{
+  getAllPosts(): Observable<Post[]> {
     return this.httpClient.get(`${environment.databaseUrl}/posts.json`)
       .pipe(
         map((response) => {
@@ -33,14 +33,14 @@ export class PostService {
               return {
                 ...response[key],
                 id: key,
-              }
-            })
+              };
+            });
         })
-      )
+      );
   }
 
-  deletePost(id: string): Observable<void>{
-    return this.httpClient.delete<void>(`${environment.databaseUrl}/posts/${id}.json`)
+  deletePost(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.databaseUrl}/posts/${id}.json`);
   }
 
 

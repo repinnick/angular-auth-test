@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from "../shared/services/auth.service";
-import {Post, User} from "../shared/interfaces";
-import {Router} from "@angular/router";
-import {PostService} from "../shared/services/post.service";
-import {Subscriber, Subscription} from "rxjs";
+import {AuthService} from '../shared/services/auth.service';
+import {Post, User} from '../shared/interfaces';
+import {Router} from '@angular/router';
+import {PostService} from '../shared/services/post.service';
+import {Subscriber, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +12,10 @@ import {Subscriber, Subscription} from "rxjs";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  email: string = ""
-  user: User
-  posts: Post[]
-  postSubscription: Subscription
+  email = '';
+  user: User;
+  posts: Post[];
+  postSubscription: Subscription;
   validPost: boolean;
 
   constructor(private authService: AuthService, private postService: PostService) {
@@ -23,25 +23,27 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.postSubscription = this.postService.getAllPosts().subscribe(res => {
-      this.posts = res
+      this.posts = res;
       this.posts.map((post) => {
         if (!post.onModeration) {
           this.validPost = true;
-          return
+          return;
         }
-      })
-    }, error => {console.log(error.message)})
+      });
+    }, error => {
+      console.log(error.message);
+    });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.postSubscription) {
-      this.postSubscription.unsubscribe()
+      this.postSubscription.unsubscribe();
     }
   }
 
-  updatePosts($event: string) {
-    this.posts.filter(post => post.id !== $event)
-    this.ngOnInit() // Насколько правильно делать такой вызов?
+  updatePosts($event: string): void {
+    this.posts.filter(post => post.id !== $event);
+    this.ngOnInit(); // Насколько правильно делать такой вызов?
     // Пока не знаю, как поступить по-другому.
   }
 }

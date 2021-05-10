@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {User} from "../../shared/interfaces";
-import {AuthService} from "../../shared/services/auth.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {User} from '../../shared/interfaces';
+import {AuthService} from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,64 +11,67 @@ import {AuthService} from "../../shared/services/auth.service";
 })
 export class SignupComponent implements OnInit {
 
-  form : FormGroup;
+  form: FormGroup;
   error: string;
 
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(private router: Router, public authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl("", [
+      email: new FormControl('', [
         Validators.email,
         Validators.required,
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
       ]),
-      password: new FormControl("", [Validators.required, Validators.minLength(6)])
-    })
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
   }
 
-  submit() {
-    if (this.form.invalid) return;
+  submit(): void {
+    if (this.form.invalid) {
+      return;
+    }
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password,
     };
     this.authService.signUp(user)
       .then(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
       .catch(err => {
-        this.error = err.message
+        this.error = err.message;
       });
   }
 
-  googleAuth() {
+  googleAuth(): void {
     this.authService.googleAuth()
       .then(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
       .catch(err => {
-        this.error = err.message
+        this.error = err.message;
       });
   }
 
-  facebookAuth() {
+  facebookAuth(): void {
     this.authService.facebookAuth()
       .then(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
       .catch(err => {
-        this.error = err.message
+        this.error = err.message;
       });
   }
 
-  githubAuth() {
+  githubAuth(): void {
     this.authService.githubAuth()
       .then(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
       .catch(err => {
-        this.error = err.message
+        this.error = err.message;
       });
   }
 }

@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {Observable} from "rxjs";
-import {AuthService} from "./auth.service";
-import {map} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AuthService} from './auth.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class LoginSignupGuard implements CanActivate {
@@ -14,10 +14,9 @@ export class LoginSignupGuard implements CanActivate {
     return this.authService.getCurrentUser().pipe(map((res) => {
       if (!res) {
         return !res;
+      } else {
+        this.router.navigate(['/']);
       }
-      else {
-        this.router.navigate(['/'])
-      }
-    }))
+    }));
   }
 }

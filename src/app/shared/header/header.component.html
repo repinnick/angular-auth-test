@@ -19,7 +19,7 @@
       <li class="navbar__item navbar__menu" *ngIf="isAuth">
         <a class="navbar__menu-button" (click)="isVisible = !isVisible">
           <img class="navbar__menu-img" src="../../../assets/images/icons/user.svg" alt="user image">
-          User
+          {{ email }}
         </a>
         <div class="navbar__panel" *ngIf="isVisible">
           <a class="navbar__link navbar__panel-link">

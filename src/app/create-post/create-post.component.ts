@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Post} from "../shared/interfaces";
-import {PostService} from "../shared/services/post.service";
-import {AuthService} from "../shared/services/auth.service";
-import {Router} from "@angular/router";
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Post} from '../shared/interfaces';
+import {PostService} from '../shared/services/post.service';
+import {AuthService} from '../shared/services/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class CreatePostComponent implements OnInit {
 
-  form: FormGroup
+  form: FormGroup;
   onLoad: boolean;
 
   constructor(private postService: PostService,
@@ -23,10 +23,10 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl("", Validators.required),
-      text: new FormControl("", Validators.required),
+      title: new FormControl('', Validators.required),
+      text: new FormControl('', Validators.required),
       tags: new FormArray([], Validators.required),
-    })
+    });
     this.onLoad = false;
   }
 
@@ -34,18 +34,20 @@ export class CreatePostComponent implements OnInit {
     const control = new FormControl(`${$event.target.value}`);
     const formArray = (this.form.get('tags') as FormArray);
     if ($event.target.checked) {
-      formArray.push(control)
+      formArray.push(control);
     } else {
       formArray.controls.forEach((control, index) => {
         if (control.value === $event.target.value) {
-          formArray.removeAt(index)
+          formArray.removeAt(index);
         }
-      })
+      });
     }
   }
 
-  submit() {
-    if (this.form.invalid) return
+  submit(): void {
+    if (this.form.invalid) {
+      return;
+    }
     const post: Post = {
       title: this.form.value.title,
       text: this.form.value.text,
@@ -53,13 +55,13 @@ export class CreatePostComponent implements OnInit {
       tags: this.form.value.tags,
       author: this.authService.user.email,
       onModeration: true
-    }
+    };
     this.postService.createPost(post).subscribe(
       response => {
         this.onLoad = true;
-        this.form.reset()
-        this.router.navigate(['/'])
+        this.form.reset();
+        this.router.navigate(['/']);
       },
-      error => console.log(error.message))
+      error => console.log(error.message));
   }
 }

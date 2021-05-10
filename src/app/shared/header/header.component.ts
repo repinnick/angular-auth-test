@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -23,24 +23,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (res) {
         this.email = res.email;
         this.isAuth = !!res.uid;
-      }
-      else {
+      } else {
         this.isAuth = false;
       }
-    })
+    });
     this.isVisible = false;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout().then(() => {
-      this.router.navigate(['/login'])
-    })
+      this.router.navigate(['/login']);
+    });
     this.isVisible = false;
   }
 
