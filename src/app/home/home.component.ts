@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }, error => {
       console.log(error.message);
+      // this.ngOnInit(); // для того, чтобы данные подгружались, когда появляется интернет
     });
   }
 

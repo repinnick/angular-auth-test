@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 12px 20px;
+  padding: 12px 70px;
   background: #FFFFFF;
   box-shadow: 0 0 3px 0 #cccccc;
 }
@@ -54,13 +54,11 @@
     align-items: center;
     &:after {
       display: inline-block;
-      content: "";
+      content: " \276F";
       margin-left: 25px;
-      border: solid black;
-      border-width: 0 2px 2px 0;
-      width: 5px;
-      height: 5px;
-      transform: rotate(45deg);
+      font-size: 14px;
+      font-weight: bold;
+      transform: rotate(90deg);
     }
   }
   &__menu-img {
@@ -76,9 +74,8 @@
     flex-direction: column;
     align-content: center;
     background: #FFFFFF;;
-    padding: 15px 10px;
+    padding: 15px 30px;
     box-shadow: 3px 3px 3px 3px #333333;
-    max-width: inherit;
   }
   &__panel-link {
     margin-right: 0;
@@ -87,6 +84,10 @@
     margin-bottom: 10px;
     &:last-child {
       margin-bottom: 0;
+    }
+    &:hover {
+      border: none;
+      opacity: 0.4;
     }
   }
 }

@@ -14,6 +14,19 @@
 <!--</div>-->
 
 <div class="wrapper">
+
+  <div class="filters">
+    <div class="filters__blocks">
+      <a class="filters__block">Filter</a>
+      <a class="filters__block">Sort</a>
+    </div>
+    <div class="filters__buttons">
+      <button class="filters__btn"></button>
+      <button class="filters__btn"></button>
+      <button class="filters__btn"></button>
+    </div>
+  </div>
+
   <div class="home" *ngIf="posts; else loading">
     <div class="home__posts">
       <app-post

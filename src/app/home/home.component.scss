@@ -1,6 +1,37 @@
 @import "../../assets/styles/loading";
+
+//filters
+.filters{
+  margin-bottom: 60px;
+  &__blocks {
+    display: flex;
+  }
+  &__block {
+    display: flex;
+    align-items: center;
+    margin-right: 150px;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: #000000;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:after {
+      display: inline-block;
+      content: " \276F";
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      transform: rotate(90deg);
+    }
+  }
+
+}
+
+
 .wrapper {
-  padding: 50px 20px 20px;
+  padding: 50px 70px 20px;
 }
 
 app-post {
