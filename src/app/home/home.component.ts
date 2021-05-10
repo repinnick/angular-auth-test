@@ -38,4 +38,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.postSubscription.unsubscribe()
     }
   }
+
+  updatePosts($event: string) {
+    this.posts.filter(post => post.id !== $event)
+    this.ngOnInit() // Насколько правильно делать такой вызов?
+    // Пока не знаю, как поступить по-другому.
+  }
 }

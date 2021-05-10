@@ -1,15 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Post} from "../../shared/interfaces";
 import {PostService} from "../../shared/services/post.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post: Post
+  @Output() onDelete: EventEmitter<string> = new EventEmitter<string>()
+  deletSubs: Subscription
 
   constructor(private postService: PostService) { }
 
@@ -17,8 +20,14 @@ export class PostComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.postService.deletePost(id).subscribe(() => {
-      console.log('deleted')
+    this.deletSubs = this.postService.deletePost(id).subscribe(() => {
+      this.onDelete.emit(id)
     }, error => console.log(error.message))
+  }
+
+  ngOnDestroy() {
+    if(this.deletSubs) {
+      this.deletSubs.unsubscribe()
+    }
   }
 }

@@ -17,6 +17,7 @@
   <div class="home" *ngIf="posts; else loading">
     <div class="home__posts">
       <app-post
+        (onDelete)="updatePosts($event)"
         *ngFor="let post of posts"
         [post] = post>
         ></app-post>
@@ -24,9 +25,9 @@
     <a class="home__btn" type="button" routerLink="/create-post"></a>
   </div>
   <ng-template #loading>
-    <div class="home__loading">
+    <div class="loading">
       Loading
-      <span class="home__load-span"></span>
+      <span class="load-span"></span>
     </div>
   </ng-template>
 </div>
