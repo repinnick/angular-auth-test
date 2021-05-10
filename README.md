@@ -1,3 +1,5 @@
+# Deploy
+https://angular-auth-11940.web.app/
 # FirebaseData
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.11.
