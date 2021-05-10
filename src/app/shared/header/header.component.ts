@@ -11,6 +11,7 @@ import {Subscription} from "rxjs";
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuth: boolean;
+  email: string;
   isVisible: boolean;
   authSubscription: Subscription;
 
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.authService.getCurrentUser().subscribe(res => {
       if (res) {
+        this.email = res.email;
         this.isAuth = !!res.uid;
       }
       else {

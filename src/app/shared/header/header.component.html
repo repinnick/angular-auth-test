@@ -8,7 +8,7 @@
 
     <ul class="navbar__items">
       <li class="navbar__item" *ngIf="isAuth">
-        <a class="navbar__link navbar__link--create-btn" routerLink="/create-post">Add question</a>
+        <a class="navbar__link navbar__link--create-btn" routerLinkActive="disabled" routerLink="/create-post">Add question</a>
       </li>
       <li class="navbar__item" *ngIf="!isAuth">
         <a class="navbar__link" routerLinkActive="disabled" routerLink="/login" >Sign In</a>
@@ -16,9 +16,6 @@
       <li class="navbar__item" *ngIf="!isAuth">
         <a class="navbar__link" routerLinkActive="disabled" routerLink="/signup">Sign Up</a>
       </li>
-<!--      <li class="navbar__button" *ngIf="isAuth">-->
-<!--        <button class="navbar__link navbar__link&#45;&#45;btn" (click)="logout()">Logout</button>-->
-<!--      </li>-->
       <li class="navbar__item navbar__menu" *ngIf="isAuth">
         <a class="navbar__menu-button" (click)="isVisible = !isVisible">
           <img class="navbar__menu-img" src="../../../assets/images/icons/user.svg" alt="user image">

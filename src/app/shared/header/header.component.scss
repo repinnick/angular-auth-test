@@ -70,6 +70,7 @@
   }
   &__panel {
     position: absolute;
+    right: 1.5%;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -77,7 +78,7 @@
     background: #FFFFFF;;
     padding: 15px 10px;
     box-shadow: 3px 3px 3px 3px #333333;
-    //max-width: inherit;
+    max-width: inherit;
   }
   &__panel-link {
     margin-right: 0;
