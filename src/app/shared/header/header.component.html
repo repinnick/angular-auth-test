@@ -19,11 +19,17 @@
 <!--      <li class="navbar__button" *ngIf="isAuth">-->
 <!--        <button class="navbar__link navbar__link&#45;&#45;btn" (click)="logout()">Logout</button>-->
 <!--      </li>-->
-      <li class="navbar__item">
-        <select>
-          <option value="logout">Logout</option>
-          <option value="logout">Profile</option>
-        </select>
+      <li class="navbar__item navbar__menu" *ngIf="isAuth">
+        <a class="navbar__menu-button" (click)="isVisible = !isVisible">
+          <img class="navbar__menu-img" src="../../../assets/images/icons/user.svg" alt="user image">
+          User
+        </a>
+        <div class="navbar__panel" *ngIf="isVisible">
+          <a class="navbar__link navbar__panel-link">
+            <img class="navbar__menu-img" src="../../../assets/images/icons/user-profile.svg" alt="user profile">Profile</a>
+          <a class="navbar__link navbar__panel-link" (click)="logout()">
+            <img class="navbar__menu-img" src="../../../assets/images/icons/logout.svg" alt="logout image">Logout</a>
+        </div>
       </li>
     </ul>
 
