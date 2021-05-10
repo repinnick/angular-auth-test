@@ -3,6 +3,9 @@
 //filters
 .filters{
   margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   &__blocks {
     display: flex;
   }

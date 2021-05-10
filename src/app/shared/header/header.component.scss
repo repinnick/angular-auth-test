@@ -46,10 +46,11 @@
     }
   }
   &__menu {
+    position: relative;
     cursor: pointer;
   }
   &__menu-button {
-    position: relative;
+
     display: flex;
     align-items: center;
     &:after {
@@ -68,8 +69,10 @@
   }
   &__panel {
     position: absolute;
-    right: 1.5%;
-    margin-top: 10px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;

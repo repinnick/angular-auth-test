@@ -160,6 +160,34 @@
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (min-width: 520px) and (max-width: 840px){
+  .question {
+    max-width: 500px;
+    &__line{
+      max-width: 400px;
+    }
+    &__form-title{
+      display: none;
+    }
+    &__group {
+      width: 300px;
+      margin-left: 0;
+    }
+  }
+}
 
+@media screen and (max-width: 520px){
+  .question {
+    max-width: 320px;
+    &__line{
+      max-width: 300px;
+    }
+    &__form-title{
+      display: none;
+    }
+    &__group {
+      width: 280px;
+      margin-left: 0;
+    }
+  }
 }
