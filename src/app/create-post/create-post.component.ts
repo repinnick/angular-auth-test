@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 export class CreatePostComponent implements OnInit {
 
   form: FormGroup;
-  onLoad: boolean;
+  isLoad: boolean;
 
   constructor(private postService: PostService,
               private authService: AuthService,
@@ -27,7 +27,6 @@ export class CreatePostComponent implements OnInit {
       text: new FormControl('', Validators.required),
       tags: new FormArray([], Validators.required),
     });
-    this.onLoad = false;
   }
 
   addTagToForm($event): void {
@@ -51,17 +50,21 @@ export class CreatePostComponent implements OnInit {
     const post: Post = {
       title: this.form.value.title,
       text: this.form.value.text,
-      date: new Date(),
+      date: +new Date(),
       tags: this.form.value.tags,
       author: this.authService.user.email,
       onModeration: true
     };
+    this.isLoad = true;
     this.postService.createPost(post).subscribe(
       response => {
-        this.onLoad = true;
         this.form.reset();
         this.router.navigate(['/']);
+        this.isLoad = false;
       },
-      error => console.log(error.message));
+      error => {
+        this.isLoad = false;
+        console.log(error.message);
+      });
   }
 }

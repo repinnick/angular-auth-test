@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
 import {Post, User} from '../shared/interfaces';
 import {Router} from '@angular/router';
@@ -10,41 +10,36 @@ import {Subscriber, Subscription} from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   email = '';
   user: User;
   posts: Post[];
-  postSubscription: Subscription;
   validPost: boolean;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
 
   ngOnInit(): void {
-    this.postSubscription = this.postService.getAllPosts().subscribe(res => {
+    this.getPosts();
+  }
+
+
+  updatePosts($event: string): void{
+    this.getPosts();
+  }
+
+  getPosts(): void {
+    this.postService.getAllPosts().subscribe(res => {
       this.posts = res;
       this.posts.map((post) => {
         if (!post.onModeration) {
           this.validPost = true;
-          return;
+          return post;
         }
       });
     }, error => {
       console.log(error.message);
-      // this.ngOnInit(); // для того, чтобы данные подгружались, когда появляется интернет
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this.postSubscription) {
-      this.postSubscription.unsubscribe();
-    }
-  }
-
-  updatePosts($event: string): void {
-    this.posts.filter(post => post.id !== $event);
-    this.ngOnInit(); // Насколько правильно делать такой вызов?
-    // Пока не знаю, как поступить по-другому.
   }
 }
