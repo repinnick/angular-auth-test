@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Post} from '../shared/interfaces';
-import {PostService} from '../shared/services/post.service';
-import {AuthService} from '../shared/services/auth.service';
+import {PostService} from '../../shared/services/post.service';
+import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
+import {Post} from '../../shared/interfaces';
 
 
 @Component({

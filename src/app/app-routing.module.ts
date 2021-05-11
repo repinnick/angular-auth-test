@@ -5,7 +5,8 @@ import {SignupComponent} from './auth/singup/signup.component';
 import {LoginComponent} from './auth/login/login.component';
 import {AuthGuard} from './shared/services/auth.guard';
 import {LoginSignupGuard} from './shared/services/login-signup.guard';
-import {CreatePostComponent} from './create-post/create-post.component';
+import {CreatePostComponent} from './home/create-post/create-post.component';
+
 
 
 const routes: Routes = [
