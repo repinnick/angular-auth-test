@@ -13,6 +13,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {PostComponent} from './home/post/post.component';
 import {CreatePostComponent} from './home/create-post/create-post.component';
+import { EditPostComponent } from './home/edit-post/edit-post.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {CreatePostComponent} from './home/create-post/create-post.component';
     HeaderComponent,
     SignupComponent,
     CreatePostComponent,
-    PostComponent
+    PostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
