@@ -1,23 +1,21 @@
 <div class="post">
   <div class="post__container">
     <div class="post__header-info">
-      <p class="post__author">Ivan Ivanov</p>
-      <p class="post__date">01.01.2021</p>
+      <p class="post__author">{{ post.author }}</p>
+      <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>
     </div>
     <div class="post__sub-info">
-      <h2 class="post__title">Something about JAva Script and angular</h2>
+      <h2 class="post__title"> {{ post.title }}</h2>
       <div class="post__buttons">
         <button class="post__btn post__btn--approve" type="button">Approve</button>
         <button class="post__btn post__btn--delete" type="button">Delete</button>
       </div>
     </div>
     <p class="post__text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+      {{ post.text }}
     </p>
     <ul class="post__tags">
-      <li class="post__tag">JavaScript</li>
-      <li class="post__tag">Java</li>
-      <li class="post__tag">Net</li>
+      <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>
     </ul>
   </div>
 </div>
