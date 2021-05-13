@@ -16,6 +16,7 @@ export class LoginSignupGuard implements CanActivate {
         return !res;
       } else {
         this.router.navigate(['/']);
+        return false;
       }
     }));
   }
