@@ -35,10 +35,30 @@ export class EditPostComponent implements OnInit, OnDestroy {
       this.form = new FormGroup({
         title: new FormControl(post.title, Validators.required),
         text: new FormControl(post.text, Validators.required),
+        tags: new FormArray(post.tags.map(tag => new FormControl(tag)), Validators.required)
       });
     });
   }
 
+  addTagToForm($event): void {
+    const control = new FormControl(`${$event.target.value}`);
+    const formArray = (this.form.get('tags') as FormArray);
+    if ($event.target.checked) {
+      formArray.push(control);
+    } else {
+      formArray.controls.forEach((control, index) => {
+        if (control.value === $event.target.value) {
+          formArray.removeAt(index);
+        }
+      });
+    }
+  }
+
+  checked(technology: string): boolean {
+    return !!this.post.tags.find(tag => {
+      return tag === technology;
+    });
+  }
 
   submit(): void {
     if (this.form.invalid) {
@@ -49,8 +69,12 @@ export class EditPostComponent implements OnInit, OnDestroy {
       ...this.post,
       text: this.form.value.text,
       title: this.form.value.title,
+      tags: this.form.value.tags,
     }).pipe(takeUntil(this.notifier)).subscribe(() => {
       this.submitted = false;
+    }, error => {
+      console.log(error.message);
+      // обработать ошибки в шаблоне
     });
   }
 

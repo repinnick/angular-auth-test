@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }, error => {
       console.log(error.message);
+      // обработать ошибки в шаблоне
     });
   }
   ngOnDestroy(): void {

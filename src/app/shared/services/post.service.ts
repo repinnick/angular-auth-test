@@ -55,6 +55,7 @@ export class PostService {
   }
 
   update(post: Post): Observable<Post> {
+    console.log(post.tags);
     return this.httpClient.patch<Post>(`${environment.databaseUrl}/posts/${post.id}.json`, post);
   }
 

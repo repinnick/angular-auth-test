@@ -73,10 +73,11 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       error => {
         this.isLoad = false;
         console.log(error.message);
+        // обработать ошибки в шаблоне
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
   }
