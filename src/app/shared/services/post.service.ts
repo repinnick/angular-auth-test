@@ -54,4 +54,8 @@ export class PostService {
       }));
   }
 
+  update(post: Post): Observable<Post> {
+    return this.httpClient.patch<Post>(`${environment.databaseUrl}/posts/${post.id}.json`, post);
+  }
+
 }
