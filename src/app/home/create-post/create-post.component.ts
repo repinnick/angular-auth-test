@@ -20,6 +20,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   isLoad: boolean;
   notifier = new Subject();
   technologies: Array<string>;
+  error: string;
 
   constructor(private postService: PostService,
               private authService: AuthService,
@@ -72,8 +73,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       },
       error => {
         this.isLoad = false;
-        console.log(error.message);
-        // обработать ошибки в шаблоне
+        this.error = error.statusText === 'Unknown Error' ? 'Server Error' : error.message;
       });
   }
 

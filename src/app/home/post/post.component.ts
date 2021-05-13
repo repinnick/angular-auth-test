@@ -28,7 +28,7 @@ export class PostComponent implements OnInit, OnDestroy {
     }, error => console.log(error.message));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
   }

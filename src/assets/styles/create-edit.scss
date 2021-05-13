@@ -25,6 +25,38 @@
     margin: 0 auto;
   }
 
+  &__error {
+    border: 1px solid #dc3545;
+    background: #dc3545;
+    color: #ECEFF1;
+    padding: 5px 10px;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__messages{
+    padding-left: 5px;
+  }
+  &__err-message {
+    font-size: 10px;
+    color: #EB001B;
+    &:before {
+      content: ">>>";
+      color: #EB001B;
+      padding-right: 5px;
+    }
+  }
+  &__success-message {
+    font-size: 10px;
+    color: #027700;
+    &:before {
+      content: ">>>";
+      color: #027700;
+      padding-right: 5px;
+    }
+  }
+
   &__form {
     margin-top: 45px;
   }
