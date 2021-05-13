@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TECHNOLOGIES} from '../../shared/constants';
+import {ActivatedRoute, Params} from '@angular/router';
+import {PostService} from '../../shared/services/post.service';
+import {Post} from '../../shared/interfaces';
+import {switchMap} from 'rxjs/operators';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-edit-post',
@@ -11,16 +16,24 @@ export class EditPostComponent implements OnInit {
 
   form: FormGroup;
   technologies: Array<string>;
+  post: Post;
+  id: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      title: new FormControl('', Validators.required),
-      text: new FormControl('', Validators.required),
-      tags: new FormArray([], Validators.required),
-    });
-    this.technologies = TECHNOLOGIES;
+  constructor(private route: ActivatedRoute,
+              private postService: PostService) {
   }
 
+  ngOnInit(): void {
+    this.technologies = TECHNOLOGIES;
+    this.route.params.subscribe((params: Params) => this.id = params.id);
+    this.postService.getPostById(this.id).subscribe((post: Post) => {
+      this.form = new FormGroup({
+        title: new FormControl(post.title, Validators.required),
+        text: new FormControl(post.text, Validators.required),
+      });
+    }, error => console.log(error.message));
+  }
+
+  submit(): void {
+  }
 }

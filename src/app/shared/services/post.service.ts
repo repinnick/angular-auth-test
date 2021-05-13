@@ -43,5 +43,15 @@ export class PostService {
     return this.httpClient.delete<void>(`${environment.databaseUrl}/posts/${id}.json`);
   }
 
+  getPostById(id: string): Observable<Post> {
+    return this.httpClient.get(`${environment.databaseUrl}/posts/${id}.json`)
+      .pipe(
+      map((post: Post) => {
+        return {
+          ...post,
+          id,
+        };
+      }));
+  }
 
 }

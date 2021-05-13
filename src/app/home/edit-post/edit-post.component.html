@@ -1,48 +1,53 @@
 <div class="question">
   <div class="question__container">
-    <h2 class="question__title">New Question</h2>
+    <h2 class="question__title">Edit Question</h2>
     <div class="question__line"></div>
-
-    <form class="question__form">
-      <div class="question__item">
-        <label for="title" class="question__form-title">Title</label>
-        <div class="question__group">
-          <input type="text"
-                 id="title"
-                 class="question__input"
-                 placeholder="Title"
-                 >
-          <div class="question__error-message"></div>
+    <div *ngIf="form; else loading">
+      <form class="question__form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="question__item">
+          <label for="title" class="question__form-title">Title</label>
+          <div class="question__group">
+            <input type="text"
+                   id="title"
+                   class="question__input"
+                   formControlName="title">
+            <div class="question__error-message"></div>
+          </div>
         </div>
-      </div>
-      <div class="question__item">
-        <label for="text" class="question__form-title">Text</label>
-        <div class="question__group">
-          <textarea id="text"
-                    class="question__textarea"
-                    placeholder="Type something..."
-                    >
-          </textarea>
-          <div class="question__error-message"></div>
+        <div class="question__item">
+          <label for="text" class="question__form-title">Text</label>
+          <div class="question__group">
+            <textarea id="text"
+                      class="question__textarea"
+                      formControlName="text">
+            </textarea>
+            <div class="question__error-message"></div>
+          </div>
         </div>
+
+        <div class="question__item question__checkbox-items">
+          <p class="question__form-title">Tags</p>
+          <ul class="question__group question__tags">
+            <li class="question__tags-item" *ngFor="let technology of technologies">
+              <input id="{{ technology }}" type="checkbox" class="question__checkbox" value="{{ technology }}">
+              <label for="{{ technology }}" class="question__checkbox-title">{{ technology }}</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="question__footer-buttons">
+          <button class="question__btn question__btn--accept" type="submit">Ok</button>
+          <button class="question__btn question__btn--cancel" type="button" routerLink="/">Cancel</button>
+        </div>
+
+      </form>
+    </div>
+
+    <ng-template #loading>
+      <div class="loading">
+        Loading
+        <span class="load-span"></span>
       </div>
-
-      <div class="question__item question__checkbox-items">
-        <p class="question__form-title">Tags</p>
-        <ul class="question__group question__tags">
-          <li class="question__tags-item" *ngFor="let technology of technologies">
-            <input id="{{ technology }}" type="checkbox" class="question__checkbox" value="{{ technology }}">
-            <label for="{{ technology }}" class="question__checkbox-title">{{ technology }}</label>
-          </li>
-        </ul>
-      </div>
-
-      <div class="question__footer-buttons">
-        <button class="question__btn question__btn--accept" type="submit">Ok</button>
-        <button class="question__btn question__btn--cancel" type="button" routerLink="/">Cancel</button>
-      </div>
-
-    </form>
-
+    </ng-template>
   </div>
 </div>
