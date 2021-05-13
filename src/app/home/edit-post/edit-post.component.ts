@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TECHNOLOGIES} from '../../shared/constants';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PostService} from '../../shared/services/post.service';
 import {Post} from '../../shared/interfaces';
 import {switchMap, takeUntil} from 'rxjs/operators';
@@ -22,7 +22,8 @@ export class EditPostComponent implements OnInit, OnDestroy {
   notifier = new Subject();
 
   constructor(private route: ActivatedRoute,
-              private postService: PostService) {
+              private postService: PostService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -72,7 +73,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
       tags: this.form.value.tags,
     }).pipe(takeUntil(this.notifier)).subscribe(() => {
       this.submitted = false;
+      this.router.navigate(['/']);
     }, error => {
+      this.submitted = false;
       console.log(error.message);
       // обработать ошибки в шаблоне
     });
