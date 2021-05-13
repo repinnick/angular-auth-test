@@ -25,15 +25,19 @@ export class EditPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.technologies = TECHNOLOGIES;
-    this.route.params.subscribe((params: Params) => this.id = params.id);
-    this.postService.getPostById(this.id).subscribe((post: Post) => {
+    this.route.params.pipe(
+      switchMap((params: Params) => {
+        return this.postService.getPostById(params.id);
+      })).subscribe((post: Post) => {
       this.form = new FormGroup({
         title: new FormControl(post.title, Validators.required),
         text: new FormControl(post.text, Validators.required),
       });
-    }, error => console.log(error.message));
+    });
   }
 
-  submit(): void {
+
+    submit(): void {}
+
   }
-}
+
