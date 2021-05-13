@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../shared/services/post.service';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {Post} from '../../shared/interfaces';
 import {TECHNOLOGIES} from '../../shared/constants';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -12,10 +14,11 @@ import {TECHNOLOGIES} from '../../shared/constants';
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss']
 })
-export class CreatePostComponent implements OnInit {
+export class CreatePostComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   isLoad: boolean;
+  notifier = new Subject();
   technologies: Array<string>;
 
   constructor(private postService: PostService,
@@ -31,6 +34,8 @@ export class CreatePostComponent implements OnInit {
     });
     this.technologies = TECHNOLOGIES;
   }
+
+
 
   addTagToForm($event): void {
     const control = new FormControl(`${$event.target.value}`);
@@ -59,7 +64,7 @@ export class CreatePostComponent implements OnInit {
       onModeration: true
     };
     this.isLoad = true;
-    this.postService.createPost(post).subscribe(
+    this.postService.createPost(post).pipe(takeUntil(this.notifier)).subscribe(
       response => {
         this.form.reset();
         this.router.navigate(['/']);
@@ -69,5 +74,10 @@ export class CreatePostComponent implements OnInit {
         this.isLoad = false;
         console.log(error.message);
       });
+  }
+
+  ngOnDestroy() {
+    this.notifier.next();
+    this.notifier.complete();
   }
 }

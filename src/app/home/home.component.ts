@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
 import {Post, User} from '../shared/interfaces';
 import {Router} from '@angular/router';
 import {PostService} from '../shared/services/post.service';
-import {Subscriber, Subscription} from 'rxjs';
+import {Subject, Subscriber, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   email = '';
   user: User;
   posts: Post[];
   validPost: boolean;
+  notifier = new Subject();
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.postService.getAllPosts().subscribe(res => {
+    this.postService.getAllPosts().pipe(takeUntil(this.notifier)).subscribe(res => {
       this.posts = res;
       this.posts.map((post) => {
         if (!post.onModeration) {
@@ -41,5 +43,9 @@ export class HomeComponent implements OnInit {
     }, error => {
       console.log(error.message);
     });
+  }
+  ngOnDestroy() {
+    this.notifier.next();
+    this.notifier.complete();
   }
 }

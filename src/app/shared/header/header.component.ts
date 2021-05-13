@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +15,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   email: string;
   isVisible: boolean;
   authSubscription: Subscription;
+  notifier = new Subject();
 
   constructor(public authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.getCurrentUser().subscribe(res => {
+    this.authSubscription = this.authService.getCurrentUser().pipe(takeUntil(this.notifier)).subscribe(res => {
       if (res) {
         this.email = res.email;
         this.isAuth = !!res.uid;
@@ -30,10 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isVisible = false;
   }
 
-  ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.notifier.next();
+    this.notifier.complete();
   }
 
   logout(): void {
