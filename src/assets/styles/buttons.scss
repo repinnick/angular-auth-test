@@ -1,0 +1,30 @@
+@mixin button {
+  &__btn {
+    width: 125px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    background: transparent;
+    border: 1px solid #000000;
+    padding: 12px 0;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1C1B1B;
+    transition: 0.3s ease-in-out;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &--approve {
+      color: #FFFFFF;
+      background: #000000;
+      &:hover {
+        box-shadow: 7px -7px 4px 0 #333333;
+      }
+    }
+    &--delete:hover {
+      box-shadow: 7px -7px 4px 0 #cccccc;
+    }
+  }
+}

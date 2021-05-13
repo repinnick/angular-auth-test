@@ -1,0 +1,58 @@
+@import "../../../assets/styles/buttons";
+.post {
+  font-family: 'Poppins', sans-serif;
+  padding: 100px 70px;
+  &__header-info {
+    display: flex;
+    flex-direction: row;
+  }
+  &__author, &__date {
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #404040;
+  }
+  &__author {
+    margin-right: 70px;
+  }
+  &__sub-info {
+    margin: 30px 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__title {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  &__text {
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #000000;
+    max-width: 720px;
+    min-height: 220px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  &__tags {
+    list-style-type: none;
+    display: flex
+  }
+  &__tag {
+    margin-right: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 5px;
+    border-radius: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  @include button;
+}

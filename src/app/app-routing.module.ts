@@ -7,6 +7,7 @@ import {AuthGuard} from './shared/services/auth.guard';
 import {LoginSignupGuard} from './shared/services/login-signup.guard';
 import {CreatePostComponent} from './home/create-post/create-post.component';
 import {EditPostComponent} from './home/edit-post/edit-post.component';
+import {PostInfoComponent} from './home/post-info/post-info.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent, canActivate: [LoginSignupGuard]},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},
   {path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard]},
+  {path: 'post-info/:id', component: PostInfoComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login'}
 ];
 

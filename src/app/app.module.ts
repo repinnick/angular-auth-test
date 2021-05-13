@@ -14,6 +14,7 @@ import {environment} from '../environments/environment';
 import {PostComponent} from './home/post/post.component';
 import {CreatePostComponent} from './home/create-post/create-post.component';
 import { EditPostComponent } from './home/edit-post/edit-post.component';
+import { PostInfoComponent } from './home/post-info/post-info.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EditPostComponent } from './home/edit-post/edit-post.component';
     SignupComponent,
     CreatePostComponent,
     PostComponent,
-    EditPostComponent
+    EditPostComponent,
+    PostInfoComponent
   ],
   imports: [
     BrowserModule,
