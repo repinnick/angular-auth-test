@@ -4,6 +4,7 @@ import {PostService} from '../../shared/services/post.service';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {Post} from '../../shared/interfaces';
+import {TECHNOLOGIES} from '../../shared/constants';
 
 
 @Component({
@@ -15,10 +16,11 @@ export class CreatePostComponent implements OnInit {
 
   form: FormGroup;
   isLoad: boolean;
+  technologies: Array<string>;
 
   constructor(private postService: PostService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router){
   }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class CreatePostComponent implements OnInit {
       text: new FormControl('', Validators.required),
       tags: new FormArray([], Validators.required),
     });
+    this.technologies = TECHNOLOGIES;
   }
 
   addTagToForm($event): void {
