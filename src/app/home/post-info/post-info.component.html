@@ -1,5 +1,5 @@
 <div class="post">
-  <div class="post__container">
+  <div class="post__container" *ngIf="post; else loading">
     <div class="post__header-info">
       <p class="post__author">{{ post.author }}</p>
       <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>
@@ -18,4 +18,10 @@
       <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>
     </ul>
   </div>
+  <ng-template #loading>
+    <div class="loading">
+      Loading
+      <span class="load-span"></span>
+    </div>
+  </ng-template>
 </div>
