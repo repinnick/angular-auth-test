@@ -27,7 +27,7 @@ import { PostInfoComponent } from './home/post-info/post-info.component';
     CreatePostComponent,
     PostComponent,
     EditPostComponent,
-    PostInfoComponent
+    PostInfoComponent,
   ],
   imports: [
     BrowserModule,

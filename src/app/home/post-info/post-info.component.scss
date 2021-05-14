@@ -33,6 +33,8 @@
   &__title-info {
     display: flex;
     align-items: center;
+    max-width: 720px;
+    width: 100%;
   }
   &__title {
     font-weight: bold;
@@ -41,6 +43,7 @@
     text-transform: uppercase;
     color: #000000;
     margin-right: 60px;
+    width: 70%;
   }
   &__link {
     display: flex;
@@ -120,6 +123,13 @@
     min-width: 173px;
     padding: 12px 0;
     align-self: flex-end;
+    &:disabled {
+      box-shadow: none;
+      background: transparent;
+      color: #9C9C9C;
+      border: 1px solid #9C9C9C;
+      cursor: not-allowed;
+    }
   }
   &__textarea {
     font-family: 'Poppins', sans-serif;

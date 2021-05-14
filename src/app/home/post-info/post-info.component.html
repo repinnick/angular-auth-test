@@ -1,40 +1,44 @@
 <div class="post">
   <div class="post__container" *ngIf="post; else loading">
-<!--    <div class="post__error" *ngIf="error">-->
-<!--      <p class="post__error-message">{{ error }}</p>-->
-<!--    </div>-->
-<!--    <div class="post__header-info">-->
-<!--      <p class="post__author">{{ post.author }}</p>-->
-<!--      <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>-->
-<!--    </div>-->
-<!--    <div class="post__sub-info">-->
-<!--      <div class="post__title-info">-->
-<!--        <h2 class="post__title"> {{ post.title }}</h2>-->
-<!--        <a class="post__link" [routerLink]="['/edit-post', post.id]" >-->
-<!--          <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">-->
-<!--          Edit question-->
-<!--        </a>-->
-<!--      </div>-->
-<!--      <div class="post__buttons">-->
-<!--        <button class="post__btn post__btn&#45;&#45;approve" type="button">Approve</button>-->
-<!--        <button class="post__btn post__btn&#45;&#45;delete" type="button" (click)="delete()">Delete</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <p class="post__text">-->
-<!--      {{ post.text }}-->
-<!--    </p>-->
-<!--    <ul class="post__tags">-->
-<!--      <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>-->
-<!--    </ul>-->
+    <div class="post__error" *ngIf="error">
+      <p class="post__error-message">{{ error }}</p>
+    </div>
+    <div class="post__header-info">
+      <p class="post__author">{{ post.author }}</p>
+      <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>
+    </div>
+    <div class="post__sub-info">
+      <div class="post__title-info">
+        <h2 class="post__title"> {{ post.title }}</h2>
+        <a class="post__link" [routerLink]="['/edit-post', post.id]" >
+          <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">
+          Edit question
+        </a>
+      </div>
+      <div class="post__buttons">
+        <button class="post__btn post__btn--approve" type="button">Approve</button>
+        <button class="post__btn post__btn--delete" type="button" (click)="delete()">Delete</button>
+      </div>
+    </div>
+    <p class="post__text">
+      {{ post.text }}
+    </p>
+    <ul class="post__tags">
+      <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>
+    </ul>
 
 
     <div class="comments">
       <div class="comments__form-wrapper">
         <h3 class="comments__form-title">Add Answer</h3>
-        <form class="comments__form">
-          <textarea class="comments__textarea" placeholder="Type something..."></textarea>
+        <form class="comments__form" [formGroup]="form" (ngSubmit)="submit()">
+          <textarea
+            class="comments__textarea"
+            placeholder="Type something..."
+            formControlName="text"
+          ></textarea>
           <div class="comments__btn-wrapper">
-            <button type="submit" class="comments__submit">Add answer</button>
+            <button type="submit" class="comments__submit" [disabled]="form.invalid">Add answer</button>
           </div>
         </form>
       </div>

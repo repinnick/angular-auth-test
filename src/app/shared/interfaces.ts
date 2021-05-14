@@ -12,10 +12,10 @@ export interface Post {
   tags: Array<string>;
   author: string;
   onModeration: boolean;
-  comments?: Comment[];
+  comments?: Comments[];
 }
 
-export interface Comment {
+export interface Comments {
   decision?: boolean;
   author: string;
   text: string;

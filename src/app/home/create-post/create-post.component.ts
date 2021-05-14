@@ -62,7 +62,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       date: +new Date(),
       tags: this.form.value.tags,
       author: this.authService.user.email,
-      onModeration: true
+      onModeration: true,
+      comments: [],
     };
     this.isLoad = true;
     this.postService.createPost(post).pipe(takeUntil(this.notifier)).subscribe(
