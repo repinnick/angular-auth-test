@@ -1,35 +1,34 @@
 <div class="post">
   <div class="post__container" *ngIf="post; else loading">
-    <div class="post__error" *ngIf="error">
-      <p class="post__error-message">{{ error }}</p>
-    </div>
-    <div class="post__header-info">
-      <p class="post__author">{{ post.author }}</p>
-      <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>
-    </div>
-    <div class="post__sub-info">
-      <div class="post__title-info">
-        <h2 class="post__title"> {{ post.title }}</h2>
-        <a class="post__link" [routerLink]="['/edit-post', post.id]" >
-          <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">
-          Edit question
-        </a>
-      </div>
-      <div class="post__buttons">
-        <button class="post__btn post__btn--approve" type="button">Approve</button>
-        <button class="post__btn post__btn--delete" type="button" (click)="delete()">Delete</button>
-      </div>
-    </div>
-    <p class="post__text">
-      {{ post.text }}
-    </p>
-    <ul class="post__tags">
-      <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>
-    </ul>
-  </div>
+<!--    <div class="post__error" *ngIf="error">-->
+<!--      <p class="post__error-message">{{ error }}</p>-->
+<!--    </div>-->
+<!--    <div class="post__header-info">-->
+<!--      <p class="post__author">{{ post.author }}</p>-->
+<!--      <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>-->
+<!--    </div>-->
+<!--    <div class="post__sub-info">-->
+<!--      <div class="post__title-info">-->
+<!--        <h2 class="post__title"> {{ post.title }}</h2>-->
+<!--        <a class="post__link" [routerLink]="['/edit-post', post.id]" >-->
+<!--          <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">-->
+<!--          Edit question-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      <div class="post__buttons">-->
+<!--        <button class="post__btn post__btn&#45;&#45;approve" type="button">Approve</button>-->
+<!--        <button class="post__btn post__btn&#45;&#45;delete" type="button" (click)="delete()">Delete</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <p class="post__text">-->
+<!--      {{ post.text }}-->
+<!--    </p>-->
+<!--    <ul class="post__tags">-->
+<!--      <li class="post__tag" *ngFor="let tag of post.tags">{{ tag }}</li>-->
+<!--    </ul>-->
 
-  <div class="comments">
-    <div class="comments__container">
+
+    <div class="comments">
       <div class="comments__form-wrapper">
         <h3 class="comments__form-title">Add Answer</h3>
         <form class="comments__form">
@@ -47,9 +46,9 @@
               <img src="../../../assets/images/icons/comment-image.png" alt="profile image" class="comments__image">
               <div class="comments__main">
                 <div class="comments__header">
-                    <p class="comments__username">User name</p>
-                    <p class="comments__time">Today at 14:05</p>
-                    <p class="comments__best-answer">Best answer</p>
+                  <p class="comments__username">User name</p>
+                  <p class="comments__time">Today at 14:05</p>
+                  <p class="comments__best-answer">Best answer</p>
                 </div>
                 <p class="comments__text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
@@ -57,9 +56,12 @@
               </div>
             </div>
             <div class="comments__buttons">
-              <button class="comments__delete">Delete</button>
-              <label>
-              <input type="checkbox" class="comments__checkbox">
+              <button class="comments__delete">
+                <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
+                Delete
+              </button>
+              <input id="someid" type="checkbox" class="comments__checkbox">
+              <label for="someid" class="comments__checkbox-title">
                 Resolve
               </label>
             </div>
@@ -80,9 +82,12 @@
               </div>
             </div>
             <div class="comments__buttons">
-              <button class="comments__delete">Delete</button>
-              <label>
-                <input type="checkbox" class="comments__checkbox">
+              <button class="comments__delete">
+                <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
+                Delete
+              </button>
+              <input id="someid2" type="checkbox" class="comments__checkbox">
+              <label for="someid2" class="comments__checkbox-title">
                 Resolve
               </label>
             </div>
