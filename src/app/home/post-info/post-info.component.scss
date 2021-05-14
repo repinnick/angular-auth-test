@@ -87,14 +87,24 @@
 // comments
 .comments {
   font-family: 'Poppins', sans-serif;
+  margin-top: 80px;
+  //form
   &__form-wrapper {
-    max-width: 606px;
+    max-width: 610px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
   }
   &__form-title, &__answers-title {
     font-size: 20px;
     letter-spacing: 0.21em;
     text-transform: uppercase;
     color: #1C1B1B;
+  }
+  &__btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
   &__submit {
     font-family: 'Poppins', sans-serif;
@@ -109,6 +119,7 @@
     cursor: pointer;
     min-width: 173px;
     padding: 12px 0;
+    align-self: flex-end;
   }
   &__textarea {
     font-family: 'Poppins', sans-serif;
@@ -119,6 +130,7 @@
     font-size: 14px;
     color: #292929;
     resize: none;
+    margin: 40px 0 30px;
     &::placeholder {
       color: #9C9C9C;
     }
@@ -128,5 +140,69 @@
     &.ng-valid.ng-touched {
       border: 1px solid #027700
     }
+  }
+
+  //answer
+  &__answers-title {
+    margin-bottom: 30px;
+  }
+  &__answers {
+    list-style-type: none;
+  }
+  &__answer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #C4C4C4;
+    &:last-child {
+      border-bottom: 1px solid #C4C4C4;
+    }
+  }
+  &__info {
+    display: flex;
+  }
+  &__image {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  &__username {
+    font-size: 14px;
+    color: #000000;
+  }
+  &__time {
+    margin: 0 50px 0 15px;
+    font-weight: normal;
+    font-size: 12px;
+    color: #7D7171;
+  }
+  &__best-answer {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #027700;
+    &:before {
+      content: "\2714";
+      display: inline-block;
+      color: #027700;
+      font-size: 20px;
+      margin-right: 6px;
+    }
+  }
+  &__text {
+    max-width: 650px;
+    width: 100%;
+    font-size: 14px;
+    color: #000000;
+  }
+  &__buttons {
+    display: flex;
   }
 }
