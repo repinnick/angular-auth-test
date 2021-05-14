@@ -44,18 +44,18 @@
       </div>
       <div class="comments__answers-wrapper">
         <h3 class="comments__answers-title">Comments / answers</h3>
-        <ul class="comments__answers">
-          <li class="comments__answer">
+        <ul class="comments__answers" *ngIf="post.comments; else noComments">
+          <li class="comments__answer" *ngFor="let comment of post.comments">
             <div class="comments__info">
               <img src="../../../assets/images/icons/comment-image.png" alt="profile image" class="comments__image">
               <div class="comments__main">
                 <div class="comments__header">
-                  <p class="comments__username">User name</p>
-                  <p class="comments__time">Today at 14:05</p>
+                  <p class="comments__username">{{ comment.author }}</p>
+                  <p class="comments__time">{{ comment.date | date: 'EEEE MMM d, y hh:mm' }}</p>
                   <p class="comments__best-answer">Best answer</p>
                 </div>
                 <p class="comments__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                  {{ comment.text }}
                 </p>
               </div>
             </div>
@@ -64,39 +64,16 @@
                 <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
                 Delete
               </button>
-              <input id="someid" type="checkbox" class="comments__checkbox">
-              <label for="someid" class="comments__checkbox-title">
-                Resolve
-              </label>
-            </div>
-          </li>
-
-          <li class="comments__answer">
-            <div class="comments__info">
-              <img src="../../../assets/images/icons/comment-image.png" alt="profile image" class="comments__image">
-              <div class="comments__main">
-                <div class="comments__header">
-                  <p class="comments__username">User name</p>
-                  <p class="comments__time">Today at 14:05</p>
-                  <p class="comments__best-answer">Best answer</p>
-                </div>
-                <p class="comments__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                </p>
-              </div>
-            </div>
-            <div class="comments__buttons">
-              <button class="comments__delete">
-                <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
-                Delete
-              </button>
-              <input id="someid2" type="checkbox" class="comments__checkbox">
-              <label for="someid2" class="comments__checkbox-title">
+              <input id="{{ comment.id }}" type="checkbox" class="comments__checkbox">
+              <label for="{{ comment.id }}" class="comments__checkbox-title">
                 Resolve
               </label>
             </div>
           </li>
         </ul>
+        <ng-template #noComments>
+          Nobody has left a comment yet...
+        </ng-template>
       </div>
     </div>
   </div>

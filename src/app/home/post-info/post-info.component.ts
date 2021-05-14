@@ -62,6 +62,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   submit(): void {
     this.submitted = true;
     this.comment = {
+      id: this.postService.generateId(),
       decision: false,
       text: this.form.value.text,
       author: this.authService.user.email,

@@ -16,6 +16,7 @@ export interface Post {
 }
 
 export interface Comments {
+  id?: string;
   decision?: boolean;
   author: string;
   text: string;
