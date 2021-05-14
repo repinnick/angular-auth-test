@@ -3,6 +3,9 @@
     <h2 class="question__title" >Edit Question</h2>
     <div class="question__line"></div>
       <form class="question__form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="question__item" *ngIf="error">
+          <p class="question__error">{{ error }}</p>
+        </div>
         <div class="question__item">
           <label for="title" class="question__form-title">Title</label>
           <div class="question__group">

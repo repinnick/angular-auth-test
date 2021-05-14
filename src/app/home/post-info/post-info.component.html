@@ -1,5 +1,8 @@
 <div class="post">
   <div class="post__container" *ngIf="post; else loading">
+    <div class="post__error" *ngIf="error">
+      <p class="post__error-message">{{ error }}</p>
+    </div>
     <div class="post__header-info">
       <p class="post__author">{{ post.author }}</p>
       <p class="post__date">{{ post.date | date: 'dd.MM.YYY' }}</p>

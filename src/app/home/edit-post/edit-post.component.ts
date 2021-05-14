@@ -19,6 +19,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
   post: Post;
   id: string;
   submitted = false;
+  error: string;
   notifier = new Subject();
 
   constructor(private route: ActivatedRoute,
@@ -76,8 +77,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       this.router.navigate(['/']);
     }, error => {
       this.submitted = false;
-      console.log(error.message);
-      // обработать ошибки в шаблоне
+      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
     });
   }
 

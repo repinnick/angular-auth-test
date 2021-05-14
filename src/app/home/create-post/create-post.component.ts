@@ -31,7 +31,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
       text: new FormControl('', Validators.required),
-      tags: new FormArray([], Validators.required),
+      tags: new FormArray([], [Validators.required, Validators.min(1)]),
     });
     this.technologies = TECHNOLOGIES;
   }
@@ -73,7 +73,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       },
       error => {
         this.isLoad = false;
-        this.error = error.statusText === 'Unknown Error' ? 'Server Error' : error.message;
+        this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
       });
   }
 
