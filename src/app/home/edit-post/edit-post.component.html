@@ -10,6 +10,16 @@
                    id="title"
                    class="question__input"
                    formControlName="title">
+            <div class="question__messages"
+                 *ngIf="form.get('title').invalid && form.get('title').touched">
+              <small class="question__err-message"
+                     *ngIf="form.get('title').errors.required"
+              >The field cannot be empty</small>
+            </div>
+            <div class="question__messages"
+                 *ngIf="form.get('title').valid && form.get('title').touched">
+              <small class="question__success-message">Success</small>
+            </div>
             <div class="question__error-message"></div>
           </div>
         </div>
@@ -20,6 +30,16 @@
                       class="question__textarea"
                       formControlName="text">
             </textarea>
+            <div class="question__messages"
+                 *ngIf="form.get('text').invalid && form.get('text').touched">
+              <small class="question__err-message"
+                     *ngIf="form.get('text').errors.required"
+              >The field cannot be empty</small>
+            </div>
+            <div class="question__messages"
+                 *ngIf="form.get('text').valid && form.get('text').touched">
+              <small class="question__success-message">Success</small>
+            </div>
             <div class="question__error-message"></div>
           </div>
         </div>
@@ -30,6 +50,16 @@
             <li class="question__tags-item" *ngFor="let technology of technologies">
               <input id="{{ technology }}" [checked]="checked(technology)" type="checkbox" class="question__checkbox" value="{{ technology }}" (click)="addTagToForm($event)">
               <label for="{{ technology }}" class="question__checkbox-title">{{ technology }}</label>
+            </li>
+            <li class="question__tags-item">
+              <div class="question__messages"
+                   *ngIf="form.get('tags').invalid && form.get('tags').errors.required">
+                <small class="question__err-message">
+                  Select one of the categories</small>
+              </div>
+              <div class="question__messages" *ngIf="form.get('tags').valid">
+                <small class="question__success-message">Success</small>
+              </div>
             </li>
           </ul>
         </div>
