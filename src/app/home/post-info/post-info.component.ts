@@ -54,6 +54,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
       this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
     });
   }
+
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
@@ -78,7 +79,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   deleteComment(id: string): void {
     this.post.comments = this.post.comments.filter(comment => comment.id !== id);
-    this.updatePost()
+    this.updatePost();
   }
 
   updatePost(): void {
@@ -86,11 +87,25 @@ export class PostInfoComponent implements OnInit, OnDestroy {
       ...this.post
     }).pipe(takeUntil(this.notifier)).subscribe(() => {
       this.submitted = false;
-      console.log(this.post);
       this.form.reset();
     }, error => {
       this.submitted = false;
       this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
     });
+  }
+
+
+  checkbox($event): void {
+    if ($event.target.checked) {
+      this.post.comments.forEach(com => {
+        com.decision = com.id === $event.target.id;
+      });
+    }
+    else {
+      this.post.comments.forEach(com => {
+        com.decision = false;
+      });
+    }
+    this.updatePost();
   }
 }

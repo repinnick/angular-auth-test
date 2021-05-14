@@ -52,7 +52,7 @@
                 <div class="comments__header">
                   <p class="comments__username">{{ comment.author }}</p>
                   <p class="comments__time">{{ comment.date | date: 'MMM d, y hh:mm' }}</p>
-                  <p class="comments__best-answer">Best answer</p>
+                  <p class="comments__best-answer" *ngIf="comment.decision">Best answer</p>
                 </div>
                 <p class="comments__text">
                   {{ comment.text }}
@@ -64,7 +64,12 @@
                 <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
                 Delete
               </button>
-              <input id="{{ comment.id }}" type="checkbox" class="comments__checkbox">
+              <input id="{{ comment.id }}"
+                     type="checkbox"
+                     class="comments__checkbox"
+                     (click)="checkbox($event)"
+                     [checked]="comment.decision"
+              >
               <label for="{{ comment.id }}" class="comments__checkbox-title">
                 Resolve
               </label>
