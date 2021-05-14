@@ -17,7 +17,7 @@
       </div>
       <div class="post__buttons">
         <button class="post__btn post__btn--approve" type="button">Approve</button>
-        <button class="post__btn post__btn--delete" type="button" (click)="delete()">Delete</button>
+        <button class="post__btn post__btn--delete" type="button" (click)="deletePost()">Delete</button>
       </div>
     </div>
     <p class="post__text">
@@ -51,7 +51,7 @@
               <div class="comments__main">
                 <div class="comments__header">
                   <p class="comments__username">{{ comment.author }}</p>
-                  <p class="comments__time">{{ comment.date | date: 'EEEE MMM d, y hh:mm' }}</p>
+                  <p class="comments__time">{{ comment.date | date: 'MMM d, y hh:mm' }}</p>
                   <p class="comments__best-answer">Best answer</p>
                 </div>
                 <p class="comments__text">
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="comments__buttons">
-              <button class="comments__delete">
+              <button class="comments__delete" (click)="deleteComment(comment.id)">
                 <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
                 Delete
               </button>

@@ -35,7 +35,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  delete(): void {
+  deletePost(): void {
     this.postService.deletePost(this.post.id).pipe(takeUntil(this.notifier)).subscribe(() => {
       this.router.navigate(['/']);
     }, error => {
@@ -73,6 +73,15 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     } else {
       this.post.comments.push(this.comment);
     }
+    this.updatePost();
+  }
+
+  deleteComment(id: string): void {
+    this.post.comments = this.post.comments.filter(comment => comment.id !== id);
+    this.updatePost()
+  }
+
+  updatePost(): void {
     this.postService.update({
       ...this.post
     }).pipe(takeUntil(this.notifier)).subscribe(() => {
