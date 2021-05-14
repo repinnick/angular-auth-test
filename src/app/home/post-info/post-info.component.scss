@@ -30,12 +30,30 @@
     justify-content: space-between;
     align-items: center;
   }
+  &__title-info {
+    display: flex;
+    align-items: center;
+  }
   &__title {
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #000000;
+    margin-right: 60px;
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-decoration-line: underline;
+    color: #404040;
+  }
+  &__link-img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
   }
   &__text {
     font-weight: normal;
@@ -64,4 +82,51 @@
     }
   }
   @include button;
+}
+
+// comments
+.comments {
+  font-family: 'Poppins', sans-serif;
+  &__form-wrapper {
+    max-width: 606px;
+  }
+  &__form-title, &__answers-title {
+    font-size: 20px;
+    letter-spacing: 0.21em;
+    text-transform: uppercase;
+    color: #1C1B1B;
+  }
+  &__submit {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #000000;
+    border: 1px solid #000000;
+    cursor: pointer;
+    min-width: 173px;
+    padding: 12px 0;
+  }
+  &__textarea {
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    height: 200px;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #292929;
+    resize: none;
+    &::placeholder {
+      color: #9C9C9C;
+    }
+    &.ng-invalid.ng-touched {
+      border: 1px solid #F20606
+    }
+    &.ng-valid.ng-touched {
+      border: 1px solid #027700
+    }
+  }
 }

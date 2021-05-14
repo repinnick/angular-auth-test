@@ -15,12 +15,12 @@ export interface Post {
   comments?: Comment[];
 }
 
-// export interface Comment {
-//   // решение или не решение
-//   // текст
-//   // автор
-//   // дта
-// }
+export interface Comment {
+  decision?: boolean;
+  author: string;
+  text: string;
+  date: number;
+}
 
 export interface getResponseId {
   name: string;

@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Post} from '../../shared/interfaces';
 import {PostService} from '../../shared/services/post.service';
 import {Subject} from 'rxjs';
+import {logger} from 'codelyzer/util/logger';
 
 @Component({
   selector: 'app-post-info',
@@ -27,6 +28,8 @@ export class PostInfoComponent implements OnInit, OnDestroy {
         return this.postService.getPostById(params.id);
       })).subscribe((post: Post) => {
       this.post = post;
+    }, error => {
+      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
     });
   }
 
