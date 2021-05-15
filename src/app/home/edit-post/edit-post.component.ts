@@ -57,9 +57,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   checked(technology: string): boolean {
-    return !!this.post.tags.find(tag => {
-      return tag === technology;
-    });
+    return !!this.post.tags.find(tag => tag === technology);
   }
 
   submit(): void {

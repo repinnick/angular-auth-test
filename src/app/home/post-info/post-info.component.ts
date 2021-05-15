@@ -46,13 +46,10 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   loadPost(): void {
     this.route.params.pipe(
-      switchMap((params: Params) => {
-        return this.postService.getPostById(params.id);
-      })).subscribe((post: Post) => {
-      this.post = post;
-    }, error => {
-      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
-    });
+      switchMap((params: Params) => this.postService.getPostById(params.id)))
+      .pipe(takeUntil(this.notifier))
+      .subscribe((post: Post) => this.post = post,
+          error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
   }
 
   ngOnDestroy(): void {
@@ -64,7 +61,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     this.submitted = true;
     this.comment = {
       id: this.postService.generateId(),
-      decision: false,
+      isDecision: false,
       text: this.form.value.text,
       author: this.authService.user.email,
       date: +new Date(),
@@ -97,14 +94,10 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   checkbox($event): void {
     if ($event.target.checked) {
-      this.post.comments.forEach(com => {
-        com.decision = com.id === $event.target.id;
-      });
+      this.post.comments.forEach(com => com.isDecision = com.id === $event.target.id);
     }
     else {
-      this.post.comments.forEach(com => {
-        com.decision = false;
-      });
+      this.post.comments.forEach(com => com.isDecision = false);
     }
     this.updatePost();
   }

@@ -52,7 +52,7 @@
                 <div class="comments__header">
                   <p class="comments__username">{{ comment.author }}</p>
                   <p class="comments__time">{{ comment.date | date: 'MMM d, y hh:mm' }}</p>
-                  <p class="comments__best-answer" *ngIf="comment.decision">Best answer</p>
+                  <p class="comments__best-answer" *ngIf="comment.isDecision">Best answer</p>
                 </div>
                 <p class="comments__text">
                   {{ comment.text }}
@@ -68,7 +68,7 @@
                      type="checkbox"
                      class="comments__checkbox"
                      (click)="checkbox($event)"
-                     [checked]="comment.decision"
+                     [checked]="comment.isDecision"
               >
               <label for="{{ comment.id }}" class="comments__checkbox-title">
                 Resolve
