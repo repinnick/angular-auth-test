@@ -11,7 +11,7 @@ import {PostInfoComponent} from './home/post-info/post-info.component';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent, canActivate: [LoginSignupGuard]},
   {path: 'signup', component: SignupComponent, canActivate: [LoginSignupGuard]},

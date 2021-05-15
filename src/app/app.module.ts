@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
+import {AppRoutingModule, routes} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -15,6 +15,9 @@ import {PostComponent} from './home/post/post.component';
 import {CreatePostComponent} from './home/create-post/create-post.component';
 import { EditPostComponent } from './home/edit-post/edit-post.component';
 import { PostInfoComponent } from './home/post-info/post-info.component';
+import {RouterModule} from '@angular/router';
+
+
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import { PostInfoComponent } from './home/post-info/post-info.component';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,6 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Comments, Post} from '../../shared/interfaces';
 import {PostService} from '../../shared/services/post.service';
 import {Subject} from 'rxjs';
-import {logger} from 'codelyzer/util/logger';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
 
@@ -14,7 +13,6 @@ import {AuthService} from '../../shared/services/auth.service';
   styleUrls: ['./post-info.component.scss']
 })
 export class PostInfoComponent implements OnInit, OnDestroy {
-
   post: Post;
   error: string;
   notifier = new Subject();
@@ -27,12 +25,15 @@ export class PostInfoComponent implements OnInit, OnDestroy {
               private router: Router,
               private authService: AuthService) {
   }
-
   ngOnInit(): void {
     this.loadPost();
     this.form = new FormGroup({
       text: new FormControl('', Validators.required)
     });
+  }
+
+  onScroll(event): void {
+    console.log(event.target);
   }
 
   deletePost(): void {
