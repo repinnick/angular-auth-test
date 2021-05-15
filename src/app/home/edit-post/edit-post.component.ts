@@ -72,7 +72,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       tags: this.form.value.tags,
     }).pipe(takeUntil(this.notifier)).subscribe(() => {
       this.submitted = false;
-      this.router.navigate(['/']);
+      this.router.navigate(['/post-info', this.post.id]);
     }, error => {
       this.submitted = false;
       this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
