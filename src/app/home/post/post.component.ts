@@ -13,8 +13,8 @@ export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post: Post;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
-  deletSubs: Subscription;
   notifier = new Subject();
+  error: string;
 
   constructor(private postService: PostService) {
   }
@@ -23,10 +23,12 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   delete(id: string): void {
-    this.deletSubs = this.postService.deletePost(id).pipe(takeUntil(this.notifier)).subscribe(() => {
-      this.onDelete.emit(id);
-    }, error => console.log(error.message));
+    this.postService.deletePost(id)
+      .pipe(takeUntil(this.notifier))
+      .subscribe(() => this.onDelete.emit(id),
+          error => this.error = error.message);
   }
+  // не обработаны ошибки
 
   ngOnDestroy(): void {
     this.notifier.next();

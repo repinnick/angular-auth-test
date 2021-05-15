@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   posts: Post[];
   validPost: boolean;
   notifier = new Subject();
+  error: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -26,25 +27,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getPosts();
   }
 
-
-  updatePosts($event: string): void{
+  updatePosts($event: string): void {
     this.getPosts();
   }
 
   getPosts(): void {
-    this.postService.getAllPosts().pipe(takeUntil(this.notifier)).subscribe(res => {
-      this.posts = res;
-      this.posts.map((post) => {
-        if (!post.onModeration) {
-          this.validPost = true;
-          return post;
-        }
-      });
-    }, error => {
-      console.log(error.message);
-      // обработать ошибки в шаблоне
-    });
+    this.postService.getAllPosts()
+      .pipe(takeUntil(this.notifier))
+      .subscribe(res => {
+        this.posts = res;
+        this.posts.map((post) => {
+          if (!post.onModeration) {
+            this.validPost = true;
+            return post;
+          }
+        });
+      }, error => this.error = error.message);
   }
+  // обработать ошибки в шаблоне
+
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();

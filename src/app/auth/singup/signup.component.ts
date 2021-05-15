@@ -37,41 +37,25 @@ export class SignupComponent implements OnInit {
       password: this.form.value.password,
     };
     this.authService.signUp(user)
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   googleAuth(): void {
     this.authService.googleAuth()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   facebookAuth(): void {
     this.authService.facebookAuth()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   githubAuth(): void {
     this.authService.githubAuth()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(err => {
-        this.error = err.message;
-      });
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 }

@@ -32,18 +32,13 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  onScroll(event): void {
-    console.log(event.target);
-  }
-
   deletePost(): void {
-    this.postService.deletePost(this.post.id).pipe(takeUntil(this.notifier)).subscribe(() => {
-      this.router.navigate(['/']);
-    }, error => {
-      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
-      // сделать удалённую страницу недоступной
-    });
+    this.postService.deletePost(this.post.id)
+      .pipe(takeUntil(this.notifier))
+      .subscribe(() => this.router.navigate(['/']),
+          error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
   }
+  // сделать удалённую страницу недоступной
 
   loadPost(): void {
     this.route.params.pipe(
@@ -85,12 +80,12 @@ export class PostInfoComponent implements OnInit, OnDestroy {
       ...this.post
     }).pipe(takeUntil(this.notifier))
       .subscribe(() => {
-      this.submitted = false;
-      this.form.reset();
-    }, error => {
-      this.submitted = false;
-      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
-    });
+        this.submitted = false;
+        this.form.reset();
+      }, error => {
+        this.submitted = false;
+        this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
+      });
   }
 
 
