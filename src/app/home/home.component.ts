@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {PostService} from '../shared/services/post.service';
 import {Subject, Subscriber, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {TECHNOLOGIES} from '../shared/constants';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   error: string;
   isSort: boolean;
   isVisibleSort: boolean;
+  isVisibleFilters: boolean;
+  tags: Array<string>;
+  tagValue: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -29,6 +33,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getPosts();
     this.isSort = false;
     this.isVisibleSort = false;
+    this.isVisibleFilters = false;
+    this.tags = TECHNOLOGIES;
+    this.tagValue = '';
   }
 
   updatePosts($event: string): void {
@@ -54,5 +61,4 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.notifier.next();
     this.notifier.complete();
   }
-
 }

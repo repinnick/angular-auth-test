@@ -1,16 +1,21 @@
 <div class="wrapper">
   <div class="filters">
     <div class="filters__blocks">
-      <div class="filters__block filters__block--filters">
+      <div class="filters__block filters__block--filters" (click)="isVisibleFilters = !isVisibleFilters">
         <a class="filters__filters">Filter</a>
-<!--        <ul class="filters__items">-->
-<!--          <li class="filters__item">-->
-<!--            <a class="filters__link">From oldest to newest</a>-->
-<!--          </li>-->
+        <ul class="filters__items" *ngIf="isVisibleFilters">
+          <li class="filters__item">
+            Tags:
+            <ul class="filters__tags">
+              <li class="filters__tag" *ngFor="let tag of tags">
+                <button class="filters__tag-button" type="button" (click)="tagValue = tag">{{ tag }}</button>
+              </li>
+            </ul>
+          </li>
 <!--          <li class="filters__item">-->
 <!--            <a class="filters__link">From newest to oldest</a>-->
 <!--          </li>-->
-<!--        </ul>-->
+        </ul>
       </div>
       <div class="filters__block filters__block--sort" (click)="isVisibleSort = !isVisibleSort">
         <a class="filters__sort">Sort</a>
@@ -31,7 +36,7 @@
     </div>
   </div>
 
-  <div class="home" *ngIf="posts | dateSort: isSort; else loading">
+  <div class="home" *ngIf="posts | dateSort: isSort | tagSort: tagValue; else loading">
     <div class="home__posts">
       <app-post
         (onDelete)="updatePosts($event)"

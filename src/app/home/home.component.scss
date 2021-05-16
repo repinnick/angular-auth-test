@@ -6,6 +6,30 @@
   //display: flex;
   //justify-content: space-between;
   //align-items: center;
+  &__tags {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+  }
+  &__tag {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__tag-button {
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   &__blocks {
     display: flex;
     justify-content: space-between;
@@ -22,11 +46,9 @@
     &:last-child {
       margin-right: 0;
     }
-
   }
   &__block--sort {
     position: relative;
-    //width: 100%;
     &:after {
       display: inline-block;
       content: " \276F";
@@ -37,7 +59,6 @@
     }
   }
   &__block--filters {
-    //width: 100%;
     position: relative;
     &:after {
       display: inline-block;
@@ -81,9 +102,10 @@
   }
 }
 
-
 .wrapper {
   padding: 50px 70px 20px;
+  min-height: 100vh;
+  height: 100%;
 }
 
 app-post {

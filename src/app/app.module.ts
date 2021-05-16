@@ -17,9 +17,7 @@ import { EditPostComponent } from './home/edit-post/edit-post.component';
 import { PostInfoComponent } from './home/post-info/post-info.component';
 import {RouterModule} from '@angular/router';
 import {SortPipe} from './shared/pipes/sort.pipe';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import {TagsSortPipe} from './shared/pipes/tags-sort.pipe';
 
 
 @NgModule({
@@ -33,7 +31,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     PostComponent,
     EditPostComponent,
     PostInfoComponent,
-    SortPipe
+    SortPipe,
+    TagsSortPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +41,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
-    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
