@@ -7,7 +7,7 @@ import {Post} from '../interfaces';
 export class SortPipe implements PipeTransform {
   transform(posts: Post[], options: boolean): Post[] {
     if (posts) {
-      if (options === true) {
+      if (options) {
         return posts.sort((first: Post, second: Post) => second.date - first.date);
       } else {
         return posts.sort((first: Post, second: Post) => first.date - second.date);

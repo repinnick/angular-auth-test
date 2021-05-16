@@ -1,5 +1,4 @@
 <div class="wrapper">
-
   <div class="filters">
     <div class="filters__blocks">
       <div class="filters__block filters__block--filters">
@@ -13,8 +12,8 @@
 <!--          </li>-->
 <!--        </ul>-->
       </div>
-      <div class="filters__block filters__block--sort">
-        <a class="filters__sort" (click)="isVisibleSort = !isVisibleSort">Sort</a>
+      <div class="filters__block filters__block--sort" (click)="isVisibleSort = !isVisibleSort">
+        <a class="filters__sort">Sort</a>
         <ul class="filters__items" *ngIf="isVisibleSort">
           <li class="filters__item">
             <a class="filters__link" (click)="isSort = false">From oldest to newest</a>
