@@ -19,12 +19,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   validPost: boolean;
   notifier = new Subject();
   error: string;
+  isSort: boolean;
+  isVisibleSort: boolean;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
 
   ngOnInit(): void {
     this.getPosts();
+    this.isSort = false;
+    this.isVisibleSort = false;
   }
 
   updatePosts($event: string): void {
@@ -50,4 +54,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.notifier.next();
     this.notifier.complete();
   }
+
 }

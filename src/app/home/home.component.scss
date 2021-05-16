@@ -3,16 +3,18 @@
 //filters
 .filters{
   margin-bottom: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  //display: flex;
+  //justify-content: space-between;
+  //align-items: center;
   &__blocks {
     display: flex;
+    justify-content: space-between;
   }
   &__block {
     display: flex;
     align-items: center;
-    margin-right: 150px;
+    width: (100% / 3);
+    margin-right: 30px;
     font-size: 16px;
     letter-spacing: 0.03em;
     color: #000000;
@@ -20,6 +22,11 @@
     &:last-child {
       margin-right: 0;
     }
+
+  }
+  &__block--sort {
+    position: relative;
+    //width: 100%;
     &:after {
       display: inline-block;
       content: " \276F";
@@ -29,7 +36,49 @@
       transform: rotate(90deg);
     }
   }
-
+  &__block--filters {
+    //width: 100%;
+    position: relative;
+    &:after {
+      display: inline-block;
+      content: "\276F";
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      transform: rotate(90deg);
+    }
+  }
+  &__block--buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__items {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background: #FFFFFF;;
+    padding: 15px 30px;
+    box-shadow: 3px 3px 3px 3px #333333;
+  }
+  &__item {
+    list-style-type: disc;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__link {
+    font-family: 'Poppins', sans-serif;
+    &:hover {
+      opacity: 0.4;
+    }
+  }
 }
 
 

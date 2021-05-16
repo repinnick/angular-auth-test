@@ -16,6 +16,7 @@ import {CreatePostComponent} from './home/create-post/create-post.component';
 import { EditPostComponent } from './home/edit-post/edit-post.component';
 import { PostInfoComponent } from './home/post-info/post-info.component';
 import {RouterModule} from '@angular/router';
+import {SortPipe} from './shared/pipes/sort.pipe';
 
 
 
@@ -31,6 +32,7 @@ import {RouterModule} from '@angular/router';
     PostComponent,
     EditPostComponent,
     PostInfoComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,

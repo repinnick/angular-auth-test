@@ -2,17 +2,37 @@
 
   <div class="filters">
     <div class="filters__blocks">
-      <a class="filters__block">Filter</a>
-      <a class="filters__block">Sort</a>
-    </div>
-    <div class="filters__buttons">
-      <button class="filters__btn"></button>
-      <button class="filters__btn"></button>
-      <button class="filters__btn"></button>
+      <div class="filters__block filters__block--filters">
+        <a class="filters__filters">Filter</a>
+<!--        <ul class="filters__items">-->
+<!--          <li class="filters__item">-->
+<!--            <a class="filters__link">From oldest to newest</a>-->
+<!--          </li>-->
+<!--          <li class="filters__item">-->
+<!--            <a class="filters__link">From newest to oldest</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+      </div>
+      <div class="filters__block filters__block--sort">
+        <a class="filters__sort" (click)="isVisibleSort = !isVisibleSort">Sort</a>
+        <ul class="filters__items" *ngIf="isVisibleSort">
+          <li class="filters__item">
+            <a class="filters__link" (click)="isSort = false">From oldest to newest</a>
+          </li>
+          <li class="filters__item">
+            <a class="filters__link" (click)="isSort = true">From newest to oldest</a>
+          </li>
+        </ul>
+      </div>
+      <div class="filters__block filters__block--buttons">
+        <button class="filters__btn">A</button>
+        <button class="filters__btn">B</button>
+        <button class="filters__btn">C</button>
+      </div>
     </div>
   </div>
 
-  <div class="home" *ngIf="posts; else loading">
+  <div class="home" *ngIf="posts | dateSort: isSort; else loading">
     <div class="home__posts">
       <app-post
         (onDelete)="updatePosts($event)"
