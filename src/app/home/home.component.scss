@@ -29,6 +29,9 @@
     padding: 2px 5px;
     border-radius: 5px;
     cursor: pointer;
+    &--all {
+      background: #dc3545;
+    }
   }
   &__blocks {
     display: flex;
