@@ -36,11 +36,11 @@
     </div>
   </div>
 
-  <div class="home" *ngIf="posts | dateSort: isSort | tagSort: tagValue; else loading">
+  <div class="home" *ngIf="posts; else loading">
     <div class="home__posts">
       <app-post
         (onDelete)="updatePosts($event)"
-        *ngFor="let post of posts"
+        *ngFor="let post of posts | dateSort: isSort| tagFilter: tagValue;"
         [post] = post>
         ></app-post>
     </div>

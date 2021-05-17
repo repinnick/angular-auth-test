@@ -1,0 +1,9 @@
+.container {
+  background: #FAFAFA;
+  -webkit-box-shadow: 0 0 3px 0 #cccccc;
+          box-shadow: 0 0 3px 0 #cccccc;
+  max-height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+/*# sourceMappingURL=app.component.css.map */

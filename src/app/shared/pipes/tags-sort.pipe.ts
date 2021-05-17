@@ -2,20 +2,19 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Post} from '../interfaces';
 
 @Pipe({
-  name: 'tagSort',
+  name: 'tagFilter',
 })
 export class TagsSortPipe implements PipeTransform {
-  transform(posts: Post[], options = ''): Post[] {
+  transform(posts: Post[], option: string): Post[] {
     if (posts) {
-      return posts;
-      // if (options === '') {
-      //   return posts;
-      // }
-      // return posts.map((post: Post) => {
-      //   if (post.tags.indexOf(options) !== -1) {
-      //     return post;
-      //   }
-      // });
+      if (!option) {
+        return posts;
+      }
+      return posts.filter((post: Post) => {
+        if (post.tags.indexOf(option) !== -1) {
+          return post;
+        }
+      });
     }
   }
 }

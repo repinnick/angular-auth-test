@@ -1,0 +1,305 @@
+.question {
+  padding: 115px 0;
+  margin: 0 auto;
+  max-width: 888px;
+}
+
+.question__container {
+  background: #FFFFFF;
+  padding: 70px 0 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.question__title {
+  font-size: 20px;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+  color: #1C1B1B;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.question__line {
+  max-width: 700px;
+  width: 100%;
+  border: 1px solid #E3E3E3;
+  margin: 0 auto;
+}
+
+.question__error {
+  border: 1px solid #dc3545;
+  background: #dc3545;
+  color: #ECEFF1;
+  padding: 5px 10px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.question__messages {
+  padding-left: 5px;
+}
+
+.question__err-message {
+  font-size: 10px;
+  color: #EB001B;
+}
+
+.question__err-message:before {
+  content: ">>>";
+  color: #EB001B;
+  padding-right: 5px;
+}
+
+.question__success-message {
+  font-size: 10px;
+  color: #027700;
+}
+
+.question__success-message:before {
+  content: ">>>";
+  color: #027700;
+  padding-right: 5px;
+}
+
+.question__form {
+  margin-top: 45px;
+}
+
+.question__form-title {
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  color: #000000;
+}
+
+.question__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.question__item:first-child {
+  margin-bottom: 20px;
+}
+
+.question__item:nth-child(2) {
+  margin-bottom: 27px;
+}
+
+.question__group {
+  width: 400px;
+  margin-left: 62px;
+}
+
+.question__tags {
+  list-style-type: none;
+}
+
+.question__input, .question__textarea {
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  border: 1px solid #9C9C9C;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: #292929;
+  padding: 8px 15px;
+}
+
+.question__input.ng-invalid.ng-touched, .question__textarea.ng-invalid.ng-touched {
+  border: 1px solid #F20606;
+}
+
+.question__input.ng-valid.ng-touched, .question__textarea.ng-valid.ng-touched {
+  border: 1px solid #027700;
+}
+
+.question__input::-webkit-input-placeholder, .question__textarea::-webkit-input-placeholder {
+  color: #8A8484;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.question__input:-ms-input-placeholder, .question__textarea:-ms-input-placeholder {
+  color: #8A8484;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.question__input::-ms-input-placeholder, .question__textarea::-ms-input-placeholder {
+  color: #8A8484;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.question__input::placeholder, .question__textarea::placeholder {
+  color: #8A8484;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.question__input:focus::-webkit-input-placeholder, .question__textarea:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.question__input:focus:-ms-input-placeholder, .question__textarea:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.question__input:focus::-ms-input-placeholder, .question__textarea:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+.question__input:focus::placeholder, .question__textarea:focus::placeholder {
+  color: transparent;
+}
+
+.question__input {
+  height: 39px;
+}
+
+.question__textarea {
+  height: 116px;
+  resize: none;
+}
+
+.question__tags-item {
+  margin-bottom: 15px;
+}
+
+.question__tags-item:last-child {
+  margin-bottom: 0;
+}
+
+.question__checkbox-title {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: #8A8484;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.question__checkbox + .question__checkbox-title::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  border: 1px solid #BDBDBD;
+  margin-right: 10px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.question__checkbox:checked + .question__checkbox-title::before {
+  background: #333333;
+}
+
+.question__checkbox {
+  z-index: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.question__checkbox:checked + .question__checkbox-title {
+  color: #000000;
+}
+
+.question__footer-buttons {
+  margin-top: 48px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (125px)[2];
+      grid-template-columns: repeat(2, 125px);
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.question__btn {
+  outline: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  border: 1px solid #000000;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1C1B1B;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.question__btn--accept {
+  color: #FFFFFF;
+  background: #000000;
+}
+
+.question__btn--accept:hover {
+  -webkit-box-shadow: 7px -7px 4px 0 #333333;
+          box-shadow: 7px -7px 4px 0 #333333;
+}
+
+.question__btn--accept:disabled {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: transparent;
+  color: #9C9C9C;
+  border: 1px solid #9C9C9C;
+  cursor: not-allowed;
+}
+
+.question__btn--cancel:hover {
+  -webkit-box-shadow: 7px -7px 4px 0 #cccccc;
+          box-shadow: 7px -7px 4px 0 #cccccc;
+}
+
+@media screen and (min-width: 520px) and (max-width: 840px) {
+  .question {
+    max-width: 500px;
+  }
+  .question__line {
+    max-width: 400px;
+  }
+  .question__form-title {
+    display: none;
+  }
+  .question__group {
+    width: 300px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .question {
+    max-width: 320px;
+  }
+  .question__line {
+    max-width: 300px;
+  }
+  .question__form-title {
+    display: none;
+  }
+  .question__group {
+    width: 280px;
+    margin-left: 0;
+  }
+}
+/*# sourceMappingURL=create-post.component.css.map */

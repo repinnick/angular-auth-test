@@ -1,0 +1,197 @@
+.container {
+  font-family: 'Poppins', sans-serif;
+  padding: 100px 20px;
+  width: 100%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  color: #1C1B1B;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.form__item {
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+.form__input {
+  width: 100%;
+  height: 44px;
+  outline: none;
+  border: 1px solid #9C9C9C;
+  padding: 8px 13px;
+  color: #292929;
+  font-size: 15px;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.form__input::-webkit-input-placeholder {
+  color: #8A8484;
+}
+
+.form__input:-ms-input-placeholder {
+  color: #8A8484;
+}
+
+.form__input::-ms-input-placeholder {
+  color: #8A8484;
+}
+
+.form__input::placeholder {
+  color: #8A8484;
+}
+
+.form__input.ng-invalid.ng-touched {
+  border: 1px solid #F20606;
+}
+
+.form__input.ng-valid.ng-touched {
+  border: 1px solid #027700;
+}
+
+.form__error {
+  border: 1px solid #dc3545;
+  background: #dc3545;
+  color: #ECEFF1;
+  padding: 5px 10px;
+}
+
+.form__messages {
+  padding-left: 5px;
+}
+
+.form__err-message {
+  font-size: 10px;
+  color: #EB001B;
+}
+
+.form__err-message:before {
+  content: ">>>";
+  color: #EB001B;
+  padding-right: 5px;
+}
+
+.form__success-message {
+  font-size: 10px;
+  color: #027700;
+}
+
+.form__success-message:before {
+  content: ">>>";
+  color: #027700;
+  padding-right: 5px;
+}
+
+.form__btn-container {
+  text-align: center;
+  margin: 20px 0 60px;
+}
+
+.form__sign-title {
+  font-size: 14px;
+  color: #1C1B1B;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.form__button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.form__button:last-child {
+  margin-right: 0;
+}
+
+.form__button:hover {
+  opacity: 0.7;
+}
+
+.form__btn-img {
+  width: 30px;
+}
+
+.form__submit {
+  cursor: pointer;
+  width: 100%;
+  color: #1C1B1B;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid #000000;
+  background: transparent;
+  padding: 12px 0;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.form__submit:hover {
+  background: #1C1B1B;
+  border: 1px solid #1C1B1B;
+  color: #FFFFFF;
+}
+
+.form__submit:disabled {
+  cursor: not-allowed;
+  border: 1px solid #9C9C9C;
+  background: transparent;
+  color: #9C9C9C;
+}
+
+@media screen and (max-width: 450px) {
+  .title {
+    margin-bottom: 20px;
+  }
+  .form__item {
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .form__btn-container {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
+  .container {
+    padding: 50px 20px;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+  .form__item {
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .form__btn-container {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .container {
+    padding: 50px 10px;
+  }
+  .form__item {
+    width: 260px;
+    margin-bottom: 10px;
+  }
+}
+/*# sourceMappingURL=signup.component.css.map */
