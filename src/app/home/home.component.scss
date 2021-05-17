@@ -10,9 +10,11 @@
     list-style-type: none;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 5px;
   }
   &__tag {
+    margin-top: 5px;
     margin-right: 10px;
     &:last-child {
       margin-right: 0;

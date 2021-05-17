@@ -18,6 +18,7 @@ import { PostInfoComponent } from './home/post-info/post-info.component';
 import {RouterModule} from '@angular/router';
 import {SortPipe} from './shared/pipes/sort.pipe';
 import {TagsSortPipe} from './shared/pipes/tags-sort.pipe';
+import {DateFilterPipe} from './shared/pipes/date-filter.pipe';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {TagsSortPipe} from './shared/pipes/tags-sort.pipe';
     PostInfoComponent,
     SortPipe,
     TagsSortPipe,
+    DateFilterPipe,
   ],
   imports: [
     BrowserModule,

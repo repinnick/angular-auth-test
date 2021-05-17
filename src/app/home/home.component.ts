@@ -5,7 +5,8 @@ import {Router} from '@angular/router';
 import {PostService} from '../shared/services/post.service';
 import {Subject, Subscriber, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {TECHNOLOGIES} from '../shared/constants';
+import {TECHNOLOGIES, PERIOD} from '../shared/constants';
+
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,7 @@ import {TECHNOLOGIES} from '../shared/constants';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
-  email = '';
-  user: User;
   posts: Post[];
-  validPost: boolean;
   notifier = new Subject();
   error: string;
   isSort: boolean;
@@ -25,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   isVisibleFilters: boolean;
   tags: Array<string>;
   tagValue: string;
+  periods: Array<string>;
+  periodValue: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -35,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isVisibleSort = false;
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
-    this.tagValue = '';
+    this.periods = PERIOD;
   }
 
   updatePosts($event: string): void {
@@ -45,15 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getPosts(): void {
     this.postService.getAllPosts()
       .pipe(takeUntil(this.notifier))
-      .subscribe(res => {
-        this.posts = res;
-        this.posts.map((post) => {
-          if (!post.onModeration) {
-            this.validPost = true;
-            return post;
-          }
-        });
-      }, error => this.error = error.message);
+      .subscribe(posts => this.posts = posts, error => this.error = error.message);
   }
   // обработать ошибки в шаблоне
 
