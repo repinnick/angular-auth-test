@@ -3,6 +3,7 @@ import {Post} from '../interfaces';
 
 @Pipe({
   name: 'answeredUnanswered',
+  pure: false,
 })
 export class AnsweredUnansweredPipe implements PipeTransform {
   transform(posts: Post[], option: string): Post[] {

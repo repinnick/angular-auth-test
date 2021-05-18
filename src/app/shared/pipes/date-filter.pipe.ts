@@ -3,6 +3,7 @@ import {Post} from '../interfaces';
 
 @Pipe({
   name: 'dateFilter',
+  pure: false,
 })
 export class DateFilterPipe implements PipeTransform {
   transform(posts: Post[], option: string): Post[] {

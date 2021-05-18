@@ -3,6 +3,7 @@ import {Post} from '../interfaces';
 
 @Pipe({
   name: 'tagFilter',
+  pure: false,
 })
 export class TagsSortPipe implements PipeTransform {
   transform(posts: Post[], option: string): Post[] {

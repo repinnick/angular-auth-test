@@ -3,6 +3,7 @@ import {Post} from '../interfaces';
 
 @Pipe({
   name: 'dateSort',
+  pure: false,
 })
 export class SortPipe implements PipeTransform {
   transform(posts: Post[], options: boolean): Post[] {
