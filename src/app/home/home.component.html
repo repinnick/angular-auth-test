@@ -9,10 +9,10 @@
             Questions:
             <ul class="filters__tags">
               <li class="filters__tag">
-                <button class="filters__tag-button" type="button" (click)="hasDecision = 'yes'">Answered</button>
+                <button class="filters__tag-button" type="button" (click)="hasDecision = 'answered'">Answered</button>
               </li>
               <li class="filters__tag">
-                <button class="filters__tag-button" type="button" (click)="hasDecision = 'no'">Unanswered</button>
+                <button class="filters__tag-button" type="button" (click)="hasDecision = 'unanswered'">Unanswered</button>
               </li>
               <li class="filters__tag">
                 <button class="filters__tag-button" type="button" (click)="hasDecision = ''">All questions</button>
@@ -66,7 +66,7 @@
     <div class="home__posts">
       <app-post
         (onDelete)="updatePosts($event)"
-        *ngFor="let post of posts | answeredUnanswered: hasDecision | tagFilter: tagValue | dateSort: isSort | dateFilter: periodValue;"
+        *ngFor="let post of (posts | answeredUnanswered: hasDecision | tagFilter: tagValue | dateSort: isSort | dateFilter: periodValue);"
         [post] = post>
         ></app-post>
     </div>

@@ -7,13 +7,13 @@ import {Post} from '../interfaces';
 export class AnsweredUnansweredPipe implements PipeTransform {
   transform(posts: Post[], option: string): Post[] {
     if (posts) {
-      if (option === 'yes') {
+      if (option === 'answered') {
         return posts.filter((post: Post) => {
           if (post.comments) {
             return post.comments.find(comment => comment.isDecision === true);
           }
         });
-      } else if (option === 'no') {
+      } else if (option === 'unanswered') {
         return posts.filter((post: Post) => {
           if (post.comments) {
             return post.comments.every(comment => comment.isDecision === false);
