@@ -105,6 +105,24 @@
       opacity: 0.4;
     }
   }
+  &__btn {
+    width: 18px;
+    height: 18px;
+    outline: none;
+    border: none;
+    margin-right: 30px;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }
+    &--block {
+      background: black;
+    }
+    &--color{
+      background: black;
+      border-radius: 4px;
+    }
+  }
 }
 
 .wrapper {
