@@ -19,6 +19,7 @@ import {RouterModule} from '@angular/router';
 import {SortPipe} from './shared/pipes/sort.pipe';
 import {TagsSortPipe} from './shared/pipes/tags-sort.pipe';
 import {DateFilterPipe} from './shared/pipes/date-filter.pipe';
+import {AnsweredUnansweredPipe} from './shared/pipes/answered-unanswered.pipe';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {DateFilterPipe} from './shared/pipes/date-filter.pipe';
     SortPipe,
     TagsSortPipe,
     DateFilterPipe,
+    AnsweredUnansweredPipe,
   ],
   imports: [
     BrowserModule,

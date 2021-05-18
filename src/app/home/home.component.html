@@ -6,6 +6,21 @@
         <ul class="filters__items" *ngIf="isVisibleFilters">
 
           <li class="filters__item">
+            Questions:
+            <ul class="filters__tags">
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="hasDecision = 'yes'">Answered</button>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="hasDecision = 'no'">Unanswered</button>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="hasDecision = ''">All questions</button>
+              </li>
+            </ul>
+          </li>
+
+          <li class="filters__item">
             Tags:
             <ul class="filters__tags">
               <li class="filters__tag" *ngFor="let tag of tags">
@@ -51,7 +66,7 @@
     <div class="home__posts">
       <app-post
         (onDelete)="updatePosts($event)"
-        *ngFor="let post of (posts | tagFilter: tagValue | dateSort: isSort| dateFilter: periodValue);"
+        *ngFor="let post of posts | answeredUnanswered: hasDecision | tagFilter: tagValue | dateSort: isSort | dateFilter: periodValue;"
         [post] = post>
         ></app-post>
     </div>

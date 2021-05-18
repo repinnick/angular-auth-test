@@ -77,7 +77,8 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   updatePost(): void {
     this.postService.update({
-      ...this.post
+      ...this.post,
+      ...this.post.comments,
     }).pipe(takeUntil(this.notifier))
       .subscribe(() => {
         this.submitted = false;

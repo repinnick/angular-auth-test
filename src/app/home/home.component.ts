@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tagValue: string;
   periods: Array<string>;
   periodValue: string;
+  hasDecision: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
