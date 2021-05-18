@@ -163,8 +163,8 @@
   &__button-color {
     display: inline-block;
     position: relative;
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
     overflow: hidden;
     &:hover {
@@ -177,8 +177,8 @@
     -webkit-appearance: none;
     border: none;
     background: #fff;
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     border-radius: 4px;
     overflow: hidden;
     outline: none;
@@ -209,16 +209,20 @@ app-post {
 }
 
 .home {
-  &__posts {
+  &__posts-block {
     display: flex;
     flex-wrap: wrap;
-    //justify-content: space-evenly;
-    //display: flex;
-    //flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
+    //justify-content: space-evenly;
     //align-items: stretch;
   }
+  &__posts-line {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
   // plus btn
   &__btn {
     position: fixed;
@@ -239,8 +243,5 @@ app-post {
     box-sizing:border-box;
     border-radius: 50%;
   }
-
-  //loading
-
 }
 

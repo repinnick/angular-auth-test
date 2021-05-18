@@ -12,6 +12,7 @@ import {takeUntil} from 'rxjs/operators';
 export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post: Post;
+  @Input() display: string;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   notifier = new Subject();
   error: string;

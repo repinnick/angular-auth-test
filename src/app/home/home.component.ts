@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   periods: Array<string>;
   periodValue: string;
   hasDecision: string;
+  displayQuestion: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
     this.periods = PERIOD;
+    this.displayQuestion = 'block';
   }
 
   updatePosts($event: string): void {

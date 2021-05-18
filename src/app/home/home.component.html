@@ -55,11 +55,11 @@
         </ul>
       </div>
       <div class="filters__block filters__block--buttons">
-        <button class="filters__btn filters__btn--block">
+        <button class="filters__btn filters__btn--block" (click)="displayQuestion = 'block'">
           <span class="filters__vertical-line"></span>
           <span class="filters__horizontal-line"></span>
         </button>
-        <button class="filters__btn filters__btn--burger">
+        <button class="filters__btn filters__btn--burger" (click)="displayQuestion = 'line'">
           <span class="filters__button-line"></span>
           <span class="filters__button-line"></span>
           <span class="filters__button-line"></span>
@@ -72,11 +72,12 @@
   </div>
 
   <div class="home" *ngIf="posts; else loading">
-    <div class="home__posts">
+    <div class="home__posts-{{ displayQuestion }}">
       <app-post
         (onDelete)="updatePosts($event)"
         *ngFor="let post of (posts | answeredUnanswered: hasDecision | tagFilter: tagValue | dateSort: isSort | dateFilter: periodValue);"
-        [post] = post>
+        [post] = post
+        [display]="displayQuestion">
         ></app-post>
     </div>
     <a class="home__btn" type="button" routerLink="/create-post"></a>
