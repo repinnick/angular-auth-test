@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   isVisibleSort: boolean;
   isVisibleFilters: boolean;
   tags: Array<string>;
-  decision: string;
   displayQuestion: string;
   form: FormGroup;
+  color: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkedButton(tag: string): boolean{
+  checkedButton(tag: string): boolean {
     return !!this.form.get('tags').value.find(option => option === tag);
   }
 
@@ -72,16 +72,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   // обработать ошибки в шаблоне
 
+  getColor($event): void {
+    this.color = $event.target.value;
+  }
+
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
-  }
-
-  change($event: Event): void {
-    console.log($event.target);
-  }
-
-  colorChange() {
-
   }
 }
