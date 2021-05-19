@@ -23,11 +23,7 @@ export class DateFilterPipe implements PipeTransform {
         else if (option === 'all time') {
           return posts;
         }
-        return posts.filter(post => {
-          if (+new Date() - post.date < period){
-            return post;
-          }
-        });
+        return posts.filter(post => +new Date() - post.date < period);
       }
       return posts;
     }

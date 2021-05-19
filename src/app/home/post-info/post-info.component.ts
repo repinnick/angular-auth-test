@@ -25,6 +25,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
               private router: Router,
               private authService: AuthService) {
   }
+
   ngOnInit(): void {
     this.loadPost();
     this.form = new FormGroup({
@@ -36,16 +37,19 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     this.postService.deletePost(this.post.id)
       .pipe(takeUntil(this.notifier))
       .subscribe(() => this.router.navigate(['/']),
-          error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
+        error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
   }
+
   // сделать удалённую страницу недоступной
 
   loadPost(): void {
     this.route.params.pipe(
       switchMap((params: Params) => this.postService.getPostById(params.id)))
       .pipe(takeUntil(this.notifier))
-      .subscribe((post: Post) => this.post = post,
-          error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
+      .subscribe((post: Post) => !post
+        ? this.router.navigate(['/'])
+        : this.post = post,
+        error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
   }
 
   ngOnDestroy(): void {
@@ -78,7 +82,6 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   updatePost(): void {
     this.postService.update({
       ...this.post,
-      ...this.post.comments,
     }).pipe(takeUntil(this.notifier))
       .subscribe(() => {
         this.submitted = false;
@@ -93,8 +96,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   checkbox($event): void {
     if ($event.target.checked) {
       this.post.comments.forEach(com => com.isDecision = com.id === $event.target.id);
-    }
-    else {
+    } else {
       this.post.comments.forEach(com => com.isDecision = false);
     }
     this.updatePost();

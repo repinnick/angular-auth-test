@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,13 +46,7 @@ export class PostService {
 
   getPostById(id: string): Observable<Post> {
     return this.httpClient.get(`${environment.databaseUrl}/posts/${id}.json`)
-      .pipe(
-      map((post: Post) => {
-        return {
-          ...post,
-          id,
-        };
-      }));
+      .pipe(map((post: Post) => !post ? null : {...post, id}));
   }
 
   update(post: Post): Observable<Post> {
