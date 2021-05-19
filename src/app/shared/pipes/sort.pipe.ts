@@ -6,16 +6,10 @@ import {Post} from '../interfaces';
   pure: false,
 })
 export class SortPipe implements PipeTransform {
-  transform(posts: Post[], options: boolean): Post[] {
+  transform(posts: Post[], option: boolean): Post[] {
     if (posts) {
-      if (options) {
-        return posts.sort((first: Post, second: Post) => second.date - first.date);
-      } else {
-        return posts.sort((first: Post, second: Post) => first.date - second.date);
-      }
+      posts.sort((first: Post, second: Post) => option ? second.date - first.date : first.date - second.date);
     }
-    else{
-      return;
-    }
+    return posts;
   }
 }

@@ -17,14 +17,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   posts: Post[];
   notifier = new Subject();
   error: string;
-  isSort: boolean;
+  isSortArgs: boolean;
   isVisibleSort: boolean;
   isVisibleFilters: boolean;
   tags: Array<string>;
   tagValue: string;
   periods: Array<string>;
   periodValue: string;
-  hasDecision: string;
+  decision: string;
   displayQuestion: string;
 
   constructor(private authService: AuthService, private postService: PostService) {
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPosts();
-    this.isSort = false;
+    this.isSortArgs = false;
     this.isVisibleSort = false;
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
