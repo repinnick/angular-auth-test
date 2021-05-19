@@ -3,9 +3,6 @@
 //filters
 .filters{
   margin-bottom: 60px;
-  //display: flex;
-  //justify-content: space-between;
-  //align-items: center;
 
   &__select {
     margin-top: 10px;
@@ -61,9 +58,6 @@
     padding: 2px 5px;
     border-radius: 5px;
     cursor: pointer;
-    &--all {
-      background: #dc3545;
-    }
   }
   &__tag-checkbox {
     display: none;
