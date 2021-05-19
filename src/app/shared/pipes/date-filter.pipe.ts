@@ -7,7 +7,7 @@ import {Post} from '../interfaces';
 })
 export class DateFilterPipe implements PipeTransform {
   transform(posts: Post[], option: number): Post[] {
-    if (posts && option) {
+    if (posts && +option) {
       const DAY = 24 * 3600 * 1000;
       return posts.filter(post => +new Date() - post.date < DAY * option);
     }

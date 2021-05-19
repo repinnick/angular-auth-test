@@ -6,7 +6,7 @@ import {PostService} from '../shared/services/post.service';
 import {Subject, Subscriber, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
-import {FormArray, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -22,8 +22,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   isVisibleSort: boolean;
   isVisibleFilters: boolean;
   tags: Array<string>;
-  tagValue: string;
-  periodValue: number;
   decision: string;
   displayQuestion: string;
   form: FormGroup;
@@ -39,8 +37,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.tags = TECHNOLOGIES;
     this.displayQuestion = 'block';
     this.form = new FormGroup({
-      tags: new FormArray([])
+      tags: new FormArray([]),
+      period: new FormControl(0)
     });
+  }
+
+  addTagToForm($event): void {
+    const control = new FormControl(`${$event.target.value}`);
+    const formArray = (this.form.get('tags') as FormArray);
+    if ($event.target.checked) {
+      formArray.push(control);
+    } else {
+      formArray.controls.forEach((control, index) => {
+        if (control.value === $event.target.value) {
+          formArray.removeAt(index);
+        }
+      });
+    }
+  }
+
+  checkedButton(tag: string): boolean{
+    return !!this.form.get('tags').value.find(option => option === tag);
   }
 
   updatePosts($event: string): void {
@@ -57,5 +74,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
+  }
+
+  change($event: Event): void {
+    console.log($event.target);
   }
 }

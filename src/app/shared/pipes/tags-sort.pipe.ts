@@ -6,16 +6,12 @@ import {Post} from '../interfaces';
   pure: false,
 })
 export class TagsSortPipe implements PipeTransform {
-  transform(posts: Post[], option: string): Post[] {
+  transform(posts: Post[], options: string[]): Post[] {
     if (posts) {
-      if (!option) {
-        return posts;
+      if (options.length) {
+        return posts.filter((post) => options.every((option) => post.tags.indexOf(option) !== -1));
       }
-      return posts.filter((post: Post) => {
-        if (post.tags.indexOf(option) !== -1) {
-          return post;
-        }
-      });
+      return posts;
     }
   }
 }
