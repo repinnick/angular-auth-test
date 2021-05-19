@@ -80,4 +80,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   change($event: Event): void {
     console.log($event.target);
   }
+
+  colorChange() {
+
+  }
 }
