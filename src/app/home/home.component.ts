@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {PostService} from '../shared/services/post.service';
 import {Subject, Subscriber, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {TECHNOLOGIES, PERIOD} from '../shared/constants';
+import {TECHNOLOGIES} from '../shared/constants';
 
 
 @Component({
@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isVisibleFilters: boolean;
   tags: Array<string>;
   tagValue: string;
-  periods: Array<string>;
-  periodValue: string;
+  periodValue: number;
   decision: string;
   displayQuestion: string;
 
@@ -36,7 +35,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isVisibleSort = false;
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
-    this.periods = PERIOD;
     this.displayQuestion = 'block';
   }
 

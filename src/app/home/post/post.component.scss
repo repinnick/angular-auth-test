@@ -1,7 +1,7 @@
 @import "../../../assets/styles/buttons";
 .post {
   background: #FFFFFF;
-  padding: 20px 10px;
+  //padding: 20px 10px;
   font-family: 'Poppins', sans-serif;
   width: 340px;
   height: 100%;
@@ -80,6 +80,7 @@
     width: 50%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   &__title {
     max-width: 600px;

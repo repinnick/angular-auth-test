@@ -35,8 +35,17 @@
           <li class="filters__item">
             For the period:
             <ul class="filters__tags">
-              <li class="filters__tag" *ngFor="let period of periods">
-                <button class="filters__tag-button" type="button" (click)="periodValue = period">{{ period }}</button>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="periodValue = 1">day</button>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="periodValue = 7">last week</button>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="periodValue = 31">last month</button>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button" type="button" (click)="periodValue = 0">all time</button>
               </li>
             </ul>
           </li>
