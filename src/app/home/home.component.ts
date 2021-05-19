@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayQuestion = 'block';
     this.form = new FormGroup({
       tags: new FormArray([]),
-      period: new FormControl(0)
+      period: new FormControl(0),
+      status: new FormControl('')
     });
   }
 
