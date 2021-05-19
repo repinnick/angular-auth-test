@@ -23,24 +23,29 @@
             </ul>
           </li>
 
-          <li class="filters__item">
-            Tags:
-            <ul class="filters__tags">
-              <li class="filters__tag" *ngFor="let tag of tags">
-                <button class="filters__tag-button" type="button" (click)="tagValue = tag">{{ tag }}</button>
-              </li>
-              <li class="filters__tag">
-                <button class="filters__tag-button filters__tag-button--all" type="button" (click)="tagValue = ''">All tags</button>
-              </li>
-            </ul>
-          </li>
+<!--          <li class="filters__item">-->
+<!--            Tags:-->
+<!--            <ul class="filters__tags">-->
+<!--              <li class="filters__tag" *ngFor="let tag of tags">-->
+<!--                <button class="filters__tag-button" type="button" (click)="tagValue = tag">{{ tag }}</button>-->
+<!--              </li>-->
+<!--              <li class="filters__tag">-->
+<!--                <button class="filters__tag-button filters__tag-button&#45;&#45;all" type="button" (click)="tagValue = ''">All tags</button>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
 
           <li class="filters__item">
             Tags:
             <ul class="filters__tags">
               <li class="filters__tag" *ngFor="let tag of tags">
-                <input type="checkbox" id="{{ tag }}">
-                <label for="{{ tag }}"> {{ tag }} </label>
+                <input class="filters__tag-checkbox" type="checkbox" id="{{ tag }}">
+                <label class="filters__tag-button" for="{{ tag }}"> {{ tag }} </label>
+              </li>
+              <li class="filters__tag">
+                <button class="filters__tag-button filters__tag-button--all" type="button" (click)="tagValue = ''">All
+                  tags
+                </button>
               </li>
             </ul>
           </li>

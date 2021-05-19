@@ -35,6 +35,12 @@
       background: #dc3545;
     }
   }
+  &__tag-checkbox {
+    display: none;
+    &:checked + .filters__tag-button{
+      background: #dc3545;
+    }
+  }
   &__blocks {
     display: flex;
     justify-content: space-between;
