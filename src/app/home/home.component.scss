@@ -47,32 +47,25 @@
     font-size: 16px;
     letter-spacing: 0.03em;
     color: #000000;
-    cursor: pointer;
     &:last-child {
       margin-right: 0;
     }
   }
   &__block--sort {
     position: relative;
-    &:after {
-      display: inline-block;
-      content: " \276F";
-      margin-left: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      transform: rotate(90deg);
-    }
+  }
+  &__block-name {
+    cursor: pointer;
+  }
+  &__arrow {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(90deg);
   }
   &__block--filters {
     position: relative;
-    &:after {
-      display: inline-block;
-      content: "\276F";
-      margin-left: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      transform: rotate(90deg);
-    }
   }
   &__block--buttons {
     display: flex;
@@ -102,6 +95,7 @@
   }
   &__link {
     font-family: 'Poppins', sans-serif;
+    cursor: pointer;
     &:hover {
       opacity: 0.4;
     }

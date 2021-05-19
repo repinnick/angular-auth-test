@@ -6,6 +6,7 @@ import {PostService} from '../shared/services/post.service';
 import {Subject, Subscriber, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
+import {FormArray, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   periodValue: number;
   decision: string;
   displayQuestion: string;
+  form: FormGroup;
 
   constructor(private authService: AuthService, private postService: PostService) {
   }
@@ -36,6 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
     this.displayQuestion = 'block';
+    this.form = new FormGroup({
+      tags: new FormArray([])
+    });
   }
 
   updatePosts($event: string): void {
