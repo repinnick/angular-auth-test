@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       tags: new FormArray([]),
       period: new FormControl(0),
-      status: new FormControl('')
+      status: new FormControl(''),
     });
   }
 

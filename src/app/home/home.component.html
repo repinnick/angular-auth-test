@@ -78,7 +78,7 @@
         *ngFor="let post of (posts | answeredUnanswered: form.get('status').value | tagFilter: form.get('tags').value | dateSort: isSortArgs | dateFilter: form.get('period').value);"
         [post] = post
         [display]="displayQuestion"
-        [color]="color">
+        [color]="{background: color}">
         ></app-post>
     </div>
     <a class="home__btn" type="button" routerLink="/create-post"></a>

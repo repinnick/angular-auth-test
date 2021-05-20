@@ -17,14 +17,13 @@ export class PostComponent implements OnInit, OnDestroy {
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   notifier = new Subject();
   error: string;
-  color: any;
+  @Input() color: any;
 
   constructor(private postService: PostService,
               private colorChangeService: ColorChangeService) {
   }
 
   ngOnInit(): void {
-    this.updateColorTheme();
   }
 
   delete(id: string): void {
@@ -33,11 +32,7 @@ export class PostComponent implements OnInit, OnDestroy {
       .subscribe(() => this.onDelete.emit(id),
         error => this.error = error.message);
   }
-
   // не обработаны ошибки
-  updateColorTheme(): void {
-    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
-  }
 
   ngOnDestroy(): void {
     this.notifier.next();
