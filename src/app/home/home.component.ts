@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
-import {Post, User} from '../shared/interfaces';
-import {Router} from '@angular/router';
+import {Post} from '../shared/interfaces';
 import {PostService} from '../shared/services/post.service';
-import {Subject, Subscriber, Subscription} from 'rxjs';
+import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {ColorChangeService} from '../shared/pipes/colorChange.servise';
 
 
 @Component({
@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   form: FormGroup;
   color: string;
 
-  constructor(private authService: AuthService, private postService: PostService) {
+  constructor(private authService: AuthService,
+              private postService: PostService,
+              private colorChangeService: ColorChangeService) {
   }
 
   ngOnInit(): void {
@@ -70,10 +72,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe(posts => this.posts = posts, error => this.error = error.message);
   }
+
   // обработать ошибки в шаблоне
 
   getColor($event): void {
-    this.color = $event.target.value;
+    this.colorChangeService.setColor($event.target.value);
   }
 
   ngOnDestroy(): void {

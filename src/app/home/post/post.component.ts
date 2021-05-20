@@ -3,6 +3,7 @@ import {Post} from '../../shared/interfaces';
 import {PostService} from '../../shared/services/post.service';
 import {Subject, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {ColorChangeService} from '../../shared/pipes/colorChange.servise';
 
 @Component({
   selector: 'app-post',
@@ -16,11 +17,14 @@ export class PostComponent implements OnInit, OnDestroy {
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   notifier = new Subject();
   error: string;
+  color: string;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService,
+              private colorChangeService: ColorChangeService) {
   }
 
   ngOnInit(): void {
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
   }
 
   delete(id: string): void {

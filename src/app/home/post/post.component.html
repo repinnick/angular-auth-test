@@ -13,11 +13,11 @@
   <div class="post__info">
     <div class="post__date">{{post.date | date: 'dd.MM.YYY'}}</div>
     <ul class="post__tags">
-      <li class="post__tag" *ngFor="let tag of post.tags">{{tag}}</li>
+      <li class="post__tag" [ngStyle]="{background: color}" *ngFor="let tag of post.tags">{{tag}}</li>
     </ul>
   </div>
   <div class="post__buttons">
-    <button class="post__btn post__btn--approve">Approve</button>
+    <button class="post__btn post__btn--approve" [ngStyle]="{background: color}">Approve</button>
     <button class="post__btn post__btn--delete" (click)="delete(post.id)">Delete</button>
   </div>
 </div>
