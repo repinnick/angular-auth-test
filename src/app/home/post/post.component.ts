@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Post} from '../../shared/interfaces';
 import {PostService} from '../../shared/services/post.service';
-import {Subject, Subscription} from 'rxjs';
+import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {ColorChangeService} from '../../shared/pipes/colorChange.servise';
 
 @Component({
   selector: 'app-post',

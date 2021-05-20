@@ -6,7 +6,7 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {ColorChangeService} from '../shared/pipes/colorChange.servise';
+import {ColorChangeService} from '../shared/services/colorChange.servise';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tags: Array<string>;
   displayQuestion: string;
   form: FormGroup;
-  color: any;
+  color: string;
   isMyQuestion: boolean;
 
   constructor(private authService: AuthService,
@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       tags: new FormArray([]),
       period: new FormControl(0),
       status: new FormControl(''),
-      questions: new FormControl(''),
     });
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color.background);
   }

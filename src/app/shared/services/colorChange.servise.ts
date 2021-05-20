@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ColorChangeService {
-  color: any;
-  private subject = new Subject<any>();
+  color: object;
+  private subject = new BehaviorSubject({});
 
   setColor(color: string): void {
-    this.color = color;
-    return this.subject.next({background: color});
+    this.color = {background: color};
+    this.subject.next(this.color);
   }
 
   updateColor(): Observable<any> {

@@ -6,6 +6,7 @@ import {PostService} from '../../shared/services/post.service';
 import {Subject} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
+import {ColorChangeService} from '../../shared/services/colorChange.servise';
 
 @Component({
   selector: 'app-post-info',
@@ -19,11 +20,13 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   form: FormGroup;
   submitted: boolean;
   comment: Comments;
+  color: object;
 
   constructor(private route: ActivatedRoute,
               private postService: PostService,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private colorChangeService: ColorChangeService) {
   }
 
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       text: new FormControl('', Validators.required)
     });
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
   }
 
   deletePost(): void {
