@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tags: Array<string>;
   displayQuestion: string;
   form: FormGroup;
-  color: string;
+  color: object;
   isMyQuestion: boolean;
 
   constructor(private authService: AuthService,
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       period: new FormControl(0),
       status: new FormControl(''),
     });
-    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color.background);
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
   }
 
   addTagToForm($event): void {
@@ -79,8 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   // обработать ошибки в шаблоне
 
   getColor($event): void {
-    this.color = $event.target.value;
-    this.colorChangeService.setColor(this.color);
+    this.colorChangeService.setColor($event.target.value);
   }
 
   ngOnDestroy(): void {
