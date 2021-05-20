@@ -58,6 +58,9 @@
     padding: 2px 5px;
     border-radius: 5px;
     cursor: pointer;
+    &--active {
+      background: #0d769e;
+    }
   }
   &__tag-checkbox {
     display: none;

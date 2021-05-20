@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   displayQuestion: string;
   form: FormGroup;
   color: any;
+  isMyQuestion: boolean;
 
   constructor(private authService: AuthService,
               private postService: PostService,
@@ -38,11 +39,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isVisibleFilters = false;
     this.tags = TECHNOLOGIES;
     this.displayQuestion = 'block';
+    this.isMyQuestion = false;
     this.form = new FormGroup({
       tags: new FormArray([]),
       period: new FormControl(0),
       status: new FormControl(''),
+      questions: new FormControl(''),
     });
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color.background);
   }
 
   addTagToForm($event): void {

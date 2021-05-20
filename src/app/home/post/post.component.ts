@@ -19,8 +19,7 @@ export class PostComponent implements OnInit, OnDestroy {
   error: string;
   @Input() color: any;
 
-  constructor(private postService: PostService,
-              private colorChangeService: ColorChangeService) {
+  constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {

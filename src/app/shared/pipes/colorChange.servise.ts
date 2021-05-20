@@ -5,10 +5,11 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root',
 })
 export class ColorChangeService {
-  color: string;
+  color: any;
   private subject = new Subject<any>();
 
   setColor(color: string): void {
+    this.color = color;
     return this.subject.next({background: color});
   }
 
