@@ -13,7 +13,7 @@ export class ColorChangeService {
     this.subject.next(this.color);
   }
 
-  updateColor(): Observable<any> {
+  updateColor(): Observable<object> {
     return this.subject.asObservable();
   }
 }
