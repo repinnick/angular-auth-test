@@ -76,7 +76,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   // обработать ошибки в шаблоне
 
   getColor($event): void {
-    this.colorChangeService.setColor($event.target.value);
+    this.color = $event.target.value;
+    this.colorChangeService.setColor(this.color);
   }
 
   ngOnDestroy(): void {

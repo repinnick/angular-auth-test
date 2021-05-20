@@ -28,10 +28,10 @@
     <div class="post-line__date">{{post.date | date: 'dd.MM.YYY'}}</div>
   </div>
   <ul class="post-line__tags">
-    <li class="post-line__tag" *ngFor="let tag of post.tags">{{tag}}</li>
+    <li class="post-line__tag" [ngStyle]="color" *ngFor="let tag of post.tags">{{tag}}</li>
   </ul>
   <div class="post-line__buttons">
-    <button class="post-line__btn post-line__btn--approve">Approve</button>
+    <button class="post-line__btn post-line__btn--approve" [ngStyle]="color">Approve</button>
     <button class="post-line__btn post-line__btn--delete" (click)="delete(post.id)">Delete</button>
   </div>
 </div>

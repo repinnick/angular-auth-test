@@ -24,16 +24,20 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+    this.updateColorTheme();
   }
 
   delete(id: string): void {
     this.postService.deletePost(id)
       .pipe(takeUntil(this.notifier))
       .subscribe(() => this.onDelete.emit(id),
-          error => this.error = error.message);
+        error => this.error = error.message);
   }
+
   // не обработаны ошибки
+  updateColorTheme(): void {
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+  }
 
   ngOnDestroy(): void {
     this.notifier.next();
