@@ -25,6 +25,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+    if (localStorage.length) {
+      this.color = {background: localStorage.getItem('colorTheme')};
+    }
   }
 
   delete(id: string): void {

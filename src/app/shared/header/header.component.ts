@@ -35,6 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.isVisible = false;
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+    if (localStorage.length) {
+      this.color = {background: localStorage.getItem('colorTheme')};
+    }
   }
 
   ngOnDestroy(): void {

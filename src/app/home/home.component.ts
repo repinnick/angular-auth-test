@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   // обработать ошибки в шаблоне
 
   getColor($event): void {
+    localStorage.setItem('colorTheme', $event.target.value);
     this.colorChangeService.setColor($event.target.value);
   }
 

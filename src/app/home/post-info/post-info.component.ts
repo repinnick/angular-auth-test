@@ -35,6 +35,9 @@ export class PostInfoComponent implements OnInit, OnDestroy {
       text: new FormControl('', Validators.required)
     });
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+    if (localStorage.length) {
+      this.color = {background: localStorage.getItem('colorTheme')};
+    }
   }
 
   deletePost(): void {
