@@ -3,6 +3,7 @@ import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {Subject, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {ColorChangeService} from '../pipes/colorChange.servise';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isVisible: boolean;
   authSubscription: Subscription;
   notifier = new Subject();
+  color: any;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService,
+              private router: Router,
+              private colorChangeService: ColorChangeService) {
   }
 
   ngOnInit(): void {
@@ -30,9 +34,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
     this.isVisible = false;
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
   }

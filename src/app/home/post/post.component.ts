@@ -17,7 +17,7 @@ export class PostComponent implements OnInit, OnDestroy {
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   notifier = new Subject();
   error: string;
-  color: string;
+  color: any;
 
   constructor(private postService: PostService,
               private colorChangeService: ColorChangeService) {

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tags: Array<string>;
   displayQuestion: string;
   form: FormGroup;
-  color: string;
+  color: any;
 
   constructor(private authService: AuthService,
               private postService: PostService,

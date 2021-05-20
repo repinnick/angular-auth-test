@@ -9,7 +9,7 @@ export class ColorChangeService {
   private subject = new Subject<any>();
 
   setColor(color: string): void {
-    return this.subject.next(color);
+    return this.subject.next({background: color});
   }
 
   updateColor(): Observable<any> {
