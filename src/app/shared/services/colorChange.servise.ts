@@ -5,12 +5,10 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class ColorChangeService {
-  color: object;
   private subject = new BehaviorSubject({});
 
   setColor(color: string): void {
-    this.color = {background: color};
-    this.subject.next(this.color);
+    this.subject.next({background: color});
   }
 
   updateColor(): Observable<object> {
