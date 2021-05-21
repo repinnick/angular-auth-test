@@ -70,7 +70,6 @@ export class AuthService {
     return this.angularFireAuth.authState
       .pipe(map(result => {
           if (result) {
-            console.log(result);
             this.user = {
               email: result.email,
               uid: result.uid,

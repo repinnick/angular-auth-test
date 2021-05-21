@@ -8,6 +8,7 @@ import {LoginSignupGuard} from './shared/services/login-signup.guard';
 import {CreatePostComponent} from './home/create-post/create-post.component';
 import {EditPostComponent} from './home/edit-post/edit-post.component';
 import {PostInfoComponent} from './home/post-info/post-info.component';
+import {EditPostQuard} from './shared/services/edit-post.quard';
 
 
 
@@ -16,7 +17,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginSignupGuard]},
   {path: 'signup', component: SignupComponent, canActivate: [LoginSignupGuard]},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},
-  {path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard]},
+  {path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard, EditPostQuard]},
   {path: 'post-info/:id', component: PostInfoComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login'}
 ];
@@ -24,7 +25,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard, LoginSignupGuard]
+  providers: [AuthGuard, LoginSignupGuard, EditPostQuard]
 })
 export class AppRoutingModule {
 }

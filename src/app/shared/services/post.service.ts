@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class PostService {
-
+  post: Post;
   constructor(private httpClient: HttpClient) {
   }
 
@@ -46,7 +46,7 @@ export class PostService {
 
   getPostById(id: string): Observable<Post> {
     return this.httpClient.get(`${environment.databaseUrl}/posts/${id}.json`)
-      .pipe(map((post: Post) => !post ? null : {...post, id}));
+      .pipe(map((post: Post) => !post ? null : this.post = {...post, id}));
   }
 
   update(post: Post): Observable<Post> {
