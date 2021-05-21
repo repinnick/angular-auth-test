@@ -89,10 +89,8 @@ export class AuthService {
       ));
   }
 
-  isAdmin(email: string): Observable<any> {
+  checkAdmin(email: string): Observable<any> {
     return this.httpClient.get(`${environment.databaseUrl}/admins.json`)
-      .pipe(map(result => {
-        this.user.isAdmin = !!result['email'].find(e => e === email);
-      }));
+      .pipe(map(result => this.user.isAdmin = !!result['email'].find(e => e === email)));
   }
 }

@@ -36,6 +36,7 @@
           id="password"
           placeholder="Password"
           formControlName="password"
+          autocomplete="on"
         >
         <div class="form__errors"
              *ngIf="form.get('password').invalid && form.get('password').touched">

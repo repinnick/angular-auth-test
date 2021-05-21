@@ -7,7 +7,6 @@ import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ColorChangeService} from '../shared/services/colorChange.servise';
-import {logger} from 'codelyzer/util/logger';
 
 
 @Component({
