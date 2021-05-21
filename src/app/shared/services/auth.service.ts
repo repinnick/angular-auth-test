@@ -13,6 +13,7 @@ import {environment} from '../../../environments/environment';
 export class AuthService {
 
   user: User;
+  isAdmin: boolean;
 
   constructor(private angularFireAuth: AngularFireAuth,
               private httpClient: HttpClient) {
@@ -23,16 +24,6 @@ export class AuthService {
       this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password),
     );
   }
-
-  // signIn(user: User): Observable<any> {
-  //   return this.httpClient.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, user)
-  //     .pipe(map(result => {
-  //       this.user = {
-  //         email: result['email'],
-  //         uid: result['idToken']
-  //       };
-  //     }));
-  // }
 
   signUp(user: User): Promise<any> {
     return this.handlerResponse(
@@ -79,9 +70,10 @@ export class AuthService {
     return this.angularFireAuth.authState
       .pipe(map(result => {
           if (result) {
+            console.log(result);
             this.user = {
               email: result.email,
-              uid: result.uid
+              uid: result.uid,
             };
             return this.user;
           }
@@ -91,6 +83,6 @@ export class AuthService {
 
   checkAdmin(email: string): Observable<any> {
     return this.httpClient.get(`${environment.databaseUrl}/admins.json`)
-      .pipe(map(result => this.user.isAdmin = !!result['email'].find(e => e === email)));
+      .pipe(map(result => this.isAdmin = !!result['email'].find(e => e === email)));
   }
 }

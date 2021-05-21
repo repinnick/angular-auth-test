@@ -4,6 +4,7 @@ import {PostService} from '../../shared/services/post.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {ColorChangeService} from '../../shared/services/colorChange.servise';
+import {AuthService} from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -20,7 +21,8 @@ export class PostComponent implements OnInit, OnDestroy {
   color: object;
 
   constructor(private postService: PostService,
-              private colorChangeService: ColorChangeService) {
+              private colorChangeService: ColorChangeService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

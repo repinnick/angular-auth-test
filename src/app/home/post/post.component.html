@@ -17,8 +17,12 @@
     </ul>
   </div>
   <div class="post__buttons">
-    <button class="post__btn post__btn--approve" [ngStyle]="color">Approve</button>
-    <button class="post__btn post__btn--delete" (click)="delete(post.id)">Delete</button>
+    <button class="post__btn post__btn--approve" [ngStyle]="color" *ngIf="authService.isAdmin; else viewbutton">Approve</button>
+    <button class="post__btn post__btn--delete" *ngIf="authService.user.email === post.author || authService.isAdmin" (click)="delete(post.id)">Delete</button>
+    <ng-template #viewbutton>
+      <button class="post__btn post__btn--approve"
+              [routerLink]="['/post-info', post.id]">View</button>
+    </ng-template>
   </div>
 </div>
 

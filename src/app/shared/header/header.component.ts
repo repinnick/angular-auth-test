@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuth: boolean;
   email: string;
   isVisible: boolean;
-  authSubscription: Subscription;
   notifier = new Subject();
   color: object;
 
@@ -25,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.getCurrentUser().pipe(takeUntil(this.notifier)).subscribe(res => {
+    this.authService.getCurrentUser().pipe(takeUntil(this.notifier)).subscribe(res => {
       if (res) {
         this.email = res.email;
         this.isAuth = !!res.uid;

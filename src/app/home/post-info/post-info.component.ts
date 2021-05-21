@@ -25,7 +25,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private postService: PostService,
               private router: Router,
-              private authService: AuthService,
+              public authService: AuthService,
               private colorChangeService: ColorChangeService) {
   }
 

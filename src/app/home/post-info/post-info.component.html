@@ -14,14 +14,20 @@
     <div class="post__sub-info">
       <div class="post__title-info">
         <h2 class="post__title"> {{ post.title }}</h2>
-        <a class="post__link" [routerLink]="['/edit-post', post.id]" >
+        <a class="post__link"
+           [routerLink]="['/edit-post', post.id]"
+           *ngIf="(authService.isAdmin || authService.user.email === post.author) && post.isModeration">
           <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">
           Edit question
         </a>
       </div>
       <div class="post__buttons">
-        <button class="post__btn post__btn--approve" type="button" [ngStyle]="color">Approve</button>
-        <button class="post__btn post__btn--delete" type="button" (click)="deletePost()">Delete</button>
+        <button class="post__btn post__btn--approve" type="button" [ngStyle]="color" *ngIf="authService.isAdmin">Approve</button>
+        <button class="post__btn post__btn--delete"
+                type="button"
+                (click)="deletePost()"
+                *ngIf="authService.user.email === post.author || authService.isAdmin"
+        >Delete</button>
       </div>
     </div>
     <p class="post__text">
