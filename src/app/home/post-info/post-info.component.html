@@ -70,17 +70,20 @@
               </div>
             </div>
             <div class="comments__buttons">
-              <button class="comments__delete" (click)="deleteComment(comment.id)">
+              <button class="comments__delete"
+                      *ngIf="authService.user.email === post.author || authService.isAdmin"
+                      (click)="deleteComment(comment.id)">
                 <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
                 Delete
               </button>
               <input id="{{ comment.id }}"
                      type="checkbox"
                      class="comments__checkbox"
+                     *ngIf="authService.user.email === post.author"
                      (click)="checkbox($event)"
                      [checked]="comment.isDecision"
               >
-              <label for="{{ comment.id }}" class="comments__checkbox-title">
+              <label *ngIf="authService.user.email === post.author" for="{{ comment.id }}" class="comments__checkbox-title">
                 Resolve
               </label>
             </div>
