@@ -7,7 +7,7 @@ import {map, switchMap} from 'rxjs/operators';
 import {Post} from '../interfaces';
 
 @Injectable()
-export class EditPostQuard implements CanActivate {
+export class EditPostGuard implements CanActivate {
   constructor(private authService: AuthService,
               private postService: PostService,
               private router: Router) {
