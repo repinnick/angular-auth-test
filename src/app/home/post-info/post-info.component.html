@@ -1,5 +1,9 @@
 <div class="post">
   <div class="post__container" *ngIf="post; else loading">
+    <a class="post__go-back" routerLink="/">
+      <span class="post__back-arrow"></span>
+      Go Back
+    </a>
     <div class="post__error" *ngIf="error">
       <p class="post__error-message">{{ error }}</p>
     </div>

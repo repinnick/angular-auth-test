@@ -12,7 +12,7 @@ export interface Post {
   date: number;
   tags: Array<string>;
   author: string;
-  onModeration: boolean;
+  isModeration: boolean;
   comments?: Comments[];
 }
 
