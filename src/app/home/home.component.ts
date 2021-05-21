@@ -7,6 +7,7 @@ import {takeUntil} from 'rxjs/operators';
 import {TECHNOLOGIES} from '../shared/constants';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ColorChangeService} from '../shared/services/colorChange.servise';
+import {logger} from 'codelyzer/util/logger';
 
 
 @Component({
@@ -87,4 +88,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.notifier.next();
     this.notifier.complete();
   }
+
 }

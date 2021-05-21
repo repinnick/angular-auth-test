@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../shared/services/auth.service';
 import {User} from '../../shared/interfaces';
+import {from, Subject} from 'rxjs';
+import {switchMap, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,8 @@ import {User} from '../../shared/interfaces';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   error: string;
+  notifier = new Subject();
+  user: User;
 
   constructor(public authService: AuthService, private router: Router) {
   }
@@ -32,9 +36,13 @@ export class LoginComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password,
     };
-    this.authService.signIn(user)
-      .then(() => this.router.navigate(['/']))
-      .catch(err => this.error = err.message);
+
+    from(this.authService.signIn(user)).pipe(switchMap((user: User) => {
+      return this.authService.isAdmin(user.email);
+    })).subscribe(() => {
+      console.log(this.authService.user);
+      this.router.navigate(['/']);
+    }, error1 => this.error = error1.message);
   }
 
   googleAuth(): void {
