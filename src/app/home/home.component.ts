@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPosts();
+    this.checkAdmin();
     this.isSortArgs = false;
     this.isVisibleSort = false;
     this.isVisibleFilters = false;
@@ -62,6 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+
   checkedButton(tag: string): boolean {
     return !!this.form.get('tags').value.find(option => option === tag);
   }
@@ -74,6 +76,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.postService.getAllPosts()
       .pipe(takeUntil(this.notifier))
       .subscribe(posts => this.posts = posts, error => this.error = error.message);
+  }
+
+  checkAdmin(): void {
+    this.authService.checkAdmin(this.authService.user.email).pipe(takeUntil(this.notifier)).subscribe(() => {},
+      error => this.error = error.message);
   }
 
   // обработать ошибки в шаблоне

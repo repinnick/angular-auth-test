@@ -21,6 +21,7 @@ import {TagsSortPipe} from './shared/pipes/tags-sort.pipe';
 import {DateFilterPipe} from './shared/pipes/date-filter.pipe';
 import {AnsweredUnansweredPipe} from './shared/pipes/answered-unanswered.pipe';
 import {MyquestionsPipe} from './shared/pipes/myquestions.pipe';
+import {ModerationFilterPipe} from './shared/pipes/moderation-filter.pipe';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {MyquestionsPipe} from './shared/pipes/myquestions.pipe';
     DateFilterPipe,
     AnsweredUnansweredPipe,
     MyquestionsPipe,
+    ModerationFilterPipe,
   ],
   imports: [
     BrowserModule,

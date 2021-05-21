@@ -16,6 +16,7 @@ export class PostComponent implements OnInit, OnDestroy {
   @Input() post: Post;
   @Input() display: string;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onApprove: EventEmitter<string> = new EventEmitter<string>();
   notifier = new Subject();
   error: string;
   color: object;
@@ -43,5 +44,16 @@ export class PostComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
+  }
+
+  approvePost(post: Post): void{
+    this.postService.update({
+      ...this.post,
+      isModeration: false,
+    })
+      .pipe(takeUntil(this.notifier))
+      .subscribe(() => this.onApprove.emit(), error => {
+      this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
+    });
   }
 }

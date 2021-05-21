@@ -17,8 +17,14 @@
     </ul>
   </div>
   <div class="post__buttons">
-    <button class="post__btn post__btn--approve" [ngStyle]="color" *ngIf="authService.isAdmin; else viewbutton">Approve</button>
-    <button class="post__btn post__btn--delete" *ngIf="authService.user.email === post.author || authService.isAdmin" (click)="delete(post.id)">Delete</button>
+    <button class="post__btn post__btn--approve"
+            *ngIf="authService.isAdmin && post.isModeration; else viewbutton"
+            (click)="approvePost(post)"
+    >Approve</button>
+    <button class="post__btn post__btn--delete"
+            *ngIf="authService.isAdmin || (authService.user.email === post.author)"
+            (click)="delete(post.id)"
+    >Delete</button>
     <ng-template #viewbutton>
       <button class="post__btn post__btn--approve"
               [ngStyle]="color"
@@ -36,7 +42,7 @@
     <li class="post-line__tag" [ngStyle]="color" *ngFor="let tag of post.tags">{{tag}}</li>
   </ul>
   <div class="post-line__buttons">
-    <button class="post-line__btn post-line__btn--approve" [ngStyle]="color">Approve</button>
+    <button class="post-line__btn post-line__btn--approve">Approve</button>
     <button class="post-line__btn post-line__btn--delete" (click)="delete(post.id)">Delete</button>
   </div>
 </div>
