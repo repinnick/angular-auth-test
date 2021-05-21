@@ -22,7 +22,7 @@
         </a>
       </div>
       <div class="post__buttons">
-        <button class="post__btn post__btn--approve" type="button" [ngStyle]="color" *ngIf="authService.isAdmin">Approve</button>
+        <button class="post__btn post__btn--approve" type="button" [ngStyle]="color" *ngIf="authService.isAdmin && post.isModeration">Approve</button>
         <button class="post__btn post__btn--delete"
                 type="button"
                 (click)="deletePost()"

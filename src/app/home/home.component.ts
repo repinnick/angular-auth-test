@@ -26,8 +26,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   form: FormGroup;
   color: object;
   isMyQuestion: boolean;
+  isModeration: boolean;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private postService: PostService,
               private colorChangeService: ColorChangeService) {
   }
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.tags = TECHNOLOGIES;
     this.displayQuestion = 'block';
     this.isMyQuestion = false;
+    this.isModeration = false;
     this.form = new FormGroup({
       tags: new FormArray([]),
       period: new FormControl(0),

@@ -8,7 +8,11 @@
 <!--</div>-->
 <!--*ngIf="!post.onModeration"-->
 
-<div class="post" *ngIf="!post.isModeration && display === 'block'">
+<div class="post"
+     *ngIf="((post && authService.isAdmin)
+     || (!post.isModeration)
+     || (post.author === authService.user.email))
+     && display === 'block'">
   <div class="post__title" [routerLink]="['/post-info', post.id]">{{post.title}}</div>
   <div class="post__info">
     <div class="post__date">{{post.date | date: 'dd.MM.YYY'}}</div>
@@ -33,7 +37,11 @@
   </div>
 </div>
 
-<div class="post-line" *ngIf="!post.isModeration && display === 'line'">
+<div class="post-line"
+     *ngIf="((post && authService.isAdmin)
+     || (!post.isModeration)
+     || (post.author === authService.user.email))
+     && display === 'line'">
   <div class="post-line__info">
     <div class="post-line__title" [routerLink]="['/post-info', post.id]">{{post.title}}</div>
     <div class="post-line__date">{{post.date | date: 'dd.MM.YYY'}}</div>

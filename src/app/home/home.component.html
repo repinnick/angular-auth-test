@@ -13,9 +13,13 @@
               <li class="filters__tag">
                 <button (click)="isMyQuestion = !isMyQuestion" type="button" class="filters__tag-button" [class.filters__tag-button--active]="isMyQuestion">My Questions</button>
               </li>
-<!--              <li class="filters__tag">-->
-<!--                <button type="button" class="filters__tag-button">On Moderation</button>-->
-<!--              </li>-->
+              <li class="filters__tag" *ngIf="authService.isAdmin">
+                <button
+                  type="button" class="filters__tag-button"
+                  (click)="isModeration = !isModeration"
+                  [class.filters__tag-button--active]="isModeration"
+                  >On Moderation</button>
+              </li>
             </ul>
           </li>
 
@@ -87,7 +91,7 @@
       <app-post
         (onDelete)="updatePosts($event)"
         (onApprove)="updatePosts($event)"
-        *ngFor="let post of (posts | answeredUnanswered: form.get('status').value | tagFilter: form.get('tags').value | dateSort: isSortArgs | myQuestions: isMyQuestion | dateFilter: form.get('period').value);"
+        *ngFor="let post of (posts | answeredUnanswered: form.get('status').value | tagFilter: form.get('tags').value | dateSort: isSortArgs | myQuestions: isMyQuestion | onModeration: isModeration | dateFilter: form.get('period').value);"
         [post] = post
         [display]="displayQuestion">
         ></app-post>
