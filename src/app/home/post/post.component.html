@@ -9,7 +9,7 @@
 <!--*ngIf="!post.onModeration"-->
 
 <div class="post"
-     *ngIf="((post && authService.isAdmin)
+     *ngIf="((post && authService.user.isAdmin)
      || (!post.isModeration)
      || (post.author === authService.user.email))
      && display === 'block'">
@@ -22,11 +22,11 @@
   </div>
   <div class="post__buttons">
     <button class="post__btn post__btn--approve"
-            *ngIf="authService.isAdmin && post.isModeration; else viewbutton"
+            *ngIf="authService.user.isAdmin && post.isModeration; else viewbutton"
             (click)="approvePost(post)"
     >Approve</button>
     <button class="post__btn post__btn--delete"
-            *ngIf="authService.isAdmin || (authService.user.email === post.author)"
+            *ngIf="authService.user.isAdmin || (authService.user.email === post.author)"
             (click)="delete(post.id)"
     >Delete</button>
     <ng-template #viewbutton>
@@ -38,7 +38,7 @@
 </div>
 
 <div class="post-line"
-     *ngIf="((post && authService.isAdmin)
+     *ngIf="((post && authService.user.isAdmin)
      || (!post.isModeration)
      || (post.author === authService.user.email))
      && display === 'line'">
@@ -51,10 +51,10 @@
   </ul>
   <div class="post-line__buttons">
     <button class="post-line__btn post-line__btn--approve"
-            *ngIf="authService.isAdmin && post.isModeration; else viewbutton"
+            *ngIf="authService.user.isAdmin && post.isModeration; else viewbutton"
     >Approve</button>
     <button class="post-line__btn post-line__btn--delete"
-            *ngIf="authService.isAdmin || (authService.user.email === post.author)"
+            *ngIf="authService.user.isAdmin || (authService.user.email === post.author)"
             (click)="delete(post.id)">Delete</button>
     <ng-template #viewbutton>
       <button class="post-line__btn post-line__btn--approve"

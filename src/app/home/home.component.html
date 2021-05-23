@@ -13,7 +13,7 @@
               <li class="filters__tag">
                 <button (click)="isMyQuestion = !isMyQuestion" type="button" class="filters__tag-button" [class.filters__tag-button--active]="isMyQuestion">My Questions</button>
               </li>
-              <li class="filters__tag" *ngIf="authService.isAdmin">
+              <li class="filters__tag" *ngIf="authService.user.isAdmin">
                 <button
                   type="button" class="filters__tag-button"
                   (click)="isModeration = !isModeration"
@@ -80,7 +80,7 @@
           <span class="filters__button-line"></span>
         </button>
         <label class="filters--btn filters__button-color">
-          <input class="filters__color-input" type="color" (input)="getColor($event)">
+          <input class="filters__color-input" value="{{color.background}}" type="color" (input)="getColor($event)">
         </label>
       </div>
     </div>

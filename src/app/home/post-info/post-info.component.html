@@ -16,17 +16,17 @@
         <h2 class="post__title"> {{ post.title }}</h2>
         <a class="post__link"
            [routerLink]="['/edit-post', post.id]"
-           *ngIf="(authService.isAdmin || authService.user.email === post.author) && post.isModeration">
+           *ngIf="(authService.user.isAdmin || authService.user.email === post.author) && post.isModeration">
           <img class="post__link-img" src="../../../assets/images/icons/edit%20icon.png" alt="edit">
           Edit question
         </a>
       </div>
       <div class="post__buttons">
-        <button class="post__btn post__btn--approve" type="button" [ngStyle]="color" *ngIf="authService.isAdmin && post.isModeration">Approve</button>
+        <button class="post__btn post__btn--approve" type="button" *ngIf="authService.user.isAdmin && post.isModeration">Approve</button>
         <button class="post__btn post__btn--delete"
                 type="button"
                 (click)="deletePost()"
-                *ngIf="authService.user.email === post.author || authService.isAdmin"
+                *ngIf="authService.user.email === post.author || authService.user.isAdmin"
         >Delete</button>
       </div>
     </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="comments__buttons">
               <button class="comments__delete"
-                      *ngIf="authService.user.email === post.author || authService.isAdmin"
+                      *ngIf="authService.user.email === post.author || authService.user.isAdmin"
                       (click)="deleteComment(comment.id)">
                 <img class="comments__del-img" src="../../../assets/images/icons/trash.png" alt="">
                 Delete

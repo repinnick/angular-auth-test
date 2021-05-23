@@ -39,43 +39,27 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: this.form.value.email,
       password: this.form.value.password,
     };
-    from(this.authService.signUp(user))
-      .pipe(
-        takeUntil(this.notifier),
-        switchMap((user: User) => this.authService.checkAdmin(user.email))
-      )
-      .subscribe(() => this.router.navigate(['/']),
-        error1 => this.error = error1.message);
+    this.authService.signUp(user)
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   googleAuth(): void {
-    from(this.authService.googleAuth())
-      .pipe(
-        takeUntil(this.notifier),
-        switchMap((user: User) => this.authService.checkAdmin(user.email))
-      )
-      .subscribe(() => this.router.navigate(['/']),
-        error1 => this.error = error1.message);
+    this.authService.googleAuth()
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   facebookAuth(): void {
-    from(this.authService.facebookAuth())
-      .pipe(
-        takeUntil(this.notifier),
-        switchMap((user: User) => this.authService.checkAdmin(user.email))
-      )
-      .subscribe(() => this.router.navigate(['/']),
-        error1 => this.error = error1.message);
+    this.authService.facebookAuth()
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   githubAuth(): void {
-    from(this.authService.githubAuth())
-      .pipe(
-        takeUntil(this.notifier),
-        switchMap((user: User) => this.authService.checkAdmin(user.email))
-      )
-      .subscribe(() => this.router.navigate(['/']),
-        error1 => this.error = error1.message);
+    this.authService.githubAuth()
+      .then(() => this.router.navigate(['/']))
+      .catch(err => this.error = err.message);
   }
 
   ngOnDestroy(): void {

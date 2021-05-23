@@ -31,7 +31,6 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadPost();
-    this.checkAdmin();
     this.form = new FormGroup({
       text: new FormControl('', Validators.required)
     });
@@ -58,10 +57,6 @@ export class PostInfoComponent implements OnInit, OnDestroy {
         ? this.router.navigate(['/'])
         : this.post = post,
         error => this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message);
-  }
-  checkAdmin(): void {
-    this.authService.checkAdmin(this.authService.user.email).pipe(takeUntil(this.notifier)).subscribe(() => {},
-      error => this.error = error.message);
   }
 
   ngOnDestroy(): void {

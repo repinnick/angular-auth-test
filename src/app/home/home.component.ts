@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   tags: Array<string>;
   displayQuestion: string;
   form: FormGroup;
-  color: object;
+  color: any;
+  backgoroundColor: string;
   isMyQuestion: boolean;
   isModeration: boolean;
 
@@ -35,7 +36,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPosts();
-    this.checkAdmin();
     this.isSortArgs = false;
     this.isVisibleSort = false;
     this.isVisibleFilters = false;
@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       status: new FormControl(''),
     });
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
+    // this.color.background = '#ff0000';
   }
 
   addTagToForm($event): void {
@@ -79,12 +80,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe(posts => this.posts = posts, error => this.error = error.message);
   }
-
-  checkAdmin(): void {
-    this.authService.checkAdmin(this.authService.user.email).pipe(takeUntil(this.notifier)).subscribe(() => {},
-      error => this.error = error.message);
-  }
-
   // обработать ошибки в шаблоне
 
   getColor($event): void {

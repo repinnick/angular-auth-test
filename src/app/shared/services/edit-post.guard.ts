@@ -16,7 +16,7 @@ export class EditPostGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const post = this.postService.post;
-    if (post && post.isModeration && (post.author === this.authService.user.email || this.authService.isAdmin)) {
+    if (post && post.isModeration && (post.author === this.authService.user.email || this.authService.user.isAdmin)) {
       return true;
     } else {
       this.router.navigate(['/']);
