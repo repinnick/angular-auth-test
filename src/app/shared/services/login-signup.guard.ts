@@ -12,7 +12,7 @@ export class LoginSignupGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.getAdminAndCurrentUser().pipe(map((res) => {
+    return this.authService.getCurrentUser().pipe(map((res) => {
       if (!res) {
         return !res;
       } else {

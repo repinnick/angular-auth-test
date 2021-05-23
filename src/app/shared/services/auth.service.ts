@@ -76,26 +76,16 @@ export class AuthService {
               ...result,
             };
           }
-        }));
+        }),
+        switchMap((user: User) => user ? this.checkAdmin(user) : of(user))
+      );
   }
 
   checkAdmin(user: User): Observable<any> {
     return this.httpClient.get(`${environment.databaseUrl}/admins.json`)
       .pipe(map(result => {
-        user.isAdmin = !!result['email'].filter(e => e === user.email);
-        return this.user = {...user};
-      }));
-  }
-
-  getAdminAndCurrentUser(): Observable<any> {
-    return this.getCurrentUser()
-      .pipe(switchMap((user: User) => {
-        if (user) {
-          return this.checkAdmin(user);
-        }
-        else {
-          return of(user);
-        }
+        user.isAdmin = (result as Array<string>).includes(user.email);
+        return this.user = {...user, isAdmin: user.isAdmin};
       }));
   }
 }
