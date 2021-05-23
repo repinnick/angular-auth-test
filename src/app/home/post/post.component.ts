@@ -44,6 +44,7 @@ export class PostComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
+    this.color = null;
   }
 
   approvePost(post: Post): void{

@@ -48,7 +48,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       status: new FormControl(''),
     });
     this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = (color as Color));
-    this.color = {background: localStorage.getItem('colorTheme')};
+    if (localStorage.length) {
+      this.color = {background: localStorage.getItem('colorTheme')};
+    }
   }
 
   addTagToForm($event): void {
@@ -87,6 +89,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
+    this.color = null;
   }
-
 }
