@@ -80,7 +80,7 @@
           <span class="filters__button-line"></span>
         </button>
         <label class="filters--btn filters__button-color">
-          <input class="filters__color-input" value="{{color.background}}" type="color" (input)="getColor($event)">
+          <input class="filters__color-input" [value]="color.background" type="color" (input)="getColor($event)">
         </label>
       </div>
     </div>

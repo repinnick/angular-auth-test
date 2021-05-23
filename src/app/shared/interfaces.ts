@@ -28,3 +28,7 @@ export interface getResponseId {
   name: string;
 }
 
+export interface Color {
+  background: string;
+}
+

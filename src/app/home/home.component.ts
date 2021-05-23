@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
-import {Post} from '../shared/interfaces';
+import {Color, Post} from '../shared/interfaces';
 import {PostService} from '../shared/services/post.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tags: Array<string>;
   displayQuestion: string;
   form: FormGroup;
-  color: any;
-  backgoroundColor: string;
+  color: Color;
   isMyQuestion: boolean;
   isModeration: boolean;
 
@@ -48,8 +47,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       period: new FormControl(0),
       status: new FormControl(''),
     });
-    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = color);
-    // this.color.background = '#ff0000';
+    this.colorChangeService.updateColor().pipe(takeUntil(this.notifier)).subscribe(color => this.color = (color as Color));
+    this.color = {background: localStorage.getItem('colorTheme')};
   }
 
   addTagToForm($event): void {
@@ -65,8 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-
   checkedButton(tag: string): boolean {
     return !!this.form.get('tags').value.find(option => option === tag);
   }

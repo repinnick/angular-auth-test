@@ -26,5 +26,12 @@
     &--delete:hover {
       box-shadow: 7px -7px 4px 0 #cccccc;
     }
+    &--view {
+      color: #FFFFFF;
+      background: #517f92;
+      &:hover {
+        box-shadow: 7px -7px 4px 0 #cccccc;
+      }
+    }
   }
 }

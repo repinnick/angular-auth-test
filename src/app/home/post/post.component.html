@@ -30,7 +30,7 @@
             (click)="delete(post.id)"
     >Delete</button>
     <ng-template #viewbutton>
-      <button class="post__btn post__btn--approve"
+      <button class="post__btn post-line__btn--view"
               [ngStyle]="color"
               [routerLink]="['/post-info', post.id]">View</button>
     </ng-template>
@@ -57,7 +57,7 @@
             *ngIf="authService.user.isAdmin || (authService.user.email === post.author)"
             (click)="delete(post.id)">Delete</button>
     <ng-template #viewbutton>
-      <button class="post-line__btn post-line__btn--approve"
+      <button class="post-line__btn post-line__btn--view"
               [ngStyle]="color"
               [routerLink]="['/post-info', post.id]"
       >View</button>
