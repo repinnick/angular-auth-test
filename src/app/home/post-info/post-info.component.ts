@@ -99,6 +99,17 @@ export class PostInfoComponent implements OnInit, OnDestroy {
       });
   }
 
+  approvePost(post: Post): void{
+    this.postService.update({
+      ...this.post,
+      isModeration: false,
+    })
+      .pipe(takeUntil(this.notifier))
+      .subscribe(() => this.router.navigate(['/']), error => {
+        this.error = error.name === 'HttpErrorResponse' ? 'Server Error' : error.message;
+      });
+  }
+
 
   checkbox($event): void {
     if ($event.target.checked) {

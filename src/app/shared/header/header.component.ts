@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Subject, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {ColorChangeService} from '../services/colorChange.servise';
+import {User} from '../interfaces';
 
 @Component({
   selector: 'app-header',
