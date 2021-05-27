@@ -22,7 +22,8 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule],
-      providers: [{provide: AuthService, useValue: MockAuthService}]
+      providers: [{provide: AuthService, useValue: MockAuthService}],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
   });
@@ -60,17 +61,18 @@ describe('LoginComponent', () => {
     expect(component.error).toBeUndefined();
   });
 
-  it('submitted should be true when submit()', () => {
+  it('error should be undefined when submit() and valid form', () => {
     component.form.controls['email'].setValue('check.point@gmail.com');
     component.form.controls['password'].setValue('234325');
     component.submit();
     expect(component.error).toBeUndefined();
   });
 
-  // it('submitted should be false when submit() has invalid form', () => {
-  //   component.submit();
-  //   expect(component.error).toBeDefined();
-  // });
+  it('should be true when invalid form', () => {
+    component.form.controls['email'].setValue('check.point@');
+    component.form.controls['password'].setValue('231');
+    expect(component.form.invalid).toBeTruthy();
+  });
 
   // it('should submit if form is valid', () => {
   //   component.form.value.password = '234253';
