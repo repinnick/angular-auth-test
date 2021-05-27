@@ -6,14 +6,15 @@ import {AuthService} from '../../shared/services/auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {HeaderComponent} from '../../shared/header/header.component';
+import {User} from '../../shared/interfaces';
 
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   const MockAuthService: any = {
-    signIn: () => {
+    signIn: (user: User) => {
+      return new Promise(resolve => resolve(user));
     },
   };
 
@@ -41,12 +42,39 @@ describe('LoginComponent', () => {
     expect(component.form.contains('password')).toBeTruthy();
   });
 
-  // it('should render error message', () => {
-  //   const errorMessage = 'Error';
-  //   component.error = errorMessage;
-  //   console.log(component.error);
-  //   const debug = fixture.debugElement.query(By.css('.form__error'));
-  //   const el: HTMLElement = debug.nativeElement.textContent;
-  //   expect(el).toContain(errorMessage);
+  it('should render error message', () => {
+    const errorMessage = 'Error';
+    component.error = errorMessage;
+    fixture.detectChanges();
+    const debug = fixture.debugElement.query(By.css('.form__error'));
+    const el: HTMLElement = debug.nativeElement.textContent;
+    expect(el).toContain(errorMessage);
+  });
+
+  it('component initial state', () => {
+    expect(component.submit).toBeDefined();
+    expect(component.googleAuth).toBeDefined();
+    expect(component.facebookAuth).toBeDefined();
+    expect(component.githubAuth).toBeDefined();
+    expect(component.form.invalid).toBeTruthy();
+    expect(component.error).toBeUndefined();
+  });
+
+  it('submitted should be true when submit()', () => {
+    component.form.controls['email'].setValue('check.point@gmail.com');
+    component.form.controls['password'].setValue('234325');
+    component.submit();
+    expect(component.error).toBeUndefined();
+  });
+
+  // it('submitted should be false when submit() has invalid form', () => {
+  //   component.submit();
+  //   expect(component.error).toBeDefined();
+  // });
+
+  // it('should submit if form is valid', () => {
+  //   component.form.value.password = '234253';
+  //   component.form.value.email = 'ch.point@gmail.com';
+  //   const x = component.submit();
   // });
 });
