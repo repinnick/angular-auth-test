@@ -1,29 +1,35 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {LoginComponent} from './login.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../shared/services/auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {User} from '../../shared/interfaces';
-
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {Observable, of} from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  const MockAuthService: any = {
-    signIn: (user: User) => {
+
+  class MockAuthService {
+    user: User;
+    signIn(user: User): Promise<any> {
       return new Promise(resolve => resolve(user));
-    },
-  };
+    }
+  }
+  // let authServiceMock;
 
   beforeEach(async () => {
+    // authServiceMock = jasmine.createSpyObj('AuthService', ['signIn']);
+    // authServiceMock.signIn.and.returnValue(Observable.of(user).toPromise());
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule],
-      providers: [{provide: AuthService, useValue: MockAuthService}],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: AuthService, useClass: MockAuthService}],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
   });
@@ -61,12 +67,12 @@ describe('LoginComponent', () => {
     expect(component.error).toBeUndefined();
   });
 
-  it('error should be undefined when submit() and valid form', () => {
-    component.form.controls['email'].setValue('check.point@gmail.com');
-    component.form.controls['password'].setValue('234325');
-    component.submit();
-    expect(component.error).toBeUndefined();
-  });
+  // it('error should be undefined when submit() and valid form', () => {
+  //   component.form.controls['email'].setValue('check.point@gmail.com');
+  //   component.form.controls['password'].setValue('234325');
+  //   component.submit();
+  //   expect(component.error).toBeUndefined();
+  // });
 
   it('should be true when invalid form', () => {
     component.form.controls['email'].setValue('check.point@');
@@ -74,9 +80,18 @@ describe('LoginComponent', () => {
     expect(component.form.invalid).toBeTruthy();
   });
 
-  // it('should submit if form is valid', () => {
-  //   component.form.value.password = '234253';
-  //   component.form.value.email = 'ch.point@gmail.com';
-  //   const x = component.submit();
+  // it('ERRROR', () => {
+  //   const user: User = {email: 'check.point@gmail.com', password: '234353'};
+  //   component.form.controls['email'].setValue('check.point@gmail.com');
+  //   component.form.controls['password'].setValue('2313242342');
+  //
+  //   // spyOn(fixture.debugElement.injector.get(AuthService), 'signIn').and.callThrough();
+  //   // console.log(authStub.signIn);
+  //
   // });
 });
+
+// асинхронные операции (статья)
+// был ли вызван authService (успешно(редирект)/неуспешно)
+// login, pipe, service (опционально)
+// git
