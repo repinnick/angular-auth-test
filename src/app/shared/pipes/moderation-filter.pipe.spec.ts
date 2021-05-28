@@ -34,7 +34,6 @@ const postsTrue: Post[] = [
   },
 ];
 
-
 describe('ModerationFilterPipe', () => {
   let pipe;
 
@@ -47,7 +46,10 @@ describe('ModerationFilterPipe', () => {
   it('should return posts where isModeration = true', () => {
     expect(pipe.transform(posts, true)).toEqual(postsTrue);
   });
-  it('should return all posts', () => {
+  it('should return all posts when option is equal to false', () => {
     expect(pipe.transform(posts, false)).toEqual(posts);
+  });
+  it('should return all posts when option is equal to undefined', () => {
+    expect(pipe.transform(posts, undefined)).toEqual(posts);
   });
 });
