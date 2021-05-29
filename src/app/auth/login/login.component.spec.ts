@@ -6,6 +6,7 @@ import {AuthService} from '../../shared/services/auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
+import {HeaderComponent} from '../../shared/header/header.component';
 
 
 describe('LoginComponent', () => {
@@ -17,7 +18,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', ['signIn']);
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
+      declarations: [LoginComponent, HeaderComponent],
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule],
       providers: [{provide: AuthService, useValue: mockAuthService}],
       schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
@@ -75,16 +76,13 @@ describe('LoginComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
-  it('should set error on error', async () => {
+  it('should set error.message on error', async () => {
     component.form.controls['email'].setValue('alex@test.com');
     component.form.controls['password'].setValue('1234325');
-    debugger;
-    mockAuthService.signIn.and.returnValue(Promise.reject({message: 'error'}));
+    mockAuthService.signIn.and.returnValue(Promise.reject({message: 'error message'}));
     component.submit();
-    debugger;
-    console.log(component.error);
     await fixture.whenStable();
-
-    expect(component.error).toEqual('error');
+    console.log(component.error);
+    expect(component.error).toBe('error message');
   });
 });
