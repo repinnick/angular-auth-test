@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../shared/services/auth.service';
 import {User} from '../../shared/interfaces';
 import {from, Subject} from 'rxjs';
-import {switchMap, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
