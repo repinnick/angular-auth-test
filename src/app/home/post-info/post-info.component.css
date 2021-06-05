@@ -112,6 +112,33 @@
   padding: 100px 70px;
 }
 
+.post__go-back {
+  font-size: 20px;
+  text-decoration: none;
+  color: #404040;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.post__go-back:hover {
+  opacity: 0.7;
+}
+
+.post__back-arrow {
+  border: solid #404040;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-right: 5px;
+}
+
 .post__error {
   margin-bottom: 20px;
   border: 1px solid #dc3545;
@@ -263,6 +290,16 @@
 }
 
 .post__btn--delete:hover {
+  -webkit-box-shadow: 7px -7px 4px 0 #cccccc;
+          box-shadow: 7px -7px 4px 0 #cccccc;
+}
+
+.post__btn--view {
+  color: #FFFFFF;
+  background: #4b4b4b;
+}
+
+.post__btn--view:hover {
   -webkit-box-shadow: 7px -7px 4px 0 #cccccc;
           box-shadow: 7px -7px 4px 0 #cccccc;
 }

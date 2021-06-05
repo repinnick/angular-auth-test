@@ -3,15 +3,14 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {User} from '../../shared/interfaces';
 import {AuthService} from '../../shared/services/auth.service';
-import {switchMap, takeUntil} from 'rxjs/operators';
-import {from, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
 
   form: FormGroup;
   error: string;
@@ -60,10 +59,5 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.authService.githubAuth()
       .then(() => this.router.navigate(['/']))
       .catch(err => this.error = err.message);
-  }
-
-  ngOnDestroy(): void {
-    this.notifier.next();
-    this.notifier.complete();
   }
 }

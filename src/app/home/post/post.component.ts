@@ -39,7 +39,6 @@ export class PostComponent implements OnInit, OnDestroy {
       .subscribe(() => this.onDelete.emit(id),
         error => this.error = error.message);
   }
-  // не обработаны ошибки
 
   ngOnDestroy(): void {
     this.notifier.next();

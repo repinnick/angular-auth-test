@@ -4,7 +4,7 @@ import {AuthService} from '../services/auth.service';
 
 @Pipe({
   name: 'myQuestions',
-  pure: true,
+  pure: false,
 })
 export class MyquestionsPipe implements PipeTransform {
   constructor(private authService: AuthService) {

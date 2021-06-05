@@ -79,7 +79,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe(posts => this.posts = posts, error => this.error = error.message);
   }
-  // обработать ошибки в шаблоне
 
   getColor($event): void {
     localStorage.setItem('colorTheme', $event.target.value);

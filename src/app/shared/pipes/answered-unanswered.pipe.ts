@@ -30,4 +30,3 @@ export class AnsweredUnansweredPipe implements PipeTransform {
     }
   }
 }
-// оптимизировать, когда доделаю основную часть заданий

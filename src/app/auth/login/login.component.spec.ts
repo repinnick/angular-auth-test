@@ -82,7 +82,8 @@ describe('LoginComponent', () => {
     mockAuthService.signIn.and.returnValue(Promise.reject({message: 'error message'}));
     component.submit();
     await fixture.whenStable();
-    console.log(component.error);
+    fixture.detectChanges();
+    // console.log(component.error);
     expect(component.error).toBe('error message');
   });
 });

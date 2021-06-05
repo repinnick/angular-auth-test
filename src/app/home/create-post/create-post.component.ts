@@ -36,8 +36,6 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.technologies = TECHNOLOGIES;
   }
 
-
-
   addTagToForm($event): void {
     const control = new FormControl(`${$event.target.value}`);
     const formArray = (this.form.get('tags') as FormArray);

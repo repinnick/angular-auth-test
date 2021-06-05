@@ -34,7 +34,6 @@ export class EditPostComponent implements OnInit, OnDestroy {
         return this.postService.getPostById(params.id);
       })).subscribe((post: Post) => {
       this.post = post;
-      // здесь можно написать логику для редиректа на главную, если пост уже прошёл модерацию
       this.form = new FormGroup({
         title: new FormControl(post.title, Validators.required),
         text: new FormControl(post.text, Validators.required),

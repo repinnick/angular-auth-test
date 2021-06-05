@@ -3,17 +3,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../shared/services/auth.service';
 import {User} from '../../shared/interfaces';
-import {from, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   form: FormGroup;
   error: string;
-  notifier = new Subject();
 
   constructor(public authService: AuthService, private router: Router) {
   }
@@ -56,10 +54,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.githubAuth()
       .then(() => this.router.navigate(['/']))
       .catch(err => this.error = err.message);
-  }
-
-  ngOnDestroy(): void {
-    this.notifier.next();
-    this.notifier.complete();
   }
 }

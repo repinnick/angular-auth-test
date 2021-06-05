@@ -3,6 +3,7 @@ import {Post} from '../interfaces';
 
 @Pipe({
   name: 'onModeration',
+  pure: false,
 })
 export class ModerationFilterPipe implements PipeTransform{
   transform(posts: Post[], option: boolean): Post[] {
